@@ -17,7 +17,7 @@ public class HelloApplication extends Application {
             throw new RuntimeException(e);
         }
         Scene scene = new Scene(fxmlLoader.load(), 950, 500);
-        stage.setTitle("Hello!");
+        stage.setTitle("IHMSF");
         stage.setScene(scene);
         stage.show();
     }

@@ -263,14 +263,18 @@
                               <Accordion layoutX="246.0" layoutY="127.0" />
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="447.0" prefWidth="950.0">
                                  <children>
-                                    <ComboBox fx:id="SpecComboBox" editable="true" layoutX="9.0" layoutY="141.0" prefWidth="150.0" promptText="Specialization" />
-                                    <TextField layoutX="10.0" layoutY="21.0" promptText="Patient ID" />
-                                    <TextArea layoutX="11.0" layoutY="57.0" prefHeight="74.0" prefWidth="146.0" promptText="Symptoms..." />
-                                    <DatePicker layoutX="9.0" layoutY="177.0" prefHeight="26.0" prefWidth="150.0" promptText="Date" />
-                                    <ComboBox fx:id="SpecComboBox1" editable="true" layoutX="9.0" layoutY="214.0" prefWidth="150.0" promptText="Available Doctor" />
-                                    <Button layoutX="61.0" layoutY="256.0" mnemonicParsing="false" text="Book" />
-                                    <Button disable="true" layoutX="28.0" layoutY="296.0" mnemonicParsing="false" text="Transfer Request" />
-                                    <FlowPane hgap="2.0" layoutX="188.0" layoutY="10.0" prefHeight="331.0" prefWidth="162.0" vgap="2.0">
+                                    <VBox alignment="CENTER" layoutX="20.0" layoutY="49.0" spacing="20.0">
+                                       <children>
+                                          <TextField promptText="Patient ID" />
+                                          <TextArea prefHeight="74.0" prefWidth="146.0" promptText="Symptoms..." />
+                                          <ComboBox fx:id="SpecComboBox" editable="true" prefWidth="150.0" promptText="Specialization" />
+                                          <DatePicker prefHeight="26.0" prefWidth="150.0" promptText="Date" />
+                                          <ComboBox fx:id="SpecComboBox1" editable="true" prefWidth="150.0" promptText="Available Doctor" />
+                                          <Button mnemonicParsing="false" text="Book" />
+                                          <Button disable="true" mnemonicParsing="false" text="Transfer Request" />
+                                       </children>
+                                    </VBox>
+                                    <FlowPane hgap="2.0" layoutX="228.0" layoutY="70.0" prefHeight="294.0" prefWidth="194.0" vgap="2.0">
                                        <children>
                                           <Button mnemonicParsing="false" text="C01" />
                                           <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="C02" />
@@ -322,6 +326,18 @@
                                           <Button layoutX="378.0" layoutY="87.0" mnemonicParsing="false" text="C48" />
                                        </children>
                                     </FlowPane>
+                                    <Label layoutX="254.0" layoutY="23.0" text="Clinics Dashboard">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="68.0" layoutY="14.0" text="Details">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator layoutX="195.0" orientation="VERTICAL" prefHeight="445.0" prefWidth="0.0" />
+                                    <Separator layoutX="452.0" orientation="VERTICAL" prefHeight="449.0" prefWidth="0.0" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -338,7 +354,7 @@
                                   <TableColumn prefWidth="75.0" text="Date" />
                                     <TableColumn prefWidth="75.0" text="Time In" />
                                     <TableColumn prefWidth="75.0" text="Time Out" />
-                                    <TableColumn prefWidth="117.33334350585938" text="Cause of Abscence" />
+                                    <TableColumn prefWidth="228.79998779296875" text="Cause of Abscence" />
                                 </columns>
                               </TableView>
                            </children></AnchorPane>
@@ -353,7 +369,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <FlowPane hgap="2.0" layoutX="20.0" layoutY="38.0" prefHeight="249.0" prefWidth="197.0" vgap="2.0">
+                              <FlowPane hgap="2.0" layoutX="20.0" layoutY="40.0" prefHeight="249.0" prefWidth="197.0" vgap="2.0">
                                  <children>
                                     <Button mnemonicParsing="false" text="C01" />
                                     <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="C02" />
@@ -410,7 +426,179 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Separator layoutX="237.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="349.0" prefWidth="6.0" />
+                              <Separator layoutX="232.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="449.0" prefWidth="6.0" />
+                              <FlowPane columnHalignment="CENTER" hgap="2.0" layoutX="255.0" layoutY="40.0" prefHeight="192.0" prefWidth="288.0" vgap="2.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" text="R01" />
+                                    <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="R02" />
+                                    <Button layoutX="47.0" layoutY="10.0" mnemonicParsing="false" text="R03" />
+                                    <Button layoutX="84.0" layoutY="10.0" mnemonicParsing="false" text="R04" />
+                                    <Button layoutX="120.0" layoutY="10.0" mnemonicParsing="false" text="R05" />
+                                    <Button layoutX="157.0" layoutY="10.0" mnemonicParsing="false" text="R06" />
+                                    <Button layoutX="194.0" layoutY="10.0" mnemonicParsing="false" text="R07" />
+                                    <Button layoutX="231.0" layoutY="10.0" mnemonicParsing="false" text="R08" />
+                                    <Button layoutX="268.0" layoutY="10.0" mnemonicParsing="false" text="R09" />
+                                    <Button layoutX="304.0" layoutY="10.0" mnemonicParsing="false" text="R10" />
+                                    <Button layoutX="341.0" layoutY="10.0" mnemonicParsing="false" text="R11" />
+                                    <Button layoutX="378.0" layoutY="10.0" mnemonicParsing="false" text="R12" />
+                                    <Button layoutX="415.0" layoutY="10.0" mnemonicParsing="false" text="R13" />
+                                    <Button layoutX="10.0" layoutY="36.0" mnemonicParsing="false" text="R14" />
+                                    <Button layoutX="47.0" layoutY="36.0" mnemonicParsing="false" text="R15" />
+                                    <Button layoutX="84.0" layoutY="36.0" mnemonicParsing="false" text="R16" />
+                                    <Button layoutX="120.0" layoutY="36.0" mnemonicParsing="false" text="R17" />
+                                    <Button layoutX="157.0" layoutY="36.0" mnemonicParsing="false" text="R18" />
+                                    <Button layoutX="194.0" layoutY="36.0" mnemonicParsing="false" text="R19" />
+                                    <Button layoutX="231.0" layoutY="36.0" mnemonicParsing="false" text="R20" />
+                                    <Button layoutX="268.0" layoutY="36.0" mnemonicParsing="false" text="R21" />
+                                    <Button layoutX="304.0" layoutY="36.0" mnemonicParsing="false" text="R22" />
+                                    <Button layoutX="341.0" layoutY="36.0" mnemonicParsing="false" text="R23" />
+                                    <Button layoutX="378.0" layoutY="36.0" mnemonicParsing="false" text="R24" />
+                                    <Button layoutX="415.0" layoutY="36.0" mnemonicParsing="false" text="R25" />
+                                    <Button layoutX="10.0" layoutY="61.0" mnemonicParsing="false" text="R26" />
+                                    <Button layoutX="47.0" layoutY="61.0" mnemonicParsing="false" text="R27" />
+                                    <Button layoutX="84.0" layoutY="61.0" mnemonicParsing="false" text="R28" />
+                                    <Button layoutX="120.0" layoutY="61.0" mnemonicParsing="false" text="R29" />
+                                    <Button layoutX="157.0" layoutY="61.0" mnemonicParsing="false" text="R30" />
+                                    <Button layoutX="194.0" layoutY="61.0" mnemonicParsing="false" text="R31" />
+                                    <Button layoutX="231.0" layoutY="61.0" mnemonicParsing="false" text="R32" />
+                                    <Button layoutX="268.0" layoutY="61.0" mnemonicParsing="false" text="R33" />
+                                    <Button layoutX="304.0" layoutY="61.0" mnemonicParsing="false" text="R34" />
+                                    <Button layoutX="341.0" layoutY="61.0" mnemonicParsing="false" text="R35" />
+                                    <Button layoutX="378.0" layoutY="61.0" mnemonicParsing="false" text="R36" />
+                                    <Button layoutX="415.0" layoutY="61.0" mnemonicParsing="false" text="R37" />
+                                    <Button layoutX="10.0" layoutY="87.0" mnemonicParsing="false" text="R38" />
+                                    <Button layoutX="47.0" layoutY="87.0" mnemonicParsing="false" text="R39" />
+                                    <Button layoutX="84.0" layoutY="87.0" mnemonicParsing="false" text="R40" />
+                                    <Button layoutX="120.0" layoutY="87.0" mnemonicParsing="false" text="R41" />
+                                    <Button layoutX="157.0" layoutY="87.0" mnemonicParsing="false" text="R42" />
+                                    <Button layoutX="194.0" layoutY="87.0" mnemonicParsing="false" text="R43" />
+                                    <Button layoutX="231.0" layoutY="87.0" mnemonicParsing="false" text="R44" />
+                                    <Button layoutX="268.0" layoutY="87.0" mnemonicParsing="false" text="R45" />
+                                    <Button layoutX="304.0" layoutY="87.0" mnemonicParsing="false" text="R46" />
+                                    <Button layoutX="341.0" layoutY="87.0" mnemonicParsing="false" text="R47" />
+                                    <Button layoutX="378.0" layoutY="87.0" mnemonicParsing="false" text="R48" />
+                                    <Button layoutX="88.0" layoutY="262.0" mnemonicParsing="false" text="R49" />
+                                    <Button layoutX="128.0" layoutY="262.0" mnemonicParsing="false" text="R50" />
+                                    <Button layoutX="167.0" layoutY="262.0" mnemonicParsing="false" text="R51" />
+                                    <Button layoutX="10.0" layoutY="290.0" mnemonicParsing="false" text="R52" />
+                                    <Button layoutX="49.0" layoutY="290.0" mnemonicParsing="false" text="R53" />
+                                    <Button layoutX="88.0" layoutY="290.0" mnemonicParsing="false" text="R54" />
+                                    <Button layoutX="128.0" layoutY="290.0" mnemonicParsing="false" text="R55" />
+                                    <Button layoutX="167.0" layoutY="290.0" mnemonicParsing="false" text="R56" />
+                                    <Button layoutX="10.0" layoutY="318.0" mnemonicParsing="false" text="R57" />
+                                    <Button layoutX="49.0" layoutY="318.0" mnemonicParsing="false" text="R58" />
+                                    <Button layoutX="88.0" layoutY="318.0" mnemonicParsing="false" text="R59" />
+                                    <Button layoutX="128.0" layoutY="318.0" mnemonicParsing="false" text="R60" />
+                                    <Button layoutX="167.0" layoutY="318.0" mnemonicParsing="false" text="R61" />
+                                    <Button layoutX="10.0" layoutY="346.0" mnemonicParsing="false" text="R62" />
+                                    <Button layoutX="49.0" layoutY="346.0" mnemonicParsing="false" text="R63" />
+                                    <Button layoutX="88.0" layoutY="346.0" mnemonicParsing="false" text="R64" />
+                                    <Button layoutX="128.0" layoutY="346.0" mnemonicParsing="false" text="R65" />
+                                    <Button layoutX="167.0" layoutY="346.0" mnemonicParsing="false" text="R66" />
+                                    <Button layoutX="10.0" layoutY="374.0" mnemonicParsing="false" text="R67" />
+                                    <Button layoutX="49.0" layoutY="374.0" mnemonicParsing="false" text="R68" />
+                                    <Button layoutX="88.0" layoutY="374.0" mnemonicParsing="false" text="R69" />
+                                    <Button layoutX="128.0" layoutY="374.0" mnemonicParsing="false" text="R70" />
+                                    <Button layoutX="167.0" layoutY="374.0" mnemonicParsing="false" text="R71" />
+                                    <Button layoutX="10.0" layoutY="402.0" mnemonicParsing="false" text="R72" />
+                                    <Button layoutX="49.0" layoutY="402.0" mnemonicParsing="false" text="R73" />
+                                    <Button layoutX="88.0" layoutY="402.0" mnemonicParsing="false" text="R74" />
+                                    <Button layoutX="128.0" layoutY="402.0" mnemonicParsing="false" text="R75" />
+                                    <Button layoutX="167.0" layoutY="402.0" mnemonicParsing="false" text="R76" />
+                                    <Button layoutX="10.0" layoutY="430.0" mnemonicParsing="false" text="R77" />
+                                    <Button layoutX="49.0" layoutY="430.0" mnemonicParsing="false" text="R78" />
+                                    <Button layoutX="88.0" layoutY="430.0" mnemonicParsing="false" text="R79" />
+                                    <Button layoutX="128.0" layoutY="430.0" mnemonicParsing="false" text="R80" />
+                                 </children>
+                              </FlowPane>
+                              <Label layoutX="255.0" layoutY="6.0" prefHeight="27.0" prefWidth="55.0" text="Rooms">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Separator layoutX="547.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="449.0" prefWidth="6.0" />
+                              <FlowPane hgap="2.0" layoutX="568.0" layoutY="43.0" prefHeight="231.0" prefWidth="198.0" vgap="2.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" text="C01" />
+                                    <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="C02" />
+                                    <Button layoutX="47.0" layoutY="10.0" mnemonicParsing="false" text="C03" />
+                                    <Button layoutX="84.0" layoutY="10.0" mnemonicParsing="false" text="C04" />
+                                    <Button layoutX="120.0" layoutY="10.0" mnemonicParsing="false" text="C05" />
+                                    <Button layoutX="157.0" layoutY="10.0" mnemonicParsing="false" text="C06" />
+                                    <Button layoutX="194.0" layoutY="10.0" mnemonicParsing="false" text="C07" />
+                                    <Button layoutX="231.0" layoutY="10.0" mnemonicParsing="false" text="C08" />
+                                    <Button layoutX="268.0" layoutY="10.0" mnemonicParsing="false" text="C09" />
+                                    <Button layoutX="304.0" layoutY="10.0" mnemonicParsing="false" text="C10" />
+                                    <Button layoutX="341.0" layoutY="10.0" mnemonicParsing="false" text="C11" />
+                                    <Button layoutX="378.0" layoutY="10.0" mnemonicParsing="false" text="C12" />
+                                    <Button layoutX="415.0" layoutY="10.0" mnemonicParsing="false" text="C13" />
+                                    <Button layoutX="10.0" layoutY="36.0" mnemonicParsing="false" text="C14" />
+                                    <Button layoutX="47.0" layoutY="36.0" mnemonicParsing="false" text="C15" />
+                                    <Button layoutX="84.0" layoutY="36.0" mnemonicParsing="false" text="C16" />
+                                    <Button layoutX="120.0" layoutY="36.0" mnemonicParsing="false" text="C17" />
+                                    <Button layoutX="157.0" layoutY="36.0" mnemonicParsing="false" text="C18" />
+                                    <Button layoutX="194.0" layoutY="36.0" mnemonicParsing="false" text="C19" />
+                                    <Button layoutX="231.0" layoutY="36.0" mnemonicParsing="false" text="C20" />
+                                    <Button layoutX="268.0" layoutY="36.0" mnemonicParsing="false" text="C21" />
+                                    <Button layoutX="304.0" layoutY="36.0" mnemonicParsing="false" text="C22" />
+                                    <Button layoutX="341.0" layoutY="36.0" mnemonicParsing="false" text="C23" />
+                                    <Button layoutX="378.0" layoutY="36.0" mnemonicParsing="false" text="C24" />
+                                    <Button layoutX="415.0" layoutY="36.0" mnemonicParsing="false" text="C25" />
+                                    <Button layoutX="10.0" layoutY="61.0" mnemonicParsing="false" text="C26" />
+                                    <Button layoutX="47.0" layoutY="61.0" mnemonicParsing="false" text="C27" />
+                                    <Button layoutX="84.0" layoutY="61.0" mnemonicParsing="false" text="C28" />
+                                    <Button layoutX="120.0" layoutY="61.0" mnemonicParsing="false" text="C29" />
+                                    <Button layoutX="157.0" layoutY="61.0" mnemonicParsing="false" text="C30" />
+                                    <Button layoutX="194.0" layoutY="61.0" mnemonicParsing="false" text="C31" />
+                                    <Button layoutX="231.0" layoutY="61.0" mnemonicParsing="false" text="C32" />
+                                    <Button layoutX="268.0" layoutY="61.0" mnemonicParsing="false" text="C33" />
+                                    <Button layoutX="304.0" layoutY="61.0" mnemonicParsing="false" text="C34" />
+                                    <Button layoutX="341.0" layoutY="61.0" mnemonicParsing="false" text="C35" />
+                                    <Button layoutX="378.0" layoutY="61.0" mnemonicParsing="false" text="C36" />
+                                    <Button layoutX="415.0" layoutY="61.0" mnemonicParsing="false" text="C37" />
+                                    <Button layoutX="10.0" layoutY="87.0" mnemonicParsing="false" text="C38" />
+                                 </children>
+                              </FlowPane>
+                              <Label layoutX="568.0" layoutY="6.0" prefHeight="27.0" prefWidth="150.0" text="Operations Rooms">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Separator layoutX="776.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="449.0" prefWidth="6.0" />
+                              <VBox layoutX="785.0" layoutY="19.0" spacing="8.0">
+                                 <children>
+                                    <Label prefHeight="27.0" prefWidth="150.0" text="Available Doctors:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="27.0" prefWidth="150.0" text="76/89">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="27.0" prefWidth="150.0" text="Available Nurses:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="27.0" prefWidth="150.0" text="81/110">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="27.0" prefWidth="150.0" text="Patients:">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="27.0" prefWidth="150.0" text="122">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
                            </children></AnchorPane>
                      </content>
                   </Tab>
