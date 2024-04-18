@@ -204,11 +204,11 @@
                                                 <HBox layoutX="58.0" layoutY="20.0" spacing="15.0">
                                                    <children>
                                                       <Label text="Search" />
-                                                      <TextField />
+                                                      <TextField fx:id="patientIdTextField" />
                                                       <RadioButton mnemonicParsing="false" text="Patient ID" />
                                                       <RadioButton mnemonicParsing="false" text="SSn" />
                                                       <RadioButton mnemonicParsing="false" text="Full Name" />
-                                                      <Button mnemonicParsing="false" text="Search" />
+                                                      <Button mnemonicParsing="false" onAction="#searchButtonClicked" text="Search" />
                                                    </children>
                                                    <padding>
                                                       <Insets bottom="5.0" top="5.0" />
@@ -216,7 +216,7 @@
                                                 </HBox>
                                                 <Separator layoutX="1.0" layoutY="64.0" prefHeight="0.0" prefWidth="649.0" />
                                                 <Label layoutX="16.0" layoutY="71.0" text="Name-&gt;" />
-                                                <Label layoutX="64.0" layoutY="71.0" text="Ahmed Khalid" />
+                                                <Label fx:id="patientNameLabel" layoutX="64.0" layoutY="71.0" text="Ahmed Khalid" />
                                                 <Label layoutX="453.0" layoutY="90.0" text="Phone Number" />
                                                 <Label layoutX="550.0" layoutY="90.0" text="01158501501" />
                                                 <Label layoutX="15.0" layoutY="90.0" text="Patient ID" />
