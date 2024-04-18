@@ -157,7 +157,7 @@
                                                       </HBox>
                                                    </children>
                                                 </VBox>
-                                                <VBox layoutX="331.0" layoutY="17.0" spacing="15.0">
+                                                <VBox layoutX="373.0" layoutY="14.0" spacing="15.0">
                                                    <children>
                                                       <HBox>
                                                          <children>
@@ -192,7 +192,7 @@
                                                    </children>
                                                 </VBox>
                                                 <Button layoutX="458.0" layoutY="240.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="83.0" text="Register" />
-                                                <Separator layoutX="296.0" layoutY="6.0" orientation="VERTICAL" prefHeight="335.0" prefWidth="4.0" />
+                                                <Separator layoutX="315.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="417.0" prefWidth="4.0" />
                                              </children>
                                           </AnchorPane>
                                     </content>
