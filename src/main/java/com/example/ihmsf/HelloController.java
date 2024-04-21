@@ -61,7 +61,6 @@ public class HelloController {
         // Initialize the ComboBox with default items
         ObservableList<String> SpecOptions = FXCollections.observableArrayList("Internal Medicine", "Surgery", "Pediatrics", "Obstetrics and Gynecology", "Emergency Medicine", "Radiology", "Oncology", "Cardiology", "Neurology", "Orthopedics", "Psychiatry");
         SpecComboBox.setItems(SpecOptions);
-        
         // Set the toggle group for the radio buttons
         searchToggleGroup = new ToggleGroup();
         patientIdRadioButton.setToggleGroup(searchToggleGroup);

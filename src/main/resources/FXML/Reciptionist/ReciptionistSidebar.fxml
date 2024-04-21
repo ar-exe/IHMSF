@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0"
+      prefWidth="180.0" styleClass="Main_Sidebar_Container" stylesheets="@../../Styles/ReciptionistSideBar.css"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ihmsf.Controllers.Receptionist.ReciptionistSidebarController">
+   <AnchorPane prefHeight="750.0" prefWidth="180.0" styleClass="Left_Container">
+      <VBox layoutX="1.0" prefHeight="80.0" prefWidth="160.0" styleClass="Title_Container"
+            AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.5999999999999943" AnchorPane.topAnchor="0.0">
+         <FontAwesomeIconView glyphName="AMBULANCE" size="36" wrappingWidth="32.590460777282715"/>
+         <Label text="IHMS">
+            <font>
+               <Font size="24.0"/>
+            </font>
+         </Label>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="-6.6" layoutY="100.0" prefHeight="400.0" prefWidth="160.0"
+            styleClass="Sidebar_container" AnchorPane.leftAnchor="-6.6" AnchorPane.rightAnchor="6.599999999999994"
+            AnchorPane.topAnchor="100.0">
+         <Button fx:id="dashboardButton" mnemonicParsing="false" text="Dashboard">
+            <graphic>
+               <FontAwesomeIconView glyphName="CHART"/>
+            </graphic>
+         </Button>
+         <Button fx:id="appointmentButton" mnemonicParsing="false" prefHeight="29.0" prefWidth="139.0"
+                 text="Appointment">
+            <graphic>
+               <FontAwesomeIconView glyphName="TABLE"/>
+            </graphic>
+         </Button>
+         <Button fx:id="patientsButton" mnemonicParsing="false" text="Patients">
+            <graphic>
+               <FontAwesomeIconView glyphName="STAR"/>
+            </graphic>
+         </Button>
+         <Button fx:id="attendanceButton" mnemonicParsing="false" prefHeight="29.0" prefWidth="127.0"
+                 text="Attendance">
+            <graphic>
+               <FontAwesomeIconView glyphName="PENCIL"/>
+            </graphic>
+         </Button>
+         <Button fx:id="transferButton" mnemonicParsing="false" prefHeight="29.0" prefWidth="124.0"
+                 text="Transfer Requsts">
+            <graphic>
+               <FontAwesomeIconView/>
+            </graphic>
+         </Button>
+         <Button fx:id="resourcesButton" mnemonicParsing="false" text="Resources">
+            <graphic>
+               <FontAwesomeIconView glyphName="DASHBOARD"/>
+            </graphic>
+         </Button>
+         <Line endX="120.0"/>
+         <Button fx:id="profileButton" mnemonicParsing="false" styleClass="alt_sidebar_btn" text="Profile">
+            <graphic>
+               <FontAwesomeIconView glyphName="USER"/>
+            </graphic>
+         </Button>
+         <Button fx:id="logoutButton" mnemonicParsing="false" styleClass="alt_sidebar_btn" text="Logout">
+            <graphic>
+               <FontAwesomeIconView glyphName="EXTERNAL_LINK"/>
+            </graphic>
+         </Button>
+      </VBox>
+      <VBox layoutX="14.4" layoutY="615.0" prefHeight="120.0" prefWidth="130.0" styleClass="report_container"
+            AnchorPane.bottomAnchor="15.399999999999977" AnchorPane.leftAnchor="14.4"
+            AnchorPane.rightAnchor="14.400000000000006">
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Report a Bug?"/>
+         <Label text="Click Here when Error Occurs"/>
+         <Button fx:id="reportButton" mnemonicParsing="false" text="Report">
+            <graphic>
+               <FontAwesomeIconView glyphName="PLUS"/>
+            </graphic>
+         </Button>
+      </VBox>
+   </AnchorPane>
+</VBox>

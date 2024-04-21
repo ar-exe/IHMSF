@@ -1,0 +1,85 @@
+.root {
+    -main-accent-color: teal;
+}
+.Main_Sidebar_Container{
+    -fx-background-color: #EEEEEE;
+    -fx-alignment: center;
+}
+.Left_Container{
+    -fx-background-color: #EEEEEE;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(two-pass-box,#AAAAAA,5,0,0,4);
+}
+
+.Title_Container{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 20 20 0 0;
+    -fx-alignment: top_center;
+}
+.Title_Container FontAwesomeIconView{
+    -fx-fill: -main-accent-color;
+}
+.Title_Container Text{
+    -fx-fill: #000000;
+    -fx-font-size: 2em;
+
+}
+/*Navigation*/
+.Sidebar_container{
+    -fx-padding: 10 10 10 20;
+    -fx-spacing: 20;
+}
+.Sidebar_container Button{
+    -fx-pref-width: 145;
+    -fx-pref-height: 40;
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: -main-accent-color ;
+    -fx-font-size: 1.1em;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(three-pass-box, #DDDDDD,5, 0, 0, 6);
+
+}
+.Sidebar_container Button:hover{
+    -fx-cursor: hand;
+}
+.Sidebar_container Button FontAwesomeIconView{
+    -fx-fill: -main-accent-color;
+}
+.alt_sidebar_btn{
+    -fx-pref-width: 115;
+    -fx-pref-height: 40;
+    -fx-background-color: -main-accent-color;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 1.1em;
+    -fx-alignment: center_left;
+}
+.alt_sidebar_btn FontAwesomeIconView{
+    -fx-fill: #EEEEEE;
+}
+.report_container{
+
+    -fx-background-color: #EFFEEE;
+    -fx-background-radius: 10;
+    -fx-spacing: 10;
+    -fx-padding: 10 0 10 0;
+    -fx-alignment: center;
+}
+.report_container Text{
+    -fx-font-weight: bold;
+    -fx-fill: -main-accent-color;
+}
+.report_container Label{
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+}
+.report_container Button{
+    -fx-pref-width: 80;
+    -fx-background-color: -main-accent-color;
+    -fx-text-fill: #EEEEEE;
+}
+.report_container Button:hover{
+    -fx-cursor: hand;
+}
+.report_container Button FontAwesomeIconView{
+    -fx-fill: #EEEEEE;
+}
