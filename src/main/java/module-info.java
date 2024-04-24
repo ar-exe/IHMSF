@@ -2,7 +2,7 @@ module com.example.ihmsf {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
-
+    requires de.jensd.fx.glyphs.fontawesome;
 
 
     opens com.example.ihmsf to javafx.fxml;

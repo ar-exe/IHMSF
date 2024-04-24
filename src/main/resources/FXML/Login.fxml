@@ -9,38 +9,36 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ihmsf.Controllers.LoginController">
-   <children>
-      <VBox alignment="CENTER" layoutX="-2.0" prefHeight="400.0" prefWidth="200.0" styleClass="login_logo_container" stylesheets="@../Styles/login.css">
-         <children>
-            <Label styleClass="login_login_container" text="IHMS" textFill="WHITE">
-               <font>
-                  <Font name="Montserrat-Bold" size="36.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
-      <VBox alignment="CENTER" layoutX="229.0" layoutY="23.0" prefHeight="347.0" prefWidth="347.0" spacing="10.0" styleClass="input_form_container" stylesheets="@../Styles/login.css">
-         <children>
-            <Label text="Username">
-               <styleClass>
-                  <String fx:value="login_form_container" />
-                  <String fx:value="input_form_container" />
-               </styleClass>
-               <font>
-                  <Font name="☞Eina04-Bold" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="usernameTextField" styleClass="input_form_container" />
-            <Label styleClass="input_form_container" stylesheets="@../Styles/login.css" text="Password">
-               <font>
-                  <Font name="☞Eina04-Bold" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="passwordTextField" styleClass="input_form_container" />
-            <Label fx:id="loginErrorLabel" styleClass="error_lbl" text="Error" />
-            <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="335.0" stylesheets="@../Styles/login.css" text="Login" />
-         </children>
-      </VBox>
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ihmsf.Controllers.LoginController">
+   <VBox alignment="CENTER" layoutX="-2.0" prefHeight="400.0" prefWidth="200.0" styleClass="login_logo_container"
+         stylesheets="@../Styles/login.css">
+      <Label styleClass="login_login_container" text="IHMS" textFill="WHITE">
+         <font>
+            <Font name="Montserrat-Bold" size="36.0"/>
+         </font>
+      </Label>
+   </VBox>
+   <VBox alignment="CENTER" layoutX="229.0" layoutY="23.0" prefHeight="347.0" prefWidth="347.0" spacing="10.0"
+         styleClass="input_form_container" stylesheets="@../Styles/login.css">
+      <Label text="Username">
+         <styleClass>
+            <String fx:value="login_form_container"/>
+            <String fx:value="input_form_container"/>
+         </styleClass>
+         <font>
+            <Font name="☞Eina04-Bold" size="12.0"/>
+         </font>
+      </Label>
+      <TextField fx:id="usernameTextField" styleClass="input_form_container"/>
+      <Label styleClass="input_form_container" stylesheets="@../Styles/login.css" text="Password">
+         <font>
+            <Font name="☞Eina04-Bold" size="12.0"/>
+         </font>
+      </Label>
+      <TextField fx:id="passwordTextField" styleClass="input_form_container"/>
+      <Label fx:id="loginErrorLabel" styleClass="error_lbl" text="Error"/>
+      <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="335.0"
+              stylesheets="@../Styles/login.css" text="Login"/>
+   </VBox>
 </AnchorPane>

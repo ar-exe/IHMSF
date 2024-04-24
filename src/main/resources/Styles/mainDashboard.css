@@ -8,7 +8,7 @@
 .date_lbl{
     -fx-text-fill: #AAAAAA;
     -fx-font-size: 1.1em;
-    --block-font-family: "Montserrat";
+    -fx-font-family: "Montserrat";
 }
 .section_title{
     -fx-font-size: 1.4em;
@@ -17,11 +17,11 @@
 .account_view{
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 10 0 0 10;
-    -fx-padding: 10 0 10 0;
+    -fx-padding: 0 0 0 0;
     -fx-alignment: center;
     -fx-border-width: 0 1 0 0;
     -fx-border-color: #DDDDDD;
-    -fx-spacing: 10;
+    -fx-spacing: 5;
 }
 .account{
     -fx-background-radius: 5;
@@ -29,11 +29,13 @@
 }
 .account VBox{
     -fx-background-color: #FFFFFF;
+    -fx-alignment: center;
 }
 .account Label {
     -fx-text-fill: #FFFFFF;
     -fx-font-family: "Montserrat";
-    -fx-font-size: 1.5em;
+    -fx-font-size: 1.1em;
+    -fx-alignment: center;
 }
 .account FontAwesomeIconView{
     -fx-fill: #FFFFFF;
@@ -47,10 +49,17 @@
     -fx-font-size: 3em;
     -fx-font-weight:  bold;
 }
-.account_number{
+/*.account_number{*/
+/*    -fx-text-fill: #FFFFFF;*/
+/*    -fx-font-family: "Montserrat"; !* Added quotation marks around font family name *!*/
+/*    -fx-font-size: 1.1em;*/
+/*    -fx-text-alignment: center;*/
+.account_number_VBox{
+    -fx-text-alignment: center;
+}.account_number Label {
     -fx-text-fill: #FFFFFF;
-    -fx-font-family: Montserrat;
-    -fx-font-size: 1.5em;
+    -fx-font-family: "Montserrat"; /* Added quotation marks around font family name */
+    -fx-font-size: 1.1em;
     -fx-text-alignment: center;
 }
 /*account summary view*/
@@ -58,8 +67,7 @@
     -fx-background-color: #FFFFFF;
     -fx-padding: 5 10 5 10;
     -fx-spacing: 5;
-    -fx-alignment: center_left;
-
+    -fx-alignment: center-left; /* Changed center_left to center-left */
 }
 .acc_summary_container{
     -fx-padding: 10;
@@ -97,7 +105,7 @@
     -fx-alignment: center_left;
 }
 .new_trans_container Label{
-    -fx-font-family: Montserrat;
+    -fx-font-family: "Montserrat";
     -fx-font-size: 1.3em;
 }
 .new_trans_container TextField{
