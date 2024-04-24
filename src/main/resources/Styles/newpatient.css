@@ -1,0 +1,45 @@
+.contact_information_container{
+    -fx-background-color: #132A13;
+    -fx-border-radius: 2;
+    -fx-border-width: 1;
+    -fx-padding: 10;
+}
+.contact_information_container .label{
+    -fx-text-fill: #ffffff;
+}
+.contact_information_container .text_field{
+    -fx-background-color: #ffffff;
+    -fx-background-radius:2;
+    -fx-border-color: #132A13;
+    -fx-border-radius: 2;
+    -fx-border-width: 1;
+    -fx-padding: 5;
+}
+.contact_information_container .button{
+    -fx-background-color: #e2e2e2;
+    -fx-background-radius: 2;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-text-fill: #132A13;
+    -fx-font-size: 1.1em;
+    -fx-font-weight: bold;
+    -fx-pref-width: 350;
+}
+.personal_Information_container .label{
+    -fx-text-fill: #132A13;
+}
+.label{
+    -fx-font-family: "Montserrat";
+    -fx-font-size: 1.1em;
+}
+.search_print_button{
+        -fx-background-color: #132A13;
+        -fx-background-radius: 2;
+        -fx-border-radius: 10;
+        -fx-border-width: 1;
+        -fx-text-fill: #ffffff;
+        -fx-font-size: 1.1em;
+        -fx-font-weight: bold;
+        -fx-pref-width: 350;
+}
