@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+
+<AnchorPane prefHeight="60.0" prefWidth="550.0" styleClass="cell_container" stylesheets="@../../Styles/RoomsCell.css"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox alignment="CENTER" layoutX="0.8" layoutY="2.6" prefHeight="50.0" prefWidth="50.0"
+          styleClass="bed_icon_container" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.8"
+          AnchorPane.topAnchor="2.6">
+        <FontAwesomeIconView glyphName="BED" size="35" wrappingWidth="9.879434585571289"/>
+    </VBox>
+    <Label fx:id="patientIDCell" layoutX="60.0" layoutY="22.0" styleClass="cell_patient_lbl" text="231124"
+           AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="22.0"/>
+    <Label fx:id="roomIDCell" layoutX="187.8" layoutY="22.4" styleClass="cell_room_lbl" text="R37"
+           AnchorPane.leftAnchor="187.8" AnchorPane.topAnchor="22.4"/>
+    <Line endY="20.0" layoutX="342.0" layoutY="22.0" AnchorPane.topAnchor="21.5"/>
+    <Label fx:id="doctorCell" layoutX="360.0" layoutY="22.0" styleClass="cell_room_lbl" text="Dr. Amina Yasser"/>
+    <Label fx:id="heartbeatCell" layoutX="492.0" layoutY="17.0" styleClass="heartbeat_lbl" text="65">
+        <graphic>
+          <FontAwesomeIconView glyphName="HEART"/>
+        </graphic>
+    </Label>
+    <Line endY="20.0" layoutX="242.0" layoutY="22.0"/>
+    <Label fx:id="stateCell" layoutX="271.0" layoutY="23.0" styleClass="state_lbl" text="Crucial"/>
+</AnchorPane>

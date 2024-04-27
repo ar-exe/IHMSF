@@ -32,122 +32,118 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.geometry.Insets?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-            <Text fill="#132a13" layoutX="207.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Record new patient">
-               <font>
-                  <Font size="28.0" />
-               </font>
-            </Text>
-            <VBox layoutX="1.0" layoutY="48.0" prefHeight="449.0" prefWidth="395.0" spacing="30.0" styleClass="personal_Information_container" stylesheets="@../../Styles/newpatient.css">
-               <children>
-                  <Label text="Personal information">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <HBox prefHeight="19.0" prefWidth="367.0" spacing="1.0">
-                     <children>
-                        <Label prefHeight="27.0" prefWidth="98.0" text="First Name" />
-                        <TextField prefHeight="25.0" prefWidth="148.0" promptText="Ahmed" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="1.0">
-                     <children>
-                        <Label prefHeight="27.0" prefWidth="98.0" text="Last Name" />
-                        <TextField prefHeight="26.0" prefWidth="148.0" promptText="Khalid" />
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Label prefHeight="27.0" prefWidth="98.0" text="Weight" />
-                        <TextField prefHeight="26.0" prefWidth="150.0" promptText="74.4" />
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Label prefHeight="27.0" prefWidth="98.0" text="Allergies" />
-                        <TextField prefHeight="26.0" prefWidth="155.0" promptText="SALVA" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="1.0">
-                     <children>
-                        <Label prefHeight="27.0" prefWidth="98.0" text="Blood Type" />
-                        <ChoiceBox fx:id="BloodTypeChoiceBox" prefWidth="150.0" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="1.0">
-                     <children>
-                        <Label prefHeight="27.0" prefWidth="98.0" text="Gender" />
-                        <ChoiceBox fx:id="genderChoiceBox" prefWidth="150.0" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="27.0" prefWidth="286.0">
-                     <children>
-                        <Label prefHeight="27.0" prefWidth="105.0" text="Birthdate" />
-                        <DatePicker prefHeight="26.0" prefWidth="151.0" styleClass="datepicker" />
-                     </children>
-                  </HBox>
-               </children>
-               <padding>
-                  <Insets bottom="25.0" left="25.0" />
-               </padding>
-            </VBox>
-            <VBox layoutX="396.0" layoutY="40.0" prefHeight="457.0" prefWidth="249.0" spacing="30.0" styleClass="contact_information_container" stylesheets="@../../Styles/newpatient.css">
-               <children>
-                  <Label text="Contact information">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <HBox spacing="1.0">
-                     <children>
-                        <Label prefHeight="27.0" prefWidth="98.0" text="SSN" />
-                        <TextField prefHeight="26.0" prefWidth="122.0" promptText="203045678898" />
-                     </children>
-                  </HBox>
-                  <HBox spacing="1.0">
-                     <children>
-                        <Label prefHeight="27.0" prefWidth="98.0" text="Phone" />
-                        <TextField prefHeight="26.0" prefWidth="122.0" promptText="01154785401" />
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Label prefHeight="27.0" prefWidth="98.0" text="Address" />
-                        <TextField prefHeight="26.0" prefWidth="123.0" promptText="Aswan-Edfo" />
-                     </children>
-                  </HBox>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="38.0" prefWidth="83.0" text="Register" />
-                  <Button alignment="CENTER" layoutX="21.0" layoutY="241.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="83.0" text="Print" />
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </VBox>
-            <Separator layoutX="393.0" layoutY="78.0" orientation="VERTICAL" prefHeight="322.0" prefWidth="1.0" />
-            <Text fill="#016510" layoutX="387.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Text>
-            <Separator layoutX="4.0" layoutY="38.0" prefHeight="5.0" prefWidth="630.0" />
-      </children>
-    </AnchorPane>
-  </children>
-</VBox>
+<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="718.0" prefWidth="821.0" stylesheets="@../../Styles/newpatient.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ihmsf.Controllers.Receptionist.NewPatientController">
+<children>
+      <Text fill="#132a13" layoutX="274.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="labelMain" text="Register New Patient">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Label layoutX="84.0" layoutY="78.0" text="Personal Information">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <HBox layoutX="26.0" layoutY="110.0" prefHeight="32.0" prefWidth="265.0" spacing="1.0">
+         <children>
+            <Label prefHeight="27.0" prefWidth="98.0" text="First Name" />
+            <TextField fx:id="firstnameTextField" prefHeight="25.0" prefWidth="148.0" promptText="Ahmed" />
+         </children>
+      </HBox>
+      <HBox layoutX="26.0" layoutY="163.0" spacing="1.0">
+         <children>
+            <Label prefHeight="27.0" prefWidth="98.0" text="Last Name" />
+            <TextField fx:id="lastnameTextField" prefHeight="26.0" prefWidth="148.0" promptText="Khalid" />
+         </children>
+      </HBox>
+      <HBox layoutX="26.0" layoutY="218.0">
+         <children>
+            <Label prefHeight="27.0" prefWidth="98.0" text="Weight" />
+            <TextField fx:id="weightTextField" prefHeight="26.0" prefWidth="150.0" promptText="74.4" />
+         </children>
+      </HBox>
+      <HBox layoutX="26.0" layoutY="273.0">
+         <children>
+            <Label prefHeight="27.0" prefWidth="98.0" text="Allergies" />
+            <TextField fx:id="allergiesTextField" prefHeight="26.0" prefWidth="155.0" promptText="SALVA" />
+         </children>
+      </HBox>
+      <HBox layoutX="26.0" layoutY="330.0" spacing="1.0">
+         <children>
+            <Label prefHeight="27.0" prefWidth="98.0" text="Blood Type" />
+            <ChoiceBox fx:id="BloodTypeChoiceBox" prefWidth="150.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="26.0" layoutY="378.0" spacing="1.0">
+         <children>
+            <Label prefHeight="27.0" prefWidth="98.0" text="Gender" />
+            <ChoiceBox fx:id="genderChoiceBox" prefWidth="150.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="26.0" layoutY="435.0" prefHeight="27.0" prefWidth="286.0">
+         <children>
+            <Label prefHeight="27.0" prefWidth="105.0" text="Birthdate" />
+            <DatePicker fx:id="birthdatePicker" prefHeight="26.0" prefWidth="151.0" styleClass="datepicker" />
+         </children>
+      </HBox>
+      <Label layoutX="524.0" layoutY="99.0" text="Patient Card">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" layoutX="22.0" layoutY="487.0" prefHeight="27.0" prefWidth="256.0" spacing="1.0">
+         <children>
+            <Label prefHeight="27.0" prefWidth="98.0" text="SSN" />
+            <TextField fx:id="ssnTextField" prefHeight="26.0" prefWidth="122.0" promptText="203045678898" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="43.0" layoutY="535.0" spacing="1.0">
+         <children>
+            <Label prefHeight="27.0" prefWidth="98.0" text="Phone" />
+            <TextField fx:id="phoneTextField" prefHeight="26.0" prefWidth="122.0" promptText="01154785401" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="39.0" layoutY="585.0">
+         <children>
+            <Label prefHeight="27.0" prefWidth="98.0" text="Address" />
+            <TextField fx:id="addressTextField" prefHeight="26.0" prefWidth="123.0" promptText="Aswan-Edfo" />
+         </children>
+      </HBox>
+      <Button fx:id="registerButton" alignment="CENTER" layoutX="28.0" layoutY="643.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="271.0" text="Register" />
+      <Button fx:id="printButton" alignment="CENTER" layoutX="422.0" layoutY="375.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="83.0" text="Print" />
+      <Text fill="#016510" layoutX="387.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <AnchorPane layoutX="397.0" layoutY="124.0" prefHeight="164.0" prefWidth="343.0" styleClass="patient_card">
+         <children>
+            <Label layoutX="11.0" layoutY="30.0" text="Patient ID -&gt;" />
+            <Label layoutX="11.0" layoutY="48.0" text="Name -&gt;" />
+            <Label layoutX="11.0" layoutY="68.0" text="Birthdate -&gt;" />
+            <Label fx:id="patientID" layoutX="103.0" layoutY="30.0" text="3452289" />
+            <Label fx:id="patientName" layoutX="102.0" layoutY="48.0" text="Khalid Kamal Mohsen" />
+            <Label fx:id="appointmentDate" layoutX="92.0" layoutY="68.0" text="2024-02-03" />
+            <Label layoutX="11.0" layoutY="89.0" text="Hospital -&gt;" />
+            <Label fx:id="hospital" layoutX="84.0" layoutY="89.0" text="Horus Hospital" />
+            <Label layoutX="11.0" layoutY="108.0" text="Blood Type -&gt;" />
+            <Label fx:id="bloodtype" layoutX="110.0" layoutY="108.0" text="B+" />
+            <Label layoutX="11.0" layoutY="125.0" text="Gender -&gt;" />
+            <Label fx:id="gender" layoutX="110.0" layoutY="125.0" text="Male" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="backButton" layoutX="28.0" layoutY="23.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="93.0" styleClass="back_button" text="   Back" />
+      <FontAwesomeIconView glyphName="ARROW_LEFT" layoutX="39.0" layoutY="44.0" size="16" styleClass="back_icon" />
+</children>
+</AnchorPane>

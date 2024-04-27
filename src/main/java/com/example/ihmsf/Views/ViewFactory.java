@@ -1,17 +1,32 @@
 package com.example.ihmsf.Views;
 
+import com.example.ihmsf.Controllers.Receptionist.NewPatientController;
 import com.example.ihmsf.Controllers.Receptionist.ReciptionistController;
+import com.example.ihmsf.Controllers.Receptionist.SearchPatientsController;
+import com.example.ihmsf.Controllers.Receptionist.mainPatientsController;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class ViewFactory {
-    //Reciptionist View
+    //Reciptionist Dashboard View
+    private final StringProperty RecipSelection;
     private AnchorPane dashboardView;
-    public ViewFactory() {}
+    //Reciptionist Appointment View
+    private AnchorPane appointmentView;
+    private AnchorPane newPatientView;
+    private AnchorPane searchPatientView;
+    private AnchorPane patientsView;
+    public ViewFactory() {
+        this.RecipSelection = new SimpleStringProperty();
+    }
+    public StringProperty getRecipSelection() {
+        return RecipSelection;
+    }
     public AnchorPane getDashboardView() {
         if (dashboardView == null) {
             try{
@@ -21,6 +36,47 @@ public class ViewFactory {
             }
         }
         return dashboardView;
+    }
+    public AnchorPane getAppointmentView() {
+        if (appointmentView == null) {
+            try{
+                appointmentView = new FXMLLoader(getClass().getResource("/FXML/Reciptionist/Appointment.fxml")).load();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return appointmentView;
+    }    public AnchorPane getPatientsView() {
+        if (patientsView == null) {
+            try{
+                patientsView = new FXMLLoader(getClass().getResource("/FXML/Reciptionist/mainPatients.fxml")).load();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return patientsView;
+    }public AnchorPane getNewPatientView() {
+        if (newPatientView == null) {
+            try{
+                newPatientView = new FXMLLoader(getClass().getResource("/FXML/Reciptionist/newpatient.fxml")).load();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return newPatientView;
+    }public AnchorPane getSearchPatientView() {
+        if (searchPatientView == null) {
+            try{
+                searchPatientView = new FXMLLoader(getClass().getResource("/FXML/Reciptionist/searchforpatient.fxml")).load();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return searchPatientView;
     }
     public void showLoginWindow(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Login.fxml"));
@@ -33,6 +89,23 @@ public class ViewFactory {
         loader.setController(reciptionistController);
         createStage(loader);
     }
+    public void showReciptionistPatients(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Reciptionist/mainPatients.fxml"));
+        mainPatientsController mainpatientsController = new mainPatientsController();
+        loader.setController(mainpatientsController);
+        createStage(loader);
+    }
+    public void showNewPatient(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/NewPatient.fxml"));
+        NewPatientController newPatientController = new NewPatientController();
+        loader.setController(newPatientController);
+        createStage(loader);
+    }    public void showSearchPatient(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/searchPatient.fxml"));
+        SearchPatientsController searchPatientsController = new SearchPatientsController();
+        loader.setController(searchPatientsController);
+        createStage(loader);
+    }
 
     private void createStage(FXMLLoader loader) {
         Scene scene = null;
@@ -43,6 +116,7 @@ public class ViewFactory {
         }
         Stage stage = new Stage();
         stage.setScene(scene);
+//        stage.getIcons().add(new Image(getClass().getResourceAsStream("/icon.png")));
         stage.setTitle("IHMS");
         stage.show();
     }

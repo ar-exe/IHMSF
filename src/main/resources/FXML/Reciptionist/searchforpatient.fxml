@@ -40,95 +40,91 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" styleClass="search_container" stylesheets="@../../Styles/newpatient.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+
+<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="750.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ihmsf.Controllers.Receptionist.SearchPatientsController">
+   <children>
+      <Label alignment="CENTER" prefHeight="47.0" prefWidth="647.0" style="-fx-background-color: #132A13;" text="Search for Patient" textFill="#eaebea">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <HBox layoutX="1.0" layoutY="49.0" prefHeight="48.0" prefWidth="640.0" spacing="35.0" styleClass="search_for_patient">
          <children>
-            <Label alignment="CENTER" prefHeight="47.0" prefWidth="647.0" style="-fx-background-color: #132A13;" text="Search for Patient" textFill="#eaebea">
-               <font>
-                  <Font size="28.0" />
-               </font>
+            <Label text="Search">
+               <HBox.margin>
+                  <Insets right="-15.0" top="3.0" />
+               </HBox.margin>
             </Label>
-            <HBox layoutX="1.0" layoutY="49.0" prefHeight="48.0" prefWidth="640.0" spacing="35.0" styleClass="search_for_patient">
-               <children>
-                  <Label text="Search">
-                     <HBox.margin>
-                        <Insets right="-15.0" top="3.0" />
-                     </HBox.margin>
-                  </Label>
-                  <TextField fx:id="patientIdTextField" prefHeight="26.0" prefWidth="154.0">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </TextField>
-                  <RadioButton fx:id="patientIdRadioButton" mnemonicParsing="false" text="Patient ID">
-                     <HBox.margin>
-                        <Insets top="3.0" />
-                     </HBox.margin>
-                  </RadioButton>
-                  <RadioButton fx:id="ssnRadioButton" mnemonicParsing="false" text="SSn">
-                     <HBox.margin>
-                        <Insets top="3.0" />
-                     </HBox.margin>
-                  </RadioButton>
-                  <RadioButton fx:id="nameRadioButton" mnemonicParsing="false" text="Full Name">
-                     <HBox.margin>
-                        <Insets right="10.0" top="3.0" />
-                     </HBox.margin>
-                  </RadioButton>
-                  <Button mnemonicParsing="false" onAction="#handleSearchButtonAction" prefHeight="28.0" prefWidth="97.0" style="-fx-pref-width: 70;" styleClass="search_print_button" text="Search">
-                     <HBox.margin>
-                        <Insets top="-4.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets bottom="5.0" top="15.0" />
-               </padding>
-            </HBox>
-            <Label layoutX="14.0" layoutY="113.0" text="Name: " textFill="#132a13" />
-            <Label fx:id="patientNameLabel" layoutX="55.0" layoutY="113.0" text="Ahmed Khalid" />
-            <Label layoutX="13.0" layoutY="281.0" text="Age: " textFill="#132a13" />
-            <Label layoutX="43.0" layoutY="281.0" text="21" />
-            <Label layoutX="176.0" layoutY="113.0" text="Patient ID: " textFill="#132a13" />
-            <Label layoutX="240.0" layoutY="113.0" text="2548976" />
-            <Label layoutX="12.0" layoutY="241.0" text="Weight: " textFill="#132a13" />
-            <Label layoutX="63.0" layoutY="241.0" text="74.5" />
-            <Label layoutX="14.0" layoutY="156.0" text="Blood Type: " textFill="#132a13" />
-            <Label layoutX="91.0" layoutY="154.0" prefHeight="22.0" prefWidth="26.0" text="B+" />
-            <Label layoutX="177.0" layoutY="197.0" text="Phone: " textFill="#132a13" />
-            <Label layoutX="14.0" layoutY="197.0" text="Gender: " textFill="#132a13" />
-            <Label layoutX="69.0" layoutY="197.0" text="Male" />
-            <Label layoutX="176.0" layoutY="241.0" text="SSN: " textFill="#132a13" />
-            <Separator layoutX="146.0" layoutY="112.0" orientation="VERTICAL" prefHeight="200.0" />
-            <Label layoutX="175.0" layoutY="157.0" text="Address: " textFill="#132a13" />
-            <Label layoutX="230.0" layoutY="157.0" text="Aswan-Edfo-Baiomi" />
-            <Label layoutX="221.0" layoutY="197.0" text="01018353935" />
-            <Label layoutX="207.0" layoutY="241.0" text="30409012803036" />
-            <Separator layoutX="398.0" layoutY="106.0" orientation="VERTICAL" prefHeight="297.0" prefWidth="6.0" />
-            <Label layoutX="403.0" layoutY="109.0" text="Diagnosis" textFill="#132a13">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Label>
-            <Label layoutX="405.0" layoutY="145.0" text="Date: " />
-            <Label layoutX="442.0" layoutY="146.0" text="12/3/2020" />
-            <Label layoutX="519.0" layoutY="146.0" text="Doctor: " />
-            <Label layoutX="567.0" layoutY="146.0" prefHeight="18.0" prefWidth="57.0" text="Jaber Ali" />
-            <Label layoutX="406.0" layoutY="167.0" text="Doctor id: " />
-            <Label layoutX="468.0" layoutY="167.0" text="2341879" />
-            <Separator layoutX="418.0" layoutY="189.0" prefHeight="1.0" prefWidth="210.0" />
-            <Label layoutX="408.0" layoutY="206.0" text="Illness/Disease: " />
-            <Label layoutX="407.0" layoutY="235.0" text="Treatment: " />
-            <Label layoutX="409.0" layoutY="263.0" text="Medication: " />
-            <Label layoutX="409.0" layoutY="295.0" text="Blood Samble Test: " />
-            <Label layoutX="408.0" layoutY="325.0" text="Scan Test: " />
-            <Separator layoutX="-2.0" layoutY="98.0" prefHeight="3.0" prefWidth="648.0" />
-            <Button layoutX="21.0" layoutY="352.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="280.0" styleClass="search_print_button" text="Print" />
+            <TextField fx:id="patientIdTextField" prefHeight="26.0" prefWidth="154.0">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </TextField>
+            <RadioButton fx:id="patientIdRadioButton" mnemonicParsing="false" text="Patient ID">
+               <HBox.margin>
+                  <Insets top="3.0" />
+               </HBox.margin>
+            </RadioButton>
+            <RadioButton fx:id="ssnRadioButton" mnemonicParsing="false" text="SSn">
+               <HBox.margin>
+                  <Insets top="3.0" />
+               </HBox.margin>
+            </RadioButton>
+            <RadioButton fx:id="nameRadioButton" mnemonicParsing="false" text="Full Name">
+               <HBox.margin>
+                  <Insets right="10.0" top="3.0" />
+               </HBox.margin>
+            </RadioButton>
+            <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="97.0" style="-fx-pref-width: 70;" styleClass="search_print_button" text="Search">
+               <HBox.margin>
+                  <Insets top="-4.0" />
+               </HBox.margin>
+            </Button>
          </children>
-    </AnchorPane>
-  </children>
-</VBox>
+         <padding>
+            <Insets bottom="5.0" top="15.0" />
+         </padding>
+      </HBox>
+      <Label layoutX="14.0" layoutY="113.0" text="Name: " textFill="#132a13" />
+      <Label fx:id="patientNameLabel" layoutX="55.0" layoutY="113.0" text="Ahmed Khalid" />
+      <Label layoutX="13.0" layoutY="281.0" text="Age: " textFill="#132a13" />
+      <Label layoutX="43.0" layoutY="281.0" text="21" />
+      <Label layoutX="176.0" layoutY="113.0" text="Patient ID: " textFill="#132a13" />
+      <Label layoutX="240.0" layoutY="113.0" text="2548976" />
+      <Label layoutX="12.0" layoutY="241.0" text="Weight: " textFill="#132a13" />
+      <Label layoutX="63.0" layoutY="241.0" text="74.5" />
+      <Label layoutX="14.0" layoutY="156.0" text="Blood Type: " textFill="#132a13" />
+      <Label layoutX="91.0" layoutY="154.0" prefHeight="22.0" prefWidth="26.0" text="B+" />
+      <Label layoutX="177.0" layoutY="197.0" text="Phone: " textFill="#132a13" />
+      <Label layoutX="14.0" layoutY="197.0" text="Gender: " textFill="#132a13" />
+      <Label layoutX="69.0" layoutY="197.0" text="Male" />
+      <Label layoutX="176.0" layoutY="241.0" text="SSN: " textFill="#132a13" />
+      <Separator layoutX="146.0" layoutY="112.0" orientation="VERTICAL" prefHeight="200.0" />
+      <Label layoutX="175.0" layoutY="157.0" text="Address: " textFill="#132a13" />
+      <Label layoutX="230.0" layoutY="157.0" text="Aswan-Edfo-Baiomi" />
+      <Label layoutX="221.0" layoutY="197.0" text="01018353935" />
+      <Label layoutX="207.0" layoutY="241.0" text="30409012803036" />
+      <Separator layoutX="398.0" layoutY="106.0" orientation="VERTICAL" prefHeight="297.0" prefWidth="6.0" />
+      <Label layoutX="403.0" layoutY="109.0" text="Diagnosis" textFill="#132a13">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="405.0" layoutY="145.0" text="Date: " />
+      <Label layoutX="442.0" layoutY="146.0" text="12/3/2020" />
+      <Label layoutX="519.0" layoutY="146.0" text="Doctor: " />
+      <Label layoutX="567.0" layoutY="146.0" prefHeight="18.0" prefWidth="57.0" text="Jaber Ali" />
+      <Label layoutX="406.0" layoutY="167.0" text="Doctor id: " />
+      <Label layoutX="468.0" layoutY="167.0" text="2341879" />
+      <Separator layoutX="418.0" layoutY="189.0" prefHeight="1.0" prefWidth="210.0" />
+      <Label layoutX="408.0" layoutY="206.0" text="Illness/Disease: " />
+      <Label layoutX="407.0" layoutY="235.0" text="Treatment: " />
+      <Label layoutX="409.0" layoutY="263.0" text="Medication: " />
+      <Label layoutX="409.0" layoutY="295.0" text="Blood Samble Test: " />
+      <Label layoutX="408.0" layoutY="325.0" text="Scan Test: " />
+      <Separator layoutX="-2.0" layoutY="98.0" prefHeight="3.0" prefWidth="648.0" />
+      <Button layoutX="21.0" layoutY="352.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="280.0" styleClass="search_print_button" text="Print" />
+   </children>
+</AnchorPane>

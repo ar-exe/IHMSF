@@ -1,3 +1,30 @@
+Button{
+    -fx-background-color: teal;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 1.2em;
+    -fx-font-weight: bold;
+    -fx-pref-width: 300;
+    -fx-pref-height: 30;
+}
+.back_button{
+    -fx-background-color: rgba(0, 255, 255, 0.16);
+    -fx-text-fill: teal;
+    -fx-font-size: 1.2em;
+    -fx-font-weight: bold;
+    -fx-pref-width: 100;
+    -fx-pref-height: 30;
+    -fx-background-radius: 12;
+    -fx-cursor: hand;
+}
+.back_icon{
+    -fx-fill: teal;
+    -fx-alignment: center;
+}
+TextField{
+    -fx-background-color: #ffffff;
+    -fx-preferred-height: 35;
+    -fx-font-size: 1.2em;
+}
 .contact_information_container{
     -fx-background-color: #132A13;
     -fx-border-radius: 2;
@@ -15,31 +42,40 @@
     -fx-border-width: 1;
     -fx-padding: 5;
 }
-.contact_information_container .button{
-    -fx-background-color: #e2e2e2;
-    -fx-background-radius: 2;
-    -fx-border-color: #ffffff;
-    -fx-border-radius: 10;
-    -fx-border-width: 1;
-    -fx-text-fill: #132A13;
-    -fx-font-size: 1.1em;
-    -fx-font-weight: bold;
-    -fx-pref-width: 350;
+.patient_card {
+    -fx-background-color: #a600b7;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(two-pass-box,#AAAAAA,5,0,0,4);
 }
+/*.contact_information_container .button{*/
+/*    -fx-background-color: #e2e2e2;*/
+/*    -fx-background-radius: 2;*/
+/*    -fx-border-color: #ffffff;*/
+/*    -fx-border-radius: 10;*/
+/*    -fx-border-width: 1;*/
+/*    -fx-text-fill: #132A13;*/
+/*    -fx-font-size: 1.1em;*/
+/*    -fx-font-weight: bold;*/
+/*    -fx-pref-width: 350;*/
+/*}*/
 .personal_Information_container .label{
     -fx-text-fill: #132A13;
 }
 .label{
     -fx-font-family: "Montserrat";
-    -fx-font-size: 1.1em;
+    -fx-font-size: 1.0em;
 }
-.search_print_button{
-        -fx-background-color: #132A13;
-        -fx-background-radius: 2;
-        -fx-border-radius: 10;
-        -fx-border-width: 1;
-        -fx-text-fill: #ffffff;
-        -fx-font-size: 1.1em;
-        -fx-font-weight: bold;
-        -fx-pref-width: 350;
+.labelMain{
+    -fx-font-family: "Montserrat";
+    -fx-font-size: 2.1em;
 }
+/*.search_print_button{*/
+/*        -fx-background-color: #132A13;*/
+/*        -fx-background-radius: 2;*/
+/*        -fx-border-radius: 10;*/
+/*        -fx-border-width: 1;*/
+/*        -fx-text-fill: #ffffff;*/
+/*        -fx-font-size: 1.1em;*/
+/*        -fx-font-weight: bold;*/
+/*        -fx-pref-width: 350;*/
+/*}*/

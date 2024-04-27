@@ -1,5 +1,6 @@
 package com.example.ihmsf.Controllers.Receptionist;
 
+import com.example.ihmsf.Models.Model;
 import javafx.scene.control.Button;
 import javafx.fxml.Initializable;
 
@@ -19,6 +20,22 @@ public class ReciptionistSidebarController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        addListeners();
+    }
+    private void addListeners(){
+        dashboardButton.setOnAction(event -> onDashboard());
+        appointmentButton.setOnAction(event -> onAppointment());
+        patientsButton.setOnAction(event -> onPatients());
+    }
 
+    private void onAppointment() {
+        Model.getInstance().getViewFactory().getRecipSelection().set("Appointment");
+    }
+
+    private void onDashboard() {
+        Model.getInstance().getViewFactory().getRecipSelection().set("Dashboard");
+    }
+    private void onPatients() {
+        Model.getInstance().getViewFactory().getRecipSelection().set("Patients");
     }
 }

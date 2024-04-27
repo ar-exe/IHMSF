@@ -5,8 +5,13 @@ import com.example.ihmsf.Views.ViewFactory;
 public class Model {
     private static Model model;
     private final ViewFactory viewFactory;
+    private final DatabaseDriver databaseDriver;
+//    Resiptionist Section
+
+//    Doctor Section
     private Model(){
         this.viewFactory = new ViewFactory();
+        this.databaseDriver = new DatabaseDriver();
     }
     public static synchronized Model getInstance(){
         if(model == null){
@@ -17,4 +22,5 @@ public class Model {
     public ViewFactory getViewFactory() {
         return viewFactory;
     }
+    public DatabaseDriver getDatabaseDriver() {return databaseDriver;}
 }

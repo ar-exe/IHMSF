@@ -1,0 +1,35 @@
+.cell_container{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box,#DDDDDD,5,0,0,7);
+}
+.bed_icon_container{
+    -fx-background-color: #FFFFFF;
+    -fx-alignment: center;
+    -fx-spacing: 5;
+}
+.cell_patient_lbl{
+    -fx-text-fill: #AAAAAA;
+    -fx-font-weight: 700;
+}
+.cell_room_lbl{
+    -fx-text-fill: #000000;
+    -fx-font-weight: 700;
+}
+.cell_container Line{
+    -fx-stroke: #EEEEEE;
+}
+.heartbeat_lbl{
+    -fx-background-color: teal;
+    -fx-background-radius: 2;
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 5;
+    -fx-font-weight: 700;
+}
+.heartbeat_lbl FontAwesomeIconView{
+    -fx-fill: #FFFFFF;
+}
+.state_lbl{
+    -fx-text-fill: #dc4d4d;
+    -fx-font-weight: 700;
+}
