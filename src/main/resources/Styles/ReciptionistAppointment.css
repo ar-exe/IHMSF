@@ -1,0 +1,38 @@
+Button{
+    -fx-background-color: teal;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 1.2em;
+    -fx-font-weight: bold;
+    -fx-pref-width: 350;
+    -fx-pref-height: 30;
+}
+.input_field{
+    -fx-background-color: #ffffff;
+    -fx-preferred-height: 35;
+    -fx-font-size: 1.2em;
+}
+.check{
+        -fx-background-color: #e0c100;
+        -fx-background-radius: 10;
+        -fx-effect: dropshadow(two-pass-box,#AAAAAA,5,0,0,4);
+}
+.check Label{
+    -fx-font-family: Montserrat;
+    -fx-text-fill: #ffffff;
+}
+.listview{
+    -fx-font-family: Montserrat;
+}
+.transaction_listview{
+    -fx-background-color: #EEEEEE;
+    -fx-border-width:  0 0 0 0;
+    -fx-border-color: #AAAAAA;
+}
+.transaction_listview .scroll-bar:vertical{
+    -fx-scale-x: 0;
+}
+.list-cell{
+    -fx-background-color: #EEEEEE;
+    -fx-padding: 15 0 15 0;
+
+}
