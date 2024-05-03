@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cb53ce1-52ab-4f92-ada7-3d7e4dec3b08" name="Changes" comment="Patient view and back button">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b6703a93-6f2d-4904-a1ce-fa2f768e27d6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b6703a93-6f2d-4904-a1ce-fa2f768e27d6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/RoomsCellController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/RoomsCellController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/DatabaseDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/DatabaseDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Rooms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Rooms.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Views/RoomsCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Views/RoomsCellFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Styles/ReciptionistSideBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Styles/ReciptionistSideBar.css" afterDir="false" />
-    </list>
+    <list default="true" id="4cb53ce1-52ab-4f92-ada7-3d7e4dec3b08" name="Changes" comment="Fixed ListView 2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,8 +14,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -157,7 +146,7 @@
       <workItem from="1714125732065" duration="12785000" />
       <workItem from="1714203129425" duration="7343000" />
       <workItem from="1714627481253" duration="5278000" />
-      <workItem from="1714724324292" duration="877000" />
+      <workItem from="1714724324292" duration="10459000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0 Reciptionist">
       <option name="closed" value="true" />
@@ -223,7 +212,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714218940997</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed ListView">
+      <option name="closed" value="true" />
+      <created>1714728390231</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1714728390231</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Fixed ListView 2">
+      <option name="closed" value="true" />
+      <created>1714740048256</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1714740048256</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,7 +239,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -248,7 +265,9 @@
     <MESSAGE value="vvv" />
     <MESSAGE value="Intitialized then Sat Maven" />
     <MESSAGE value="Patient view and back button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Patient view and back button" />
+    <MESSAGE value="Fixed ListView" />
+    <MESSAGE value="Fixed ListView 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed ListView 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

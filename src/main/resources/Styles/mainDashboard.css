@@ -124,3 +124,31 @@
 .new_trans_container Button:hover{
     -fx-cursor: hand;
 }
+.chart-pie {
+    -fx-background-color: teal;
+}
+
+/*.chart-pie .chart-plot-background {*/
+/*    -fx-background-color: transparent;*/
+/*}*/
+
+/*.chart-pie .chart-content {*/
+/*    -fx-background-color: transparent;*/
+/*}*/
+
+/*.chart-pie .chart-legend {*/
+/*    -fx-background-color: transparent;*/
+/*}*/
+
+.chart-pie .chart-legend-item-symbol {
+    -fx-background-color: teal; /* Change this to the color you want for the legend symbol */
+}
+
+.chart-pie .chart-series-pie {
+    -fx-stroke: #fff; /* Change this to the color you want for the pie chart stroke */
+    -fx-stroke-width: 2px;
+}
+
+.chart-pie .chart-series-pie .default-color0 {
+    -fx-pie-color: white; /* Change this to the color you want for the pie chart slice */
+}

@@ -4,6 +4,7 @@ import com.example.ihmsf.Models.Model;
 import com.example.ihmsf.Views.RoomsCellFactory;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
@@ -22,6 +23,7 @@ public class DashboardController implements Initializable {
     public Label appointments;
     public ListView rooms_listview;
     public ListView activity_listview;
+    public PieChart roomsPieChart;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -29,6 +31,7 @@ public class DashboardController implements Initializable {
         initRooms();
         rooms_listview.setItems(Model.getInstance().getRooms());
         rooms_listview.setCellFactory(e -> new RoomsCellFactory());
+        initPieChart();
     }
     private void bindData(){
 //        user_name.textProperty().bind(Bindings.concat("Hi, ").concat(Model.getInstance().getReciptionist().firstNameProperty());
@@ -40,4 +43,14 @@ public class DashboardController implements Initializable {
             Model.getInstance().setRooms();
         }
     }
+private void initPieChart(){
+    int totalRooms = 100;
+    int filledRooms = Model.getInstance().getRooms().size();
+    double filledRoomsPercentage = (double) filledRooms / totalRooms * 100;
+
+    PieChart.Data data = new PieChart.Data("Rooms", filledRoomsPercentage);
+    roomsPieChart.getData().clear(); // Clear previous data
+    roomsPieChart.getData().add(data);
+}
+
 }

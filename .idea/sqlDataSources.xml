@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="8b91d488-5661-48c0-aa4b-7aee369a110d" name="@localhost Mapping">
+      <data-sources db="69447c1c-1711-41ab-a093-38ecafec8a62" />
+      <scope>
+        <node kind="schema" qname="hospital" />
+      </scope>
+    </mapping>
+  </component>
+</project>

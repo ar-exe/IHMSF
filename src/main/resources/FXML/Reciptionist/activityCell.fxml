@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+
+
+<AnchorPane prefHeight="60.0" prefWidth="310.0" styleClass="cell_container" stylesheets="@../../Styles/RoomsCell.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <FontAwesomeIconView glyphName="USER" layoutX="18.0" layoutY="42.0" size="36" wrappingWidth="30.57145881652832" />
+      <Line endX="-50.20000076293945" endY="5.099998474121094" layoutX="112.0" layoutY="42.0" startX="-50.20000076293945" startY="-30.0000057220459" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Label layoutX="79.0" layoutY="21.0" styleClass="cell_room_lbl" text="Dr. Mostafa Khalid" />
+      <Label layoutX="225.0" layoutY="21.0" style="-fx-text-fill: green;" styleClass="state_lbl" text="Available" />
+      <Line endX="-50.20000076293945" endY="5.099998474121094" layoutX="250.0" layoutY="42.0" startX="-50.20000076293945" startY="-30.0000057220459" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
+   </children>
+</AnchorPane>

@@ -28,14 +28,14 @@ public class Model {
     }
     public void setRooms(){prepareRooms(this.rooms,4);}
     private void prepareRooms(ObservableList<Rooms> rooms, int limit){
-        ResultSet resultSet = databaseDriver.getRooms(limit);
+        ResultSet resultSet = databaseDriver.getRooms();
 
         try{
             while (resultSet.next()){
                 String roomID = resultSet.getString("id");
                 String patientID = resultSet.getString("patientID");
                 String state = resultSet.getString("state");
-                String doctorName = resultSet.getString("doctor2id");
+                String doctorName = resultSet.getString("doctorName");
                 String heartbeat = resultSet.getString("heartbeat");
                 rooms.add(new Rooms(roomID,patientID,doctorName,heartbeat,state));
 //                for (Rooms rooms1 : rooms) {

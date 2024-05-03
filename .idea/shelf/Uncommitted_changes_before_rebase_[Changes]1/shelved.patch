@@ -1,0 +1,811 @@
+Index: src/main/java/com/example/ihmsf/Models/Model.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.ihmsf.Models;\r\n\r\nimport com.example.ihmsf.Views.ViewFactory;\r\n\r\npublic class Model {\r\n    private static Model model;\r\n    private final ViewFactory viewFactory;\r\n    private final DatabaseDriver databaseDriver;\r\n//    Resiptionist Section\r\n\r\n//    Doctor Section\r\n    private Model(){\r\n        this.viewFactory = new ViewFactory();\r\n        this.databaseDriver = new DatabaseDriver();\r\n    }\r\n    public static synchronized Model getInstance(){\r\n        if(model == null){\r\n            model = new Model();\r\n        }\r\n        return model;\r\n    }\r\n    public ViewFactory getViewFactory() {\r\n        return viewFactory;\r\n    }\r\n    public DatabaseDriver getDatabaseDriver() {return databaseDriver;}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/ihmsf/Models/Model.java b/src/main/java/com/example/ihmsf/Models/Model.java
+--- a/src/main/java/com/example/ihmsf/Models/Model.java	(revision 565921a0eba1c9141fa9dbaf48b44bcf8eea6d2d)
++++ b/src/main/java/com/example/ihmsf/Models/Model.java	(date 1714716399012)
+@@ -1,26 +1,78 @@
+ package com.example.ihmsf.Models;
+ 
+ import com.example.ihmsf.Views.ViewFactory;
++import javafx.collections.FXCollections;
++import javafx.collections.ObservableList;
++
++import java.sql.ResultSet;
++import java.sql.SQLException;
++import java.time.LocalDate;
+ 
+ public class Model {
+     private static Model model;
+     private final ViewFactory viewFactory;
+     private final DatabaseDriver databaseDriver;
+-//    Resiptionist Section
++
++    // Resiptionist Section
++    private Reciptionist reciptionist;
++    private boolean reciptionistLoginsuccessFlag;
++    private final ObservableList<Rooms> roomsList;
+ 
+-//    Doctor Section
+-    private Model(){
++    private Model() {
+         this.viewFactory = new ViewFactory();
+         this.databaseDriver = new DatabaseDriver();
++        // Reciptionist Section
++        this.reciptionistLoginsuccessFlag = false;
++        this.reciptionist = new Reciptionist();
++        this.roomsList = FXCollections.observableArrayList();
+     }
+-    public static synchronized Model getInstance(){
+-        if(model == null){
++
++    public static synchronized Model getInstance() {
++        if (model == null) {
+             model = new Model();
+         }
+         return model;
+     }
++
+     public ViewFactory getViewFactory() {
+         return viewFactory;
+     }
+-    public DatabaseDriver getDatabaseDriver() {return databaseDriver;}
+-}
++
++    public DatabaseDriver getDatabaseDriver() {
++        return databaseDriver;
++        }
++
++        public ObservableList<Rooms> getRoomsData() throws SQLException {
++            ObservableList<Rooms> roomsList = FXCollections.observableArrayList();
++            ResultSet resultSet = databaseDriver.executeQuery("SELECT * FROM room");
++            while (resultSet.next()) {
++                Rooms room = new Rooms(resultSet.getString("patientID"), resultSet.getString("id"),
++                    resultSet.getString("doctor2id"), resultSet.getString("heartbeat"),
++                    resultSet.getString("state"));
++                roomsList.add(room);
++                System.out.println(room); // Print the room details
++            }
++            resultSet.close();
++            return roomsList;
++        }
++    private void prepareRooms(ObservableList<Rooms> rooms, int limit) {
++        ResultSet resultSet = databaseDriver.getRooms(limit);
++        try {
++            while (resultSet.next()){
++                String PatientId = resultSet.getString("Patient ID");
++                String RoomID = resultSet.getString("Room ID");
++                String State = resultSet.getString("State");
++                String DoctorID = resultSet.getString("DoctorID");
++                String Heartbeat = resultSet.getString("Heartbeat");
++
++                rooms.add(new Rooms(PatientId, RoomID, State, DoctorID, Heartbeat));
++            }
++        }catch (Exception e){
++            e.printStackTrace();
++        }
++    }
++    public void setRoomsData() {
++        prepareRooms(this.roomsList, 4);
++    }
++        
++    }
+Index: src/main/java/com/example/ihmsf/Views/RoomsCellFactory.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.ihmsf.Views;\r\n\r\nimport com.example.ihmsf.Controllers.Receptionist.RoomsCellController;\r\nimport com.example.ihmsf.Models.Rooms;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.scene.control.ListCell;\r\n\r\npublic class RoomsCellFactory extends ListCell<Rooms> {\r\n    @Override\r\n    protected void updateItem(Rooms room, boolean empty) {\r\n        super.updateItem(room, empty);\r\n        if (empty){\r\n            setText(null);\r\n            setGraphic(null);\r\n        }else{\r\n            FXMLLoader loader = new FXMLLoader(getClass().getResource(\"FXML/Reciptionist/RoomsCell.fxml\"));\r\n            RoomsCellController controller = new RoomsCellController(room);\r\n            loader.setController(controller);\r\n            setText(null);\r\n            try {\r\n                setGraphic(loader.load());\r\n            }catch(Exception e){\r\n                e.printStackTrace();\r\n            }\r\n\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/ihmsf/Views/RoomsCellFactory.java b/src/main/java/com/example/ihmsf/Views/RoomsCellFactory.java
+--- a/src/main/java/com/example/ihmsf/Views/RoomsCellFactory.java	(revision 565921a0eba1c9141fa9dbaf48b44bcf8eea6d2d)
++++ b/src/main/java/com/example/ihmsf/Views/RoomsCellFactory.java	(date 1714716399020)
+@@ -5,6 +5,8 @@
+ import javafx.fxml.FXMLLoader;
+ import javafx.scene.control.ListCell;
+ 
++import java.io.IOException;
++
+ public class RoomsCellFactory extends ListCell<Rooms> {
+     @Override
+     protected void updateItem(Rooms room, boolean empty) {
+@@ -12,17 +14,15 @@
+         if (empty){
+             setText(null);
+             setGraphic(null);
+-        }else{
++        } else {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML/Reciptionist/RoomsCell.fxml"));
+             RoomsCellController controller = new RoomsCellController(room);
+             loader.setController(controller);
+             setText(null);
+             try {
+                 setGraphic(loader.load());
+-            }catch(Exception e){
+-                e.printStackTrace();
+             }
+-
++            catch (IOException e){e.printStackTrace();}
+         }
+     }
+ }
+Index: src/main/java/com/example/ihmsf/Models/DatabaseDriver.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.ihmsf.Models;\r\n\r\nimport java.sql.Connection;\r\nimport java.sql.DriverManager;\r\nimport java.sql.SQLException;\r\n\r\npublic class DatabaseDriver {\r\n    private Connection connection;\r\n\r\n    public DatabaseDriver() {\r\n        try{\r\n            this.connection = DriverManager.getConnection(\"jdbc:mysql://localhost:3306/hospital\", \"root\", \"MYSQL12345678\");\r\n            System.out.println(\"Database connection established\");\r\n        }catch(SQLException e){\r\n            System.out.println(\"Connection Failed! Check output console\");\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n//    reciptionist section\r\n\r\n//    Doctor Section\r\n//    utility methods\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/ihmsf/Models/DatabaseDriver.java b/src/main/java/com/example/ihmsf/Models/DatabaseDriver.java
+--- a/src/main/java/com/example/ihmsf/Models/DatabaseDriver.java	(revision 565921a0eba1c9141fa9dbaf48b44bcf8eea6d2d)
++++ b/src/main/java/com/example/ihmsf/Models/DatabaseDriver.java	(date 1714716399029)
+@@ -2,23 +2,38 @@
+ 
+ import java.sql.Connection;
+ import java.sql.DriverManager;
++import java.sql.ResultSet;
+ import java.sql.SQLException;
++import java.sql.Statement;
+ 
+ public class DatabaseDriver {
+     private Connection connection;
+ 
+     public DatabaseDriver() {
+-        try{
++        try {
+             this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospital", "root", "MYSQL12345678");
+             System.out.println("Database connection established");
+-        }catch(SQLException e){
++        } catch (SQLException e) {
+             System.out.println("Connection Failed! Check output console");
+             e.printStackTrace();
+         }
+     }
+ 
+-//    reciptionist section
++    public ResultSet executeQuery(String query) throws SQLException {
++        Statement statement = connection.createStatement();
++        return statement.executeQuery(query);
++    }
++    public ResultSet getRooms(int limit) {
++        Statement statement;
++        ResultSet resultSet = null;
++        try {
++            statement = this.connection.createStatement();
++            resultSet = statement.executeQuery("SELECT * FROM hospital.room");
++        }catch (SQLException e){
++            e.printStackTrace();
++        }
++        return resultSet;
++    }
+ 
+-//    Doctor Section
+-//    utility methods
++    // Other utility methods can be added here as needed
+ }
+Index: src/main/java/com/example/ihmsf/Views/ViewFactory.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.ihmsf.Views;\r\n\r\nimport com.example.ihmsf.Controllers.Receptionist.NewPatientController;\r\nimport com.example.ihmsf.Controllers.Receptionist.ReciptionistController;\r\nimport com.example.ihmsf.Controllers.Receptionist.SearchPatientsController;\r\nimport com.example.ihmsf.Controllers.Receptionist.mainPatientsController;\r\nimport javafx.beans.property.SimpleStringProperty;\r\nimport javafx.beans.property.StringProperty;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.scene.Scene;\r\nimport javafx.scene.image.Image;\r\nimport javafx.scene.layout.AnchorPane;\r\nimport javafx.stage.Stage;\r\n\r\npublic class ViewFactory {\r\n    //Reciptionist Dashboard View\r\n    private final StringProperty RecipSelection;\r\n    private AnchorPane dashboardView;\r\n    //Reciptionist Appointment View\r\n    private AnchorPane appointmentView;\r\n    private AnchorPane newPatientView;\r\n    private AnchorPane searchPatientView;\r\n    private AnchorPane patientsView;\r\n    public ViewFactory() {\r\n        this.RecipSelection = new SimpleStringProperty();\r\n    }\r\n    public StringProperty getRecipSelection() {\r\n        return RecipSelection;\r\n    }\r\n    public AnchorPane getDashboardView() {\r\n        if (dashboardView == null) {\r\n            try{\r\n                dashboardView = new FXMLLoader(getClass().getResource(\"/FXML/Reciptionist/Dashboard.fxml\")).load();\r\n            } catch (Exception e) {\r\n                e.printStackTrace();\r\n            }\r\n        }\r\n        return dashboardView;\r\n    }\r\n    public AnchorPane getAppointmentView() {\r\n        if (appointmentView == null) {\r\n            try{\r\n                appointmentView = new FXMLLoader(getClass().getResource(\"/FXML/Reciptionist/Appointment.fxml\")).load();\r\n            }\r\n            catch (Exception e){\r\n                e.printStackTrace();\r\n            }\r\n        }\r\n        return appointmentView;\r\n    }    public AnchorPane getPatientsView() {\r\n        if (patientsView == null) {\r\n            try{\r\n                patientsView = new FXMLLoader(getClass().getResource(\"/FXML/Reciptionist/mainPatients.fxml\")).load();\r\n            }\r\n            catch (Exception e){\r\n                e.printStackTrace();\r\n            }\r\n        }\r\n        return patientsView;\r\n    }public AnchorPane getNewPatientView() {\r\n        if (newPatientView == null) {\r\n            try{\r\n                newPatientView = new FXMLLoader(getClass().getResource(\"/FXML/Reciptionist/newpatient.fxml\")).load();\r\n            }\r\n            catch (Exception e){\r\n                e.printStackTrace();\r\n            }\r\n        }\r\n        return newPatientView;\r\n    }public AnchorPane getSearchPatientView() {\r\n        if (searchPatientView == null) {\r\n            try{\r\n                searchPatientView = new FXMLLoader(getClass().getResource(\"/FXML/Reciptionist/searchforpatient.fxml\")).load();\r\n            }\r\n            catch (Exception e){\r\n                e.printStackTrace();\r\n            }\r\n        }\r\n        return searchPatientView;\r\n    }\r\n    public void showLoginWindow(){\r\n        FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/FXML/Login.fxml\"));\r\n\r\n        createStage(loader);\r\n    }\r\n    public void showReciptionistDashboard(){\r\n        FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/FXML/Reciptionist/Reciptionist.fxml\"));\r\n        ReciptionistController reciptionistController = new ReciptionistController();\r\n        loader.setController(reciptionistController);\r\n        createStage(loader);\r\n    }\r\n    public void showReciptionistPatients(){\r\n        FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/FXML/Reciptionist/mainPatients.fxml\"));\r\n        mainPatientsController mainpatientsController = new mainPatientsController();\r\n        loader.setController(mainpatientsController);\r\n        createStage(loader);\r\n    }\r\n    public void showNewPatient(){\r\n        FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/FXML/NewPatient.fxml\"));\r\n        NewPatientController newPatientController = new NewPatientController();\r\n        loader.setController(newPatientController);\r\n        createStage(loader);\r\n    }    public void showSearchPatient(){\r\n        FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/FXML/searchPatient.fxml\"));\r\n        SearchPatientsController searchPatientsController = new SearchPatientsController();\r\n        loader.setController(searchPatientsController);\r\n        createStage(loader);\r\n    }\r\n\r\n    private void createStage(FXMLLoader loader) {\r\n        Scene scene = null;\r\n        try{\r\n            scene = new Scene(loader.load());\r\n        } catch (Exception e){\r\n            e.printStackTrace();\r\n        }\r\n        Stage stage = new Stage();\r\n        stage.setScene(scene);\r\n//        stage.getIcons().add(new Image(getClass().getResourceAsStream(\"/icon.png\")));\r\n        stage.setTitle(\"IHMS\");\r\n        stage.show();\r\n    }\r\n    public void closeStage(Stage stage){\r\n        stage.close();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/ihmsf/Views/ViewFactory.java b/src/main/java/com/example/ihmsf/Views/ViewFactory.java
+--- a/src/main/java/com/example/ihmsf/Views/ViewFactory.java	(revision 565921a0eba1c9141fa9dbaf48b44bcf8eea6d2d)
++++ b/src/main/java/com/example/ihmsf/Views/ViewFactory.java	(date 1714716399036)
+@@ -113,6 +113,7 @@
+             scene = new Scene(loader.load());
+         } catch (Exception e){
+             e.printStackTrace();
++            System.out.println("Creating Stage failed");
+         }
+         Stage stage = new Stage();
+         stage.setScene(scene);
+Index: src/main/java/com/example/ihmsf/Controllers/Receptionist/DashboardController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.ihmsf.Controllers.Receptionist;\r\n\r\nimport javafx.fxml.Initializable;\r\nimport javafx.scene.control.Label;\r\nimport javafx.scene.control.ListView;\r\nimport javafx.scene.text.Text;\r\n\r\nimport java.net.URL;\r\nimport java.util.ResourceBundle;\r\n\r\npublic class DashboardController implements Initializable {\r\n    public Text user_name;\r\n    public Label hospital_name;\r\n    public Label current_patients;\r\n    public Label rooms;\r\n    public Label active_doctors;\r\n    public Label appointments;\r\n    public ListView rooms_listview;\r\n    public ListView activity_listview;\r\n\r\n    @Override\r\n    public void initialize(URL url, ResourceBundle resourceBundle) {\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/ihmsf/Controllers/Receptionist/DashboardController.java b/src/main/java/com/example/ihmsf/Controllers/Receptionist/DashboardController.java
+--- a/src/main/java/com/example/ihmsf/Controllers/Receptionist/DashboardController.java	(revision 565921a0eba1c9141fa9dbaf48b44bcf8eea6d2d)
++++ b/src/main/java/com/example/ihmsf/Controllers/Receptionist/DashboardController.java	(date 1714716399045)
+@@ -1,11 +1,21 @@
+ package com.example.ihmsf.Controllers.Receptionist;
+ 
++import com.example.ihmsf.Models.Model;
++import com.example.ihmsf.Models.Rooms;
++import com.example.ihmsf.Views.RoomsCellFactory;
++import javafx.beans.binding.Bindings;
++import javafx.collections.ObservableList;
+ import javafx.fxml.Initializable;
+ import javafx.scene.control.Label;
++import javafx.scene.control.ListCell;
+ import javafx.scene.control.ListView;
+ import javafx.scene.text.Text;
++import javafx.util.Callback;
+ 
+ import java.net.URL;
++import java.sql.ResultSet;
++import java.sql.SQLException;
++import java.time.LocalDate;
+ import java.util.ResourceBundle;
+ 
+ public class DashboardController implements Initializable {
+@@ -18,8 +28,81 @@
+     public ListView rooms_listview;
+     public ListView activity_listview;
+ 
++    private Model model;
++
+     @Override
+     public void initialize(URL url, ResourceBundle resourceBundle) {
++//        bindData();
++        try {
++            initLatestTransactionsList();
++        } catch (SQLException e) {
++            throw new RuntimeException(e);
++        }
++        try {
++            rooms_listview.setItems(Model.getInstance().getRoomsData());
++        } catch (SQLException e) {
++            throw new RuntimeException(e);
++        }
++        rooms_listview.setCellFactory(e -> new RoomsCellFactory());
++//        send_money_btn.setOnAction(event -> onSendMoney());
++//        accountSummary();
++    }
++    // private void bindData() {
++    //     user_name.textProperty().bind(Bindings.concat("Hi, ").concat(Model.getInstance().getClient().firstNameProperty()));
++    //     login_date.setText("Today, " + LocalDate.now());
++    //     checking_bal.textProperty().bind(Model.getInstance().getClient().checkingAccountProperty().get().balanceProperty().asString());
++    //     checking_acc_num.textProperty().bind(Model.getInstance().getClient().checkingAccountProperty().get().accountNumberProperty());
++    //     savings_bal.textProperty().bind(Model.getInstance().getClient().savingsAccountProperty().get().balanceProperty().asString());
++    //     savings_acc_num.textProperty().bind(Model.getInstance().getClient().savingsAccountProperty().get().accountNumberProperty());
++    // }
+ 
++    private void initLatestTransactionsList() throws SQLException {
++        if (Model.getInstance().getRoomsData().isEmpty()){
++            Model.getInstance().setRoomsData();
++        }
+     }
++
++//    private void onSendMoney() {
++//        String receiver = payee_fld.getText();
++//        double amount = Double.parseDouble(amount_fld.getText());
++//        String message = message_fld.getText();
++//        String sender = Model.getInstance().getClient().pAddressProperty().get();
++//        ResultSet resultSet = Model.getInstance().getDatabaseDriver().searchClient(receiver);
++//        try {
++//            if (resultSet.isBeforeFirst()){
++//                Model.getInstance().getDatabaseDriver().updateBalance(receiver, amount, "ADD");
++//            }
++//        }catch (Exception e){
++//            e.printStackTrace();
++//        }
++//        // Subtract from sender's savings account
++//        Model.getInstance().getDatabaseDriver().updateBalance(sender, amount, "SUB");
++//        // Update the savings account balance in the client object
++//        Model.getInstance().getClient().savingsAccountProperty().get().setBalance(Model.getInstance().getDatabaseDriver().getSavingsAccountBalance(sender));
++//        // Record new transaction
++//        Model.getInstance().getDatabaseDriver().newTransaction(sender, receiver, amount, message);
++//        // Clear the fields
++//        payee_fld.setText("");
++//        amount_fld.setText("");
++//        message_fld.setText("");
++//    }
++//
++//    // Method calculates all expenses and income
++//    private void accountSummary() {
++//        double income = 0;
++//        double expenses = 0;
++//        if (Model.getInstance().getAllTransactions().isEmpty()){
++//            Model.getInstance().setAllTransactions();
++//        }
++//        for (Transaction transaction: Model.getInstance().getAllTransactions()) {
++//            if (transaction.senderProperty().get().equals(Model.getInstance().getClient().pAddressProperty().get())){
++//                expenses = expenses + transaction.amountProperty().get();
++//            } else {
++//                income = income + transaction.amountProperty().get();
++//            }
++//        }
++//        income_lbl.setText("+ $" + income);
++//        expense_lbl.setText("- $" + expenses);
++//    }
++
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"4cb53ce1-52ab-4f92-ada7-3d7e4dec3b08\" name=\"Changes\" comment=\"Patient view and back button\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/SearchPatientsController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/SearchPatientsController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/newpatient.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/newpatient.fxml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/searchforpatient.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/searchforpatient.fxml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"CSS File\" />\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;narco18&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/narco18/IHMSF.git&quot;,\r\n    &quot;accountId&quot;: &quot;38fe9e16-170f-408d-a094-561158cdcd7c&quot;\r\n  }\r\n}</component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 0\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2ehjXYZuH8SkjWkNxEaHOfRpHzW\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,\r\n    &quot;Application.App.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.MAIN.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;G:/IHMSF/IHMSF/lib/mysql-connector-j-8.3.0.jar&quot;,\r\n    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  },\r\n  &quot;keyToStringList&quot;: {\r\n    &quot;DatabaseDriversLRU&quot;: [\r\n      &quot;mysql&quot;\r\n    ]\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"G:\\IHMSF\\IHMSF\\src\\main\\resources\\FXML\\Reciptionist\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"G:\\IHMSF\\IHMSF\\src\\main\\resources\\Styles\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.App\">\r\n    <configuration name=\"App\" type=\"Application\" factoryName=\"Application\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.example.ihmsf.App\" />\r\n      <module name=\"IHMSF\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"MAIN\" type=\"Application\" factoryName=\"Application\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.example.ihmsf.HelloApplication\" />\r\n      <module name=\"IHMSF\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Application.MAIN\" />\r\n      <item itemvalue=\"Application.App\" />\r\n    </list>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240\" />\r\n        <option value=\"bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"4cb53ce1-52ab-4f92-ada7-3d7e4dec3b08\" name=\"Changes\" comment=\"\" />\r\n      <created>1712363748259</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1712363748259</updated>\r\n      <workItem from=\"1713682324313\" duration=\"14658000\" />\r\n      <workItem from=\"1713789935066\" duration=\"30000\" />\r\n      <workItem from=\"1713789989297\" duration=\"1000000\" />\r\n      <workItem from=\"1713795665380\" duration=\"3310000\" />\r\n      <workItem from=\"1713941977960\" duration=\"14796000\" />\r\n      <workItem from=\"1713981189841\" duration=\"1479000\" />\r\n      <workItem from=\"1713982866111\" duration=\"9495000\" />\r\n      <workItem from=\"1713999177653\" duration=\"607000\" />\r\n      <workItem from=\"1714125732065\" duration=\"12785000\" />\r\n      <workItem from=\"1714203129425\" duration=\"7343000\" />\r\n      <workItem from=\"1714627481253\" duration=\"5278000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"v1.0 Reciptionist\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713001732945</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713001732945</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"v1.0 Reciptionist\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713643518492</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713643518492</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"int new idea\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713719375919</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713719375919</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"ccc\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713722546850</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713722546850</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"ccc\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713725263557</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713725263557</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"vvv\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713944529112</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713944529112</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Intitialized then Sat Maven\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713985015468</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713985015468</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Patient view and back button\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1714218940997</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1714218940997</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"9\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"v1.0 Reciptionist\" />\r\n    <MESSAGE value=\"int new idea\" />\r\n    <MESSAGE value=\"ccc\" />\r\n    <MESSAGE value=\"vvv\" />\r\n    <MESSAGE value=\"Intitialized then Sat Maven\" />\r\n    <MESSAGE value=\"Patient view and back button\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Patient view and back button\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.RuntimeException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.IllegalStateException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"3\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/IHMSF$App.ic\" NAME=\"App Coverage Results\" MODIFIED=\"1714126044579\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 565921a0eba1c9141fa9dbaf48b44bcf8eea6d2d)
++++ b/.idea/workspace.xml	(date 1714716399053)
+@@ -5,15 +5,31 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="4cb53ce1-52ab-4f92-ada7-3d7e4dec3b08" name="Changes" comment="Patient view and back button">
++      <change afterPath="$PROJECT_DIR$/lib/mysql-connector-j-8.4.0.jar" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Doctor.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Reciptionist.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/SearchPatientsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/SearchPatientsController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/newpatient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/newpatient.fxml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/searchforpatient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/searchforpatient.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/DashboardController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/RoomsCellController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/RoomsCellController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/DatabaseDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/DatabaseDriver.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Model.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Rooms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Rooms.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/MyJDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/MyJDBC.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Views/RoomsCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Views/RoomsCellFactory.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Views/ViewFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Views/ViewFactory.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="DatabaseLocalColorSettings">
++    <colors>
++      <entry key="69447c1c-1711-41ab-a093-38ecafec8a62" value="Orange" />
++    </colors>
+   </component>
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+@@ -38,6 +54,13 @@
+     &quot;url&quot;: &quot;https://github.com/narco18/IHMSF.git&quot;,
+     &quot;accountId&quot;: &quot;38fe9e16-170f-408d-a094-561158cdcd7c&quot;
+   }
++}</component>
++  <component name="HighlightingSettingsPerFile">
++    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Rooms.java" root0="FORCE_HIGHLIGHTING" />
++  </component>
++  <component name="KubernetesApiPersistence">{}</component>
++  <component name="KubernetesApiProvider">{
++  &quot;isMigrated&quot;: true
+ }</component>
+   <component name="MavenImportPreferences">
+     <option name="generalSettings">
+@@ -57,40 +80,43 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.MAIN.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;G:/IHMSF/IHMSF/lib/mysql-connector-j-8.3.0.jar&quot;,
+-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "ASKED_ADD_EXTERNAL_FILES": "true",
++    "Application.App.executor": "Run",
++    "Application.HelloApplication.executor": "Run",
++    "Application.MAIN.executor": "Run",
++    "Application.Unnamed.executor": "Run",
++    "RunOnceActivity.OpenProjectViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "extract.method.default.visibility": "private",
++    "git-widget-placeholder": "master",
++    "ignore.virus.scanning.warn.message": "true",
++    "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "G:/IHMSF/IHMSF/src/main/java/com/example/ihmsf/Models",
++    "list.type.of.created.stylesheet": "CSS",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "project.structure.last.edited": "Libraries",
++    "project.structure.proportion": "0.15",
++    "project.structure.side.proportion": "0.2",
++    "settings.editor.selected.configurable": "settings.sync",
++    "vue.rearranger.settings.migration": "true"
+   },
+-  &quot;keyToStringList&quot;: {
+-    &quot;DatabaseDriversLRU&quot;: [
+-      &quot;mysql&quot;
++  "keyToStringList": {
++    "DatabaseDriversLRU": [
++      "mysql"
+     ]
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="G:\IHMSF\IHMSF\src\main\java\com\example\ihmsf\Models" />
++      <recent name="G:\IHMSF\IHMSF\lib" />
+       <recent name="G:\IHMSF\IHMSF\src\main\resources\FXML\Reciptionist" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
+@@ -106,6 +132,13 @@
+       </method>
+     </configuration>
+     <configuration name="MAIN" type="Application" factoryName="Application">
++      <option name="MAIN_CLASS_NAME" value="com.example.ihmsf.HelloApplication" />
++      <module name="IHMSF" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="com.example.ihmsf.HelloApplication" />
+       <module name="IHMSF" />
+       <method v="2">
+@@ -113,6 +146,7 @@
+       </method>
+     </configuration>
+     <list>
++      <item itemvalue="Application.Unnamed" />
+       <item itemvalue="Application.MAIN" />
+       <item itemvalue="Application.App" />
+     </list>
+@@ -144,6 +178,10 @@
+       <workItem from="1714125732065" duration="12785000" />
+       <workItem from="1714203129425" duration="7343000" />
+       <workItem from="1714627481253" duration="5278000" />
++      <workItem from="1714649899780" duration="12760000" />
++      <workItem from="1714680623037" duration="1558000" />
++      <workItem from="1714683119576" duration="774000" />
++      <workItem from="1714714737643" duration="1544000" />
+     </task>
+     <task id="LOCAL-00001" summary="v1.0 Reciptionist">
+       <option name="closed" value="true" />
+Index: .idea/dataSources.local.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"dataSourceStorageLocal\" created-in=\"IU-241.14494.240\">\r\n    <data-source name=\"hospital@localhost\" uuid=\"b6703a93-6f2d-4904-a1ce-fa2f768e27d6\">\r\n      <database-info product=\"MySQL\" version=\"8.0.36\" jdbc-version=\"4.2\" driver-name=\"MySQL Connector/J\" driver-version=\"mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)\" dbms=\"MYSQL\" exact-version=\"8.0.36\" exact-driver-version=\"8.2\">\r\n        <extra-name-characters>#@</extra-name-characters>\r\n        <identifier-quote-string>`</identifier-quote-string>\r\n      </database-info>\r\n      <case-sensitivity plain-identifiers=\"lower\" quoted-identifiers=\"lower\" />\r\n      <secret-storage>master_key</secret-storage>\r\n      <user-name>root</user-name>\r\n      <schema-mapping>\r\n        <introspection-scope>\r\n          <node kind=\"schema\" qname=\"@\" />\r\n        </introspection-scope>\r\n      </schema-mapping>\r\n    </data-source>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+--- a/.idea/dataSources.local.xml	(revision 565921a0eba1c9141fa9dbaf48b44bcf8eea6d2d)
++++ b/.idea/dataSources.local.xml	(date 1714716399198)
+@@ -15,5 +15,22 @@
+         </introspection-scope>
+       </schema-mapping>
+     </data-source>
++    <data-source name="@localhost" uuid="69447c1c-1711-41ab-a093-38ecafec8a62">
++      <database-info product="MySQL" version="8.0.36" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)" dbms="MYSQL" exact-version="8.0.36" exact-driver-version="8.2">
++        <extra-name-characters>#@</extra-name-characters>
++        <identifier-quote-string>`</identifier-quote-string>
++      </database-info>
++      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
++      <secret-storage>master_key</secret-storage>
++      <user-name>root</user-name>
++      <schema-mapping>
++        <introspection-scope>
++          <node kind="schema">
++            <name qname="@" />
++            <name qname="hospital" />
++          </node>
++        </introspection-scope>
++      </schema-mapping>
++    </data-source>
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/dataSources.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DataSourceManagerImpl\" format=\"xml\" multifile-model=\"true\">\r\n    <data-source source=\"LOCAL\" name=\"hospital@localhost\" uuid=\"b6703a93-6f2d-4904-a1ce-fa2f768e27d6\">\r\n      <driver-ref>mysql.8</driver-ref>\r\n      <synchronize>true</synchronize>\r\n      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>\r\n      <jdbc-url>jdbc:mysql://localhost:3306/hospital</jdbc-url>\r\n      <jdbc-additional-properties>\r\n        <property name=\"com.intellij.clouds.kubernetes.db.host.port\" />\r\n        <property name=\"com.intellij.clouds.kubernetes.db.enabled\" value=\"false\" />\r\n        <property name=\"com.intellij.clouds.kubernetes.db.container.port\" />\r\n      </jdbc-additional-properties>\r\n      <working-dir>$ProjectFileDir$</working-dir>\r\n    </data-source>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.xml b/.idea/dataSources.xml
+--- a/.idea/dataSources.xml	(revision 565921a0eba1c9141fa9dbaf48b44bcf8eea6d2d)
++++ b/.idea/dataSources.xml	(date 1714716399214)
+@@ -9,6 +9,19 @@
+       <jdbc-additional-properties>
+         <property name="com.intellij.clouds.kubernetes.db.host.port" />
+         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
++        <property name="com.intellij.clouds.kubernetes.db.resource.type" value="Deployment" />
++        <property name="com.intellij.clouds.kubernetes.db.container.port" />
++      </jdbc-additional-properties>
++      <working-dir>$ProjectFileDir$</working-dir>
++    </data-source>
++    <data-source source="LOCAL" name="@localhost" uuid="69447c1c-1711-41ab-a093-38ecafec8a62">
++      <driver-ref>mysql.8</driver-ref>
++      <synchronize>true</synchronize>
++      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
++      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
++      <jdbc-additional-properties>
++        <property name="com.intellij.clouds.kubernetes.db.host.port" />
++        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
+         <property name="com.intellij.clouds.kubernetes.db.container.port" />
+       </jdbc-additional-properties>
+       <working-dir>$ProjectFileDir$</working-dir>
+Index: src/main/java/com/example/ihmsf/Models/Reciptionist.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/ihmsf/Models/Reciptionist.java b/src/main/java/com/example/ihmsf/Models/Reciptionist.java
+new file mode 100644
+--- /dev/null	(date 1714716399123)
++++ b/src/main/java/com/example/ihmsf/Models/Reciptionist.java	(date 1714716399123)
+@@ -0,0 +1,5 @@
++package com.example.ihmsf.Models;
++
++public class Reciptionist {
++
++}
+Index: src/main/java/com/example/ihmsf/MyJDBC.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.ihmsf;\r\n\r\nimport java.sql.Connection;\r\nimport java.sql.DriverManager;\r\nimport java.sql.SQLException;\r\n\r\npublic class MyJDBC {\r\n\r\n    public MyJDBC() {\r\n        try {\r\n            // Attempt to establish a database connection\r\n            Connection connection = DriverManager.getConnection(\"jdbc:mysql://localhost:3306/hospital\", \"root\", \"MYSQL12345678\");\r\n            System.out.println(\"Database connection established successfully.\");\r\n        } catch (SQLException e) {\r\n            // Handle database connection errors\r\n            System.err.println(\"Error connecting to the database: \" + e.getMessage());\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    // Add methods to perform database operations using the established connection\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/ihmsf/MyJDBC.java b/src/main/java/com/example/ihmsf/MyJDBC.java
+--- a/src/main/java/com/example/ihmsf/MyJDBC.java	(revision 565921a0eba1c9141fa9dbaf48b44bcf8eea6d2d)
++++ b/src/main/java/com/example/ihmsf/MyJDBC.java	(date 1714716399220)
+@@ -1,8 +1,7 @@
+ package com.example.ihmsf;
++import java.sql.*;
+ 
+-import java.sql.Connection;
+-import java.sql.DriverManager;
+-import java.sql.SQLException;
++
+ 
+ public class MyJDBC {
+ 
+@@ -11,12 +10,42 @@
+             // Attempt to establish a database connection
+             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospital", "root", "MYSQL12345678");
+             System.out.println("Database connection established successfully.");
++
++            // Retrieve PatientID entered by the user
++            int patientId = 1; // Replace with the actual patient ID
++
++            // Prepare SQL statement
++            String sql = "SELECT * FROM patient WHERE idpatient = ?";
++            PreparedStatement statement = connection.prepareStatement(sql);
++            statement.setInt(1, patientId);
++
++            // Execute SQL query
++            ResultSet resultSet = statement.executeQuery();
++
++            // Check if a row was found
++            if (resultSet.next()) {
++                // Retrieve data from the ResultSet
++                String firstName = resultSet.getString("name");
++
++                // Print the retrieved data
++                System.out.println("First Name: " + firstName);
++            } else {
++                // No matching patient found
++                // You can display an error message or clear the Labels
++                System.out.println("Patient not found");
++            }
++
++            // Close the ResultSet, PreparedStatement, and Connection
++            resultSet.close();
++            statement.close();
++            connection.close();
+         } catch (SQLException e) {
+-            // Handle database connection errors
+-            System.err.println("Error connecting to the database: " + e.getMessage());
++            // Handle database connection or query errors
++            System.err.println("Error: " + e.getMessage());
+             e.printStackTrace();
+         }
+     }
+ 
+-    // Add methods to perform database operations using the established connection
++    // Add methods to perform other database operations using the established connection
++
+ }
+Index: src/main/java/com/example/ihmsf/Models/Doctor.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/ihmsf/Models/Doctor.java b/src/main/java/com/example/ihmsf/Models/Doctor.java
+new file mode 100644
+--- /dev/null	(date 1714716399180)
++++ b/src/main/java/com/example/ihmsf/Models/Doctor.java	(date 1714716399180)
+@@ -0,0 +1,4 @@
++package com.example.ihmsf.Models;
++
++public class Doctor {
++}
+Index: src/main/java/com/example/ihmsf/Controllers/Receptionist/RoomsCellController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.ihmsf.Controllers.Receptionist;\r\n\r\nimport com.example.ihmsf.Models.Rooms;\r\nimport javafx.fxml.Initializable;\r\nimport javafx.scene.control.Label;\r\n\r\nimport java.net.URL;\r\nimport java.util.ResourceBundle;\r\n\r\npublic class RoomsCellController implements Initializable {\r\n    public Label patientIDCell;\r\n    public Label roomIDCell;\r\n    public Label doctorCell;\r\n    public Label heartbeatCell;\r\n    public Label stateCell;\r\n\r\n    private final Rooms room;\r\n    public RoomsCellController(Rooms room) {\r\n        this.room = room;\r\n    }\r\n\r\n    @Override\r\n    public void initialize(URL url, ResourceBundle resourceBundle) {\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/ihmsf/Controllers/Receptionist/RoomsCellController.java b/src/main/java/com/example/ihmsf/Controllers/Receptionist/RoomsCellController.java
+--- a/src/main/java/com/example/ihmsf/Controllers/Receptionist/RoomsCellController.java	(revision 565921a0eba1c9141fa9dbaf48b44bcf8eea6d2d)
++++ b/src/main/java/com/example/ihmsf/Controllers/Receptionist/RoomsCellController.java	(date 1714716399225)
+@@ -15,12 +15,36 @@
+     public Label stateCell;
+ 
+     private final Rooms room;
++
+     public RoomsCellController(Rooms room) {
+         this.room = room;
+     }
+ 
+     @Override
+     public void initialize(URL url, ResourceBundle resourceBundle) {
++        patientIDCell.textProperty().bind(room.patientIDProperty());
++        roomIDCell.textProperty().bind(room.roomIDProperty());
++        doctorCell.textProperty().bind(room.doctorIDProperty());
++        heartbeatCell.textProperty().bind(room.heartbeatProperty());
++        stateCell.textProperty().bind(room.stateProperty());
++//        stateCell.setOnAction(event -> Model.getInstance().getViewFactory().showMessageWindow(transaction.senderProperty().get(), transaction.messageProperty().get()));
++//        transactionIcons();
++    }
++//    public void setRoom(Rooms room) {
++//        this.room = room;
++//        updateLabels();
++//    }
+ 
++    private void updateLabels() {
++        if (room != null) {
++            patientIDCell.textProperty().bind(room.getPatientID());
++            roomIDCell.textProperty().bind(room.getRoomID());
++            doctorCell.textProperty().bind(room.getDoctorID());
++            heartbeatCell.textProperty().bind(room.getHeartbeat());
++            stateCell.textProperty().bind(room.getState());
++        }
+     }
++
++
++
+ }
+Index: src/main/java/com/example/ihmsf/Models/Rooms.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.ihmsf.Models;\r\n\r\nimport javafx.beans.property.SimpleStringProperty;\r\nimport javafx.beans.property.StringProperty;\r\n\r\npublic class Rooms {\r\n//    private final StringProperty room;\r\n    private final StringProperty patientID;\r\n    private final StringProperty roomID;\r\n    private final StringProperty doctorID;\r\n    private final StringProperty heartbeat;\r\n    private final StringProperty state;\r\n    public Rooms(String room, String patientID, String roomID, String roomNumber,String doctorID, String heartbeat, String state) {\r\n        this.patientID = new SimpleStringProperty(this, \"Patient ID\" ,patientID);\r\n        this.roomID = new SimpleStringProperty(this , \"Room\",roomID);\r\n        this.doctorID = new SimpleStringProperty(this,\"Doctor\",doctorID);\r\n        this.heartbeat = new SimpleStringProperty(this,\"Heartbeat\",heartbeat);\r\n        this.state = new SimpleStringProperty(this,\"State\",state);\r\n    }\r\n    public StringProperty getPatientID() {return this.patientID;}\r\n    public StringProperty getRoomID() {return this.roomID;}\r\n    public StringProperty getDoctorID() {return this.doctorID;}\r\n    public StringProperty getHeartbeat() {return this.heartbeat;}\r\n    public StringProperty getState() {return this.state;}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/ihmsf/Models/Rooms.java b/src/main/java/com/example/ihmsf/Models/Rooms.java
+--- a/src/main/java/com/example/ihmsf/Models/Rooms.java	(revision 565921a0eba1c9141fa9dbaf48b44bcf8eea6d2d)
++++ b/src/main/java/com/example/ihmsf/Models/Rooms.java	(date 1714716399232)
+@@ -2,25 +2,71 @@
+ 
+ import javafx.beans.property.SimpleStringProperty;
+ import javafx.beans.property.StringProperty;
++import javafx.beans.value.ObservableValue;
+ 
+ public class Rooms {
+-//    private final StringProperty room;
+     private final StringProperty patientID;
+     private final StringProperty roomID;
+     private final StringProperty doctorID;
+     private final StringProperty heartbeat;
+     private final StringProperty state;
+-    public Rooms(String room, String patientID, String roomID, String roomNumber,String doctorID, String heartbeat, String state) {
+-        this.patientID = new SimpleStringProperty(this, "Patient ID" ,patientID);
+-        this.roomID = new SimpleStringProperty(this , "Room",roomID);
+-        this.doctorID = new SimpleStringProperty(this,"Doctor",doctorID);
+-        this.heartbeat = new SimpleStringProperty(this,"Heartbeat",heartbeat);
+-        this.state = new SimpleStringProperty(this,"State",state);
++
++    public Rooms(String patientID, String roomID, String doctorID, String heartbeat, String state) {
++        this.patientID = new SimpleStringProperty(patientID);
++        this.roomID = new SimpleStringProperty(roomID);
++        this.doctorID = new SimpleStringProperty(doctorID);
++        this.heartbeat = new SimpleStringProperty(heartbeat);
++        this.state = new SimpleStringProperty(state);
++    }
++
++    public StringProperty patientIDProperty() {
++        System.out.println(patientID);
++        return patientID;
++    }
++
++    public StringProperty roomIDProperty() {
++        return roomID;
++    }
++
++    public StringProperty doctorIDProperty() {
++        System.out.println(doctorID);
++        return doctorID;
++    }
++
++    public StringProperty heartbeatProperty() {
++        System.out.println(heartbeat);
++        return heartbeat;
++    }
++
++    public StringProperty stateProperty() {
++        System.out.println(state);
++        return state;
++    }
++
++    // Additional getter methods if needed
++    public StringProperty getPatientID() {
++        System.out.println(patientID);
++        return patientID;
+     }
+-    public StringProperty getPatientID() {return this.patientID;}
+-    public StringProperty getRoomID() {return this.roomID;}
+-    public StringProperty getDoctorID() {return this.doctorID;}
+-    public StringProperty getHeartbeat() {return this.heartbeat;}
+-    public StringProperty getState() {return this.state;}
++
++    public StringProperty getRoomID() {
++        System.out.println(roomID);
++        return roomID;
++    }
++
++    public StringProperty getDoctorID() {
++        System.out.println(doctorID);
++        return doctorID;
++    }
++
++    public StringProperty getHeartbeat() {
++        System.out.println(heartbeat);
++        return heartbeat;
++    }
++
++    public StringProperty getState() {
++        System.out.println(state);
++        return state;
++    }
+ 
+ }
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n  <modelVersion>4.0.0</modelVersion>\r\n\r\n  <groupId>com.example</groupId>\r\n  <artifactId>IHMSF</artifactId>\r\n  <version>1.0-SNAPSHOT</version>\r\n  <name>IHMSF</name>\r\n\r\n  <properties>\r\n    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\r\n<junit.version>5.10.0</junit.version>  </properties>\r\n\r\n  <dependencies>\r\n    <dependency>\r\n      <groupId>org.openjfx</groupId>\r\n      <artifactId>javafx-controls</artifactId>\r\n      <version>21</version>\r\n    </dependency>\r\n    <dependency>\r\n      <groupId>org.openjfx</groupId>\r\n      <artifactId>javafx-fxml</artifactId>\r\n      <version>21</version>\r\n    </dependency>\r\n\r\n<dependency>\r\n      <groupId>org.junit.jupiter</groupId>\r\n      <artifactId>junit-jupiter-api</artifactId>\r\n      <version>${junit.version}</version>\r\n      <scope>test</scope>\r\n    </dependency>\r\n    <dependency>\r\n      <groupId>org.junit.jupiter</groupId>\r\n      <artifactId>junit-jupiter-engine</artifactId>\r\n      <version>${junit.version}</version>\r\n      <scope>test</scope>\r\n    </dependency>\r\n    <!-- https://mvnrepository.com/artifact/de.jensd/fontawesomefx -->\r\n    <dependency>\r\n      <groupId>de.jensd</groupId>\r\n      <artifactId>fontawesomefx-fontawesome</artifactId>\r\n      <version>4.7.0-9.1.2</version>\r\n    </dependency>\r\n\r\n\r\n\r\n  </dependencies>\r\n\r\n\r\n  <build>\r\n    <plugins>\r\n      <plugin>\r\n        <groupId>org.apache.maven.plugins</groupId>\r\n        <artifactId>maven-compiler-plugin</artifactId>\r\n        <version>3.11.0</version>\r\n        <configuration>\r\n          <source>21</source>\r\n          <target>21</target>\r\n        </configuration>\r\n      </plugin>\r\n      <plugin>\r\n        <groupId>org.openjfx</groupId>\r\n        <artifactId>javafx-maven-plugin</artifactId>\r\n        <version>0.0.8</version>\r\n        <executions>\r\n          <execution>\r\n            <!-- Default configuration for running with: mvn clean javafx:run -->\r\n            <id>default-cli</id>\r\n            <configuration>\r\n              <mainClass>com.example.ihmsf/com.example.ihmsf.HelloApplication</mainClass>\r\n              <launcher>app</launcher>\r\n              <jlinkZipName>app</jlinkZipName>\r\n              <jlinkImageName>app</jlinkImageName>\r\n              <noManPages>true</noManPages>\r\n              <stripDebug>true</stripDebug>\r\n              <noHeaderFiles>true</noHeaderFiles>\r\n            </configuration>\r\n          </execution>\r\n        </executions>\r\n      </plugin>\r\n    </plugins>\r\n  </build>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	(revision 565921a0eba1c9141fa9dbaf48b44bcf8eea6d2d)
++++ b/pom.xml	(date 1714716399264)
+@@ -19,6 +19,13 @@
+       <artifactId>javafx-controls</artifactId>
+       <version>21</version>
+     </dependency>
++    <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
++    <dependency>
++      <groupId>com.mysql</groupId>
++      <artifactId>mysql-connector-j</artifactId>
++      <version>8.4.0</version>
++    </dependency>
++
+     <dependency>
+       <groupId>org.openjfx</groupId>
+       <artifactId>javafx-fxml</artifactId>
