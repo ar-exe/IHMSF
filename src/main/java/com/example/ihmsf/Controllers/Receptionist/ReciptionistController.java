@@ -19,6 +19,9 @@ public class ReciptionistController implements Initializable {
                 case "Patients" -> reciptionist_parent.setCenter(Model.getInstance().getViewFactory().getPatientsView());
                 case "NewPatient" -> reciptionist_parent.setCenter(Model.getInstance().getViewFactory().getNewPatientView());
                 case "SearchPatients" -> reciptionist_parent.setCenter(Model.getInstance().getViewFactory().getSearchPatientView());
+                case "Attendance" -> reciptionist_parent.setCenter(Model.getInstance().getViewFactory().getAttendanceView());
+                case "TakeAttendance" -> reciptionist_parent.setCenter(Model.getInstance().getViewFactory().getTakeAttendanceView());
+                case "AttendanceHistory" -> reciptionist_parent.setCenter(Model.getInstance().getViewFactory().getAttendanceHistoryView());
                 default -> reciptionist_parent.setCenter(Model.getInstance().getViewFactory().getDashboardView());
             }
         });

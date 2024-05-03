@@ -26,6 +26,7 @@ public class ReciptionistSidebarController implements Initializable {
         dashboardButton.setOnAction(event -> onDashboard());
         appointmentButton.setOnAction(event -> onAppointment());
         patientsButton.setOnAction(event -> onPatients());
+        attendanceButton.setOnAction(event -> onAttendance());
     }
 
     private void onAppointment() {
@@ -37,5 +38,8 @@ public class ReciptionistSidebarController implements Initializable {
     }
     private void onPatients() {
         Model.getInstance().getViewFactory().getRecipSelection().set("Patients");
+    }
+    private void onAttendance() {
+        Model.getInstance().getViewFactory().getRecipSelection().set("Attendance");
     }
 }

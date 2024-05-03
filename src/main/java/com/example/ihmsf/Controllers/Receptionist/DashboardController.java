@@ -43,6 +43,11 @@ public class DashboardController implements Initializable {
             Model.getInstance().setRooms();
         }
     }
+    private void initActivity(){
+        if (Model.getInstance().getActivity().isEmpty()){
+            Model.getInstance().setActivity();
+        }
+    }
 private void initPieChart(){
     int totalRooms = 100;
     int filledRooms = Model.getInstance().getRooms().size();

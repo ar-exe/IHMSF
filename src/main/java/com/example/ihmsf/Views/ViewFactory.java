@@ -21,6 +21,9 @@ public class ViewFactory {
     private AnchorPane newPatientView;
     private AnchorPane searchPatientView;
     private AnchorPane patientsView;
+    private AnchorPane mainAttendanceView;
+    private AnchorPane takeAttendanceView;
+    private AnchorPane attendanceHistoryView;
     public ViewFactory() {
         this.RecipSelection = new SimpleStringProperty();
     }
@@ -77,6 +80,39 @@ public class ViewFactory {
             }
         }
         return searchPatientView;
+    }
+    public AnchorPane getAttendanceView() {
+        if (mainAttendanceView == null) {
+            try{
+                mainAttendanceView = new FXMLLoader(getClass().getResource("/FXML/Reciptionist/mainAttendance.fxml")).load();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("ERROR Loading Attendance View");
+            }
+        }
+        return mainAttendanceView;
+    }
+    public AnchorPane getTakeAttendanceView() {
+        if (takeAttendanceView == null) {
+            try{
+                takeAttendanceView = new FXMLLoader(getClass().getResource("/FXML/Reciptionist/TakeAttendance.fxml")).load();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("ERROR Loading Take Attendance View");
+            }
+        }
+        return takeAttendanceView;
+    }
+    public AnchorPane getAttendanceHistoryView() {
+        if (attendanceHistoryView == null) {
+            try{
+                attendanceHistoryView = new FXMLLoader(getClass().getResource("/FXML/Reciptionist/HistoryAttendance.fxml")).load();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("ERROR Loading Attendance History View");
+            }
+        }
+        return attendanceHistoryView;
     }
     public void showLoginWindow(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Login.fxml"));

@@ -10,8 +10,8 @@
    <children>
       <FontAwesomeIconView glyphName="USER" layoutX="18.0" layoutY="42.0" size="36" wrappingWidth="30.57145881652832" />
       <Line endX="-50.20000076293945" endY="5.099998474121094" layoutX="112.0" layoutY="42.0" startX="-50.20000076293945" startY="-30.0000057220459" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
-      <Label layoutX="79.0" layoutY="21.0" styleClass="cell_room_lbl" text="Dr. Mostafa Khalid" />
-      <Label layoutX="225.0" layoutY="21.0" style="-fx-text-fill: green;" styleClass="state_lbl" text="Available" />
+      <Label fx:id="doctorNameLabel" layoutX="79.0" layoutY="21.0" styleClass="cell_room_lbl" text="Dr. Mostafa Khalid" />
+      <Label fx:id="doctorStatusLabel" layoutX="225.0" layoutY="21.0" style="-fx-text-fill: green;" styleClass="state_lbl" text="Available" />
       <Line endX="-50.20000076293945" endY="5.099998474121094" layoutX="250.0" layoutY="42.0" startX="-50.20000076293945" startY="-30.0000057220459" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0" />
    </children>
 </AnchorPane>

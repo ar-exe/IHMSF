@@ -13,12 +13,14 @@ public class Model {
     private final DatabaseDriver databaseDriver;
 //    Resiptionist Section
     private final ObservableList<Rooms> rooms;
+    private final ObservableList<Activity> activity;
 
 //    Doctor Section
     private Model(){
         this.viewFactory = new ViewFactory();
         this.databaseDriver = new DatabaseDriver();
         this.rooms = FXCollections.observableArrayList();
+        this.activity = FXCollections.observableArrayList();
     }
     public static synchronized Model getInstance(){
         if(model == null){
@@ -47,6 +49,22 @@ public class Model {
             System.out.println("Error in getting rooms");
         }
     }
+    public void setActivity(){prepareActivity(this.activity,4);}
+    private void prepareActivity(ObservableList<Activity> activity, int limit){
+        ResultSet resultSet = databaseDriver.getActivity();
+
+        try{
+            while (resultSet.next()){
+                String doctorName = resultSet.getString("doctorName");
+                String status = resultSet.getString("status");
+                activity.add(new Activity(doctorName,status));
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Error in getting activity");
+        }
+    }
+    public ObservableList<Activity> getActivity(){return activity;}
     public ObservableList<Rooms> getRooms(){ return rooms;}
     public ViewFactory getViewFactory() {
         return viewFactory;
