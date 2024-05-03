@@ -21,6 +21,10 @@ public class RoomsCellController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        patientIDCell.setText(room.getPatientID().get());
+        roomIDCell.setText(room.getRoomID().get());
+        doctorCell.setText(room.getDoctorName().get());
+        heartbeatCell.setText(room.getHeartbeat().get());
+        stateCell.setText(room.getState().get());
     }
 }

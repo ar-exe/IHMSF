@@ -13,7 +13,7 @@ public class RoomsCellFactory extends ListCell<Rooms> {
             setText(null);
             setGraphic(null);
         }else{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXML/Reciptionist/RoomsCell.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Reciptionist/RoomsCell.fxml"));
             RoomsCellController controller = new RoomsCellController(room);
             loader.setController(controller);
             setText(null);
@@ -21,6 +21,7 @@ public class RoomsCellFactory extends ListCell<Rooms> {
                 setGraphic(loader.load());
             }catch(Exception e){
                 e.printStackTrace();
+                System.out.println("ERROR accessing RoomsCell.fxml");
             }
 
         }
