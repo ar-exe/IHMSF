@@ -53,10 +53,8 @@ and open the template in the editor.
 .table-view{
     -fx-padding: 0;
     -fx-border-radius: 8px;
-    -fx-border-color: linear-gradient(to bottom right, #a413a1, #64308e);
 }
 .table-view .column-header-background{
-    -fx-background-color: linear-gradient(to bottom right, #a413a1, #64308e);
     -fx-background-insets: 0 0 0 0;
     -fx-background-radius: 8px 8px 0 0 ;
 }
