@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-
 <AnchorPane prefHeight="750.0" prefWidth="850.0" stylesheets="@../../Styles/newpatient.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ihmsf.Controllers.Receptionist.HistoryAttendanceController">
    <children>
       <HBox alignment="CENTER" layoutX="4.0" layoutY="78.0" prefHeight="52.0" prefWidth="885.0" spacing="35.0" styleClass="search_for_patient">
