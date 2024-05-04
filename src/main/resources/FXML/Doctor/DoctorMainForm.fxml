@@ -93,7 +93,7 @@
                <center>
                   <AnchorPane prefHeight="850.0" prefWidth="750.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="dashboard_form" layoutX="2.0" layoutY="112.0" prefHeight="750.0" prefWidth="1493.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="-416.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboard_form" layoutX="2.0" layoutY="112.0" prefHeight="750.0" prefWidth="1493.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="-416.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="13.0" layoutY="14.0" prefHeight="153.0" prefWidth="843.0" stylesheets="@../../Styles/MainFormDesign.css" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="637.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -255,7 +255,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="patients_form" layoutX="1.0" prefHeight="560.0" prefWidth="886.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="patients_form" layoutX="1.0" prefHeight="750.0" prefWidth="865.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="214.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="13.0" prefHeight="534.0" prefWidth="510.0" stylesheets="@../../Styles/DoctorMainFormDesign.css" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="362.0" AnchorPane.topAnchor="13.0">
                                  <styleClass>
@@ -281,7 +281,11 @@
                                     <TextField fx:id="patients_password" layoutX="25.0" layoutY="301.0" prefHeight="25.0" prefWidth="439.0" promptText="at least 8 characters needed" styleClass="textfield-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="301.0" />
                                     <Label layoutX="25.0" layoutY="340.0" text="Address:" />
                                     <TextArea fx:id="patients_address" layoutX="25.0" layoutY="357.0" prefHeight="89.0" prefWidth="439.0" styleClass="textfield-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="357.0" />
-                                    <Button fx:id="patients_confirmBtn" layoutX="98.0" layoutY="480.0" mnemonicParsing="false" onAction="#patientConfirmBtn" prefHeight="40.0" prefWidth="293.0" styleClass="btn-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" text="Confirm" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="119.0" />
+                                    <Button fx:id="patients_confirmBtn" layoutX="98.0" layoutY="480.0" mnemonicParsing="false" onAction="#patientConfirmBtn" prefHeight="40.0" prefWidth="293.0" styleClass="bg-color-1" text="Confirm" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="119.0">
+                                       <stylesheets>
+                                          <URL value="@../../Styles/DoctorMainFormDesign.css" />
+                                          <URL value="@../../Styles/MainFormDesign.css" />
+                                       </stylesheets></Button>
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="539.0" layoutY="14.0" prefHeight="203.0" prefWidth="333.0" stylesheets="@../../Styles/DoctorMainFormDesign.css" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
@@ -302,7 +306,7 @@
                                     <Label fx:id="patients_PA_password" layoutX="102.0" layoutY="102.0" prefHeight="17.0" prefWidth="98.0" />
                                     <Label layoutX="21.0" layoutY="138.0" text="Date Created:" />
                                     <Label fx:id="patients_PA_dateCreated" layoutX="102.0" layoutY="138.0" prefHeight="17.0" prefWidth="98.0" />
-                                    <FontAwesomeIcon fill="#d738c7" glyphName="USER" layoutX="224.0" layoutY="144.0" opacity="0.31" size="10em" />
+                                    <FontAwesomeIcon fill="#3a94d6" glyphName="USER" layoutX="224.0" layoutY="144.0" opacity="0.31" size="10em" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="539.0" layoutY="234.0" prefHeight="312.0" prefWidth="333.0" stylesheets="@../../Styles/DoctorMainFormDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="234.0">
@@ -325,22 +329,38 @@
                                     <Label fx:id="patients_PI_mobileNumber" layoutX="117.0" layoutY="126.0" prefHeight="17.0" prefWidth="98.0" />
                                     <Label layoutX="68.0" layoutY="155.0" text="Address:" />
                                     <Label fx:id="patients_PI_address" layoutX="117.0" layoutY="155.0" prefHeight="17.0" prefWidth="98.0" />
-                                    <FontAwesomeIcon fill="#d738c7" glyphName="CLIPBOARD" layoutX="199.0" layoutY="275.0" opacity="0.3" size="10em" strokeWidth="0.0" AnchorPane.bottomAnchor="19.857139587402344" AnchorPane.rightAnchor="14.0" />
-                                    <Button fx:id="patients_PI_addBtn" layoutX="44.0" layoutY="262.0" mnemonicParsing="false" onAction="#patientAddBtn" prefHeight="36.0" prefWidth="97.0" styleClass="btn-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" text="Add" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="44.0">
+                                    <FontAwesomeIcon fill="#3a94d6" glyphName="CLIPBOARD" layoutX="199.0" layoutY="275.0" opacity="0.3" size="10em" strokeWidth="0.0" AnchorPane.bottomAnchor="19.857139587402344" AnchorPane.rightAnchor="14.0" />
+                                    <Button fx:id="patients_PI_addBtn" layoutX="44.0" layoutY="262.0" mnemonicParsing="false" onAction="#patientAddBtn" prefHeight="36.0" prefWidth="97.0" text="Add" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="44.0">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="PLUS" />
                                        </graphic>
+                                       <stylesheets>
+                                          <URL value="@../../Styles/DoctorMainFormDesign.css" />
+                                          <URL value="@../../Styles/MainFormDesign.css" />
+                                       </stylesheets>
+                                       <styleClass>
+                                          <String fx:value="btn-2" />
+                                          <String fx:value="bg-color-1" />
+                                       </styleClass>
                                     </Button>
-                                    <Button fx:id="patients_PI_recordBtn" layoutX="193.0" layoutY="262.0" mnemonicParsing="false" onAction="#patientRecordBtn" prefHeight="36.0" prefWidth="97.0" styleClass="btn-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" text="Record" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="43.0">
+                                    <Button fx:id="patients_PI_recordBtn" layoutX="193.0" layoutY="262.0" mnemonicParsing="false" onAction="#patientRecordBtn" prefHeight="36.0" prefWidth="97.0" text="Record" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="43.0">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="CLIPBOARD" />
                                        </graphic>
+                                       <stylesheets>
+                                          <URL value="@../../Styles/DoctorMainFormDesign.css" />
+                                          <URL value="@../../Styles/MainFormDesign.css" />
+                                       </stylesheets>
+                                       <styleClass>
+                                          <String fx:value="btn-2" />
+                                          <String fx:value="bg-color-1" />
+                                       </styleClass>
                                     </Button>
                                  </children>
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="appointments_form" layoutX="5.0" layoutY="5.0" prefHeight="560.0" prefWidth="886.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="appointments_form" layoutX="5.0" layoutY="5.0" prefHeight="750.0" prefWidth="850.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="9.0" layoutY="14.0" prefHeight="295.0" prefWidth="868.0" stylesheets="@../../Styles/MainFormDesign.css" AnchorPane.bottomAnchor="251.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -372,7 +392,7 @@
                                     </TableView>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="9.0" layoutY="325.0" prefHeight="221.0" prefWidth="868.0" stylesheets="@../../Styles/MainFormDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0">
+                              <AnchorPane layoutX="9.0" layoutY="325.0" prefHeight="221.0" prefWidth="847.0" stylesheets="@../../Styles/MainFormDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="3.0">
                                  <styleClass>
                                     <String fx:value="white-bg" />
                                     <String fx:value="shadow" />
@@ -397,17 +417,33 @@
                                     <TextArea fx:id="appointment_address" layoutX="674.0" layoutY="25.0" prefHeight="40.0" prefWidth="167.0" styleClass="textfield-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" />
                                     <Label layoutX="627.0" layoutY="84.0" text="Status:" />
                                     <ComboBox fx:id="appointment_status" layoutX="674.0" layoutY="80.0" prefHeight="25.0" prefWidth="168.0" promptText="Choose..." styleClass="textfield-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" />
-                                    <Button fx:id="appointment_insertBtn" layoutX="167.0" layoutY="171.0" mnemonicParsing="false" onAction="#appointmentInsertBtn" prefHeight="36.0" prefWidth="100.0" styleClass="btn-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" text="Insert" />
-                                    <Button fx:id="appointment_updateBtn" layoutX="286.0" layoutY="171.0" mnemonicParsing="false" onAction="#appointmentUpdateBtn" prefHeight="36.0" prefWidth="100.0" styleClass="btn-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" text="Update" />
-                                    <Button fx:id="appointment_clearBtn" layoutX="430.0" layoutY="171.0" mnemonicParsing="false" onAction="#appointmentClearBtn" prefHeight="36.0" prefWidth="100.0" styleClass="btn-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" text="Clear" />
-                                    <Button fx:id="appointment_deleteBtn" layoutX="549.0" layoutY="171.0" mnemonicParsing="false" onAction="#appointmentDeleteBtn" prefHeight="36.0" prefWidth="100.0" styleClass="btn-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" text="Delete" />
-                                    <DatePicker fx:id="appointment_schedule" layoutX="671.0" layoutY="121.0" />
+                                    <Button fx:id="appointment_insertBtn" layoutX="167.0" layoutY="171.0" mnemonicParsing="false" onAction="#appointmentInsertBtn" prefHeight="36.0" prefWidth="100.0" stylesheets="@../../Styles/MainFormDesign.css" text="Insert">
+                                       <styleClass>
+                                          <String fx:value="btn-2" />
+                                          <String fx:value="bg-color-1" />
+                                       </styleClass></Button>
+                                    <Button fx:id="appointment_updateBtn" layoutX="286.0" layoutY="171.0" mnemonicParsing="false" onAction="#appointmentUpdateBtn" prefHeight="36.0" prefWidth="100.0" stylesheets="@../../Styles/MainFormDesign.css" text="Update">
+                                       <styleClass>
+                                          <String fx:value="btn-2" />
+                                          <String fx:value="bg-color-1" />
+                                       </styleClass></Button>
+                                    <Button fx:id="appointment_clearBtn" layoutX="417.0" layoutY="170.0" mnemonicParsing="false" onAction="#appointmentClearBtn" prefHeight="36.0" prefWidth="100.0" stylesheets="@../../Styles/MainFormDesign.css" text="Clear">
+                                       <styleClass>
+                                          <String fx:value="btn-2" />
+                                          <String fx:value="bg-color-1" />
+                                       </styleClass></Button>
+                                    <Button fx:id="appointment_deleteBtn" layoutX="549.0" layoutY="171.0" mnemonicParsing="false" onAction="#appointmentDeleteBtn" prefHeight="36.0" prefWidth="100.0" stylesheets="@../../Styles/MainFormDesign.css" text="Delete">
+                                       <styleClass>
+                                          <String fx:value="btn-2" />
+                                          <String fx:value="bg-color-1" />
+                                       </styleClass></Button>
+                                    <DatePicker fx:id="appointment_schedule" layoutX="671.0" layoutY="121.0" prefHeight="26.0" prefWidth="172.0" />
                                     <Label layoutX="612.0" layoutY="125.0" text="Schedule:" />
                                  </children>
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="profile_form" layoutX="114.0" layoutY="102.0" prefHeight="560.0" prefWidth="886.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="profile_form" layoutX="114.0" layoutY="102.0" prefHeight="750.0" prefWidth="858.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="531.0" prefWidth="256.0" stylesheets="@../../Styles/DoctorMainFormDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0">
                                  <styleClass>
@@ -417,7 +453,15 @@
                                  </styleClass>
                                  <children>
                                     <Circle fx:id="profile_circleImage" fill="#2b2f32" layoutX="128.0" layoutY="103.0" radius="89.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Button fx:id="profile_importBtn" layoutX="49.0" layoutY="205.0" mnemonicParsing="false" onAction="#profileChangeProfile" prefHeight="35.0" prefWidth="158.0" styleClass="btn-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" text="Import" />
+                                    <Button fx:id="profile_importBtn" layoutX="49.0" layoutY="205.0" mnemonicParsing="false" onAction="#profileChangeProfile" prefHeight="35.0" prefWidth="158.0" text="Import">
+                                       <stylesheets>
+                                          <URL value="@../../Styles/DoctorMainFormDesign.css" />
+                                          <URL value="@../../Styles/MainFormDesign.css" />
+                                       </stylesheets>
+                                       <styleClass>
+                                          <String fx:value="btn-2" />
+                                          <String fx:value="bg-color-1" />
+                                       </styleClass></Button>
                                     <Label layoutX="49.0" layoutY="274.0" text="Doctor ID:" />
                                     <Label fx:id="profile_label_doctorID" layoutX="110.0" layoutY="274.0" prefHeight="17.0" prefWidth="132.0" text="DID-1" />
                                     <Label layoutX="68.0" layoutY="308.0" text="Name:" />
@@ -435,7 +479,7 @@
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <FontAwesomeIcon fill="#c512c5" glyphName="COGS" layoutX="312.0" layoutY="478.0" opacity="0.33" size="20em" AnchorPane.bottomAnchor="18.714279174804688" AnchorPane.rightAnchor="14.857147216796875" />
+                                    <FontAwesomeIcon fill="#3a94d6" glyphName="COGS" layoutX="312.0" layoutY="478.0" opacity="0.33" size="20em" AnchorPane.bottomAnchor="18.714279174804688" AnchorPane.rightAnchor="14.857147216796875" />
                                     <Label layoutX="14.0" layoutY="14.0" styleClass="header-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" text="Edit Profile">
                                        <font>
                                           <Font size="20.0" />
@@ -490,7 +534,15 @@
                                        </font>
                                     </Label>
                                     <ComboBox fx:id="profile_status" layoutX="198.0" layoutY="409.0" prefHeight="25.0" prefWidth="217.0" promptText="Choose..." styleClass="textfield-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="169.0" AnchorPane.topAnchor="409.0" />
-                                    <Button fx:id="profile_updateBtn" layoutX="210.0" layoutY="477.0" mnemonicParsing="false" onAction="#profileUpdateBtn" prefHeight="40.0" prefWidth="164.0" styleClass="btn-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" text="Update" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0" />
+                                    <Button fx:id="profile_updateBtn" layoutX="210.0" layoutY="477.0" mnemonicParsing="false" onAction="#profileUpdateBtn" prefHeight="40.0" prefWidth="164.0" text="Update" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0">
+                                       <stylesheets>
+                                          <URL value="@../../Styles/DoctorMainFormDesign.css" />
+                                          <URL value="@../../Styles/MainFormDesign.css" />
+                                       </stylesheets>
+                                       <styleClass>
+                                          <String fx:value="btn-2" />
+                                          <String fx:value="bg-color-1" />
+                                       </styleClass></Button>
                                  </children>
                               </AnchorPane>
                            </children>
