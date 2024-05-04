@@ -4,26 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cb53ce1-52ab-4f92-ada7-3d7e4dec3b08" name="Changes" comment="Fixed ListView 3">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/HistoryAttendanceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/TakeAttendanceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/activityCellController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/mainAttendanceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Activity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Views/activityCellFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/AttendanceCell.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/HistoryAttendance.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/TakeAttendance.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/mainAttendance.fxml" afterDir="false" />
+    <list default="true" id="4cb53ce1-52ab-4f92-ada7-3d7e4dec3b08" name="Changes" comment="Attendance Option">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/TakeAttendanceCellController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/HistoryAttendance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/TakeAttendance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Views/takeAttendanceCellFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/TakeAttendanceCell.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/ReciptionistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/ReciptionistController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/ReciptionistSidebarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/ReciptionistSidebarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/HistoryAttendanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/HistoryAttendanceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/TakeAttendanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/TakeAttendanceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/DatabaseDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/DatabaseDriver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Views/ViewFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Views/ViewFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/ReciptionistSidebar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/ReciptionistSidebar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/activityCell.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/activityCell.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/HistoryAttendance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/HistoryAttendance.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,6 +159,7 @@
       <workItem from="1714203129425" duration="7343000" />
       <workItem from="1714627481253" duration="5278000" />
       <workItem from="1714724324292" duration="10459000" />
+      <workItem from="1714801698065" duration="13372000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0 Reciptionist">
       <option name="closed" value="true" />
@@ -256,7 +249,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714741752478</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Attendance Option">
+      <option name="closed" value="true" />
+      <created>1714767947083</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1714767947083</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,7 +297,8 @@
     <MESSAGE value="Fixed ListView" />
     <MESSAGE value="Fixed ListView 2" />
     <MESSAGE value="Fixed ListView 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed ListView 3" />
+    <MESSAGE value="Attendance Option" />
+    <option name="LAST_COMMIT_MESSAGE" value="Attendance Option" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

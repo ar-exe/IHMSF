@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="60.0" prefWidth="760.0" styleClass="cell_container" stylesheets="@../../Styles/RoomsCell.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <FontAwesomeIconView glyphName="USER" layoutX="26.0" layoutY="44.0" size="40" wrappingWidth="28.279428482055664" />
+      <Label fx:id="doctorIDLabel" layoutX="91.0" layoutY="17.0" prefHeight="27.0" prefWidth="81.0" styleClass="cell_patient_lbl" text="231124">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="InButton" layoutX="652.0" layoutY="16.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="35.0" styleClass="heartbeat_lbl" text="In">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="OutButton" layoutX="701.0" layoutY="16.0" mnemonicParsing="false" prefWidth="35.0" styleClass="heartbeat_lbl" text="Out">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Line endX="-100.00000762939453" endY="21.533329010009766" layoutX="278.0" layoutY="20.0" startX="-100.0" style="-fx-fill: black;" styleClass="cell_room_lbl" />
+      <Label fx:id="doctorNameLabel" layoutX="199.0" layoutY="21.0" prefHeight="18.0" prefWidth="137.0" styleClass="cell_room_lbl" text="Dr. Amina Yasser" />
+      <Label fx:id="datentimeLabel" layoutX="337.0" layoutY="21.0" prefHeight="18.0" prefWidth="137.0" styleClass="cell_room_lbl" text="Dr. Amina Yasser" />
+   </children>
+</AnchorPane>

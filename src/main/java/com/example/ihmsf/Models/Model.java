@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
 
 public class Model {
     private static Model model;
@@ -14,6 +15,7 @@ public class Model {
 //    Resiptionist Section
     private final ObservableList<Rooms> rooms;
     private final ObservableList<Activity> activity;
+    private final ObservableList<TakeAttendance> takeAttendance;
 
 //    Doctor Section
     private Model(){
@@ -21,6 +23,7 @@ public class Model {
         this.databaseDriver = new DatabaseDriver();
         this.rooms = FXCollections.observableArrayList();
         this.activity = FXCollections.observableArrayList();
+        this.takeAttendance = FXCollections.observableArrayList();
     }
     public static synchronized Model getInstance(){
         if(model == null){
@@ -48,6 +51,24 @@ public class Model {
             e.printStackTrace();
             System.out.println("Error in getting rooms");
         }
+    }    public void setTakeAttendance(){prepareTakeAttendance(this.takeAttendance,4);}
+    private void prepareTakeAttendance(ObservableList<TakeAttendance> rooms, int limit){
+        ResultSet resultSet = databaseDriver.getTakeAttendance();
+
+        try{
+            while (resultSet.next()){
+                String doctorID = resultSet.getString("id");
+                String doctorName = resultSet.getString("employee name");
+                LocalDateTime date = resultSet.getTimestamp("date").toLocalDateTime();
+                takeAttendance.add(new TakeAttendance(doctorName,doctorID,date));
+//                for (Rooms rooms1 : rooms) {
+//                    System.out.println(rooms1); // Calls the overridden toString() method
+//                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Error in Taking Attendance Model");
+        }
     }
     public void setActivity(){prepareActivity(this.activity,4);}
     private void prepareActivity(ObservableList<Activity> activity, int limit){
@@ -66,6 +87,7 @@ public class Model {
     }
     public ObservableList<Activity> getActivity(){return activity;}
     public ObservableList<Rooms> getRooms(){ return rooms;}
+    public ObservableList<TakeAttendance> getTakeAttendance(){return takeAttendance;}
     public ViewFactory getViewFactory() {
         return viewFactory;
     }
