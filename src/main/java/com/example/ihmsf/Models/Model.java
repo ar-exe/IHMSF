@@ -5,6 +5,7 @@ import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.security.AuthProvider;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
 
@@ -92,4 +93,6 @@ public class Model {
         return viewFactory;
     }
     public DatabaseDriver getDatabaseDriver() {return databaseDriver;}
+
+
 }

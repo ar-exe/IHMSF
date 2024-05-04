@@ -8,7 +8,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -24,6 +23,7 @@ public class ViewFactory {
     private AnchorPane mainAttendanceView;
     private AnchorPane takeAttendanceView;
     private AnchorPane attendanceHistoryView;
+    private AnchorPane profileView;
     public ViewFactory() {
         this.RecipSelection = new SimpleStringProperty();
     }
@@ -113,6 +113,17 @@ public class ViewFactory {
             }
         }
         return attendanceHistoryView;
+    }
+    public AnchorPane getProfileView(){
+        if (profileView == null) {
+            try{
+                profileView = new FXMLLoader(getClass().getResource("/FXML/Reciptionist/Profile.fxml")).load();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("ERROR Loading Profile View");
+            }
+        }
+        return profileView;
     }
     public void showLoginWindow(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Login.fxml"));

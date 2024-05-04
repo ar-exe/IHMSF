@@ -22,6 +22,7 @@ public class ReciptionistController implements Initializable {
                 case "Attendance" -> reciptionist_parent.setCenter(Model.getInstance().getViewFactory().getAttendanceView());
                 case "TakeAttendance" -> reciptionist_parent.setCenter(Model.getInstance().getViewFactory().getTakeAttendanceView());
                 case "AttendanceHistory" -> reciptionist_parent.setCenter(Model.getInstance().getViewFactory().getAttendanceHistoryView());
+                case "Profile" -> reciptionist_parent.setCenter(Model.getInstance().getViewFactory().getProfileView());
                 default -> reciptionist_parent.setCenter(Model.getInstance().getViewFactory().getDashboardView());
             }
         });

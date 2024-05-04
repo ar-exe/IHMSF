@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cb53ce1-52ab-4f92-ada7-3d7e4dec3b08" name="Changes" comment="Attendance Option">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/TakeAttendanceCellController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/HistoryAttendance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/TakeAttendance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Views/takeAttendanceCellFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/TakeAttendanceCell.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/HistoryAttendanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/HistoryAttendanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/TakeAttendanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/TakeAttendanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/DatabaseDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/DatabaseDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/HistoryAttendance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/HistoryAttendance.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="4cb53ce1-52ab-4f92-ada7-3d7e4dec3b08" name="Changes" comment="Authentication Logic" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -159,7 +147,7 @@
       <workItem from="1714203129425" duration="7343000" />
       <workItem from="1714627481253" duration="5278000" />
       <workItem from="1714724324292" duration="10459000" />
-      <workItem from="1714801698065" duration="13372000" />
+      <workItem from="1714801698065" duration="24072000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0 Reciptionist">
       <option name="closed" value="true" />
@@ -257,7 +245,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714767947083</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Connected attendance History with database">
+      <option name="closed" value="true" />
+      <created>1714834672941</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1714834672941</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Authentication Logic">
+      <option name="closed" value="true" />
+      <created>1714852101622</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1714852101622</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,7 +302,9 @@
     <MESSAGE value="Fixed ListView 2" />
     <MESSAGE value="Fixed ListView 3" />
     <MESSAGE value="Attendance Option" />
-    <option name="LAST_COMMIT_MESSAGE" value="Attendance Option" />
+    <MESSAGE value="Connected attendance History with database" />
+    <MESSAGE value="Authentication Logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Authentication Logic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

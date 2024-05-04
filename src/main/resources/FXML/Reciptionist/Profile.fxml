@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="750.0" prefWidth="850.0" stylesheets="@../../Styles/mainDashboard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ihmsf.Controllers.Receptionist.ProfileController">
+   <children>
+      <ImageView fx:id="profileImageView" fitHeight="200.0" fitWidth="200.0" layoutX="37.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="282.0" layoutY="32.0" styleClass="user_name" text="Reciptionist," textFill="#000000a1" />
+      <Label fx:id="profileNameLabel" layoutX="282.0" layoutY="75.0" styleClass="user_name" text="Omar Kamal" />
+      <Separator layoutX="266.0" layoutY="1.0" orientation="VERTICAL" prefHeight="286.0" prefWidth="7.0" />
+      <Separator layoutY="286.0" prefHeight="0.0" prefWidth="266.0" />
+      <Label layoutX="35.0" layoutY="311.0" styleClass="user_name" text="Authorities" />
+   </children>
+</AnchorPane>
