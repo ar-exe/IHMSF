@@ -198,7 +198,7 @@
                                           <String fx:value="radius" />
                                        </styleClass>
                                        <children>
-                                          <AreaChart fx:id="dashboad_chart_PD" layoutX="-98.0" layoutY="-1.0" prefHeight="203.0" prefWidth="301.0" title="Number of Patients" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="0.0">
+                                          <AreaChart fx:id="dashboad_chart_PD" layoutX="-98.0" layoutY="-1.0" prefHeight="359.0" prefWidth="376.0" title="Number of Patients" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="0.0">
                                              <xAxis>
                                                 <CategoryAxis side="BOTTOM" />
                                              </xAxis>
