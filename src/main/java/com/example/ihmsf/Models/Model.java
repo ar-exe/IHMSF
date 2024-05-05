@@ -13,6 +13,7 @@ public class Model {
     private static Model model;
     private final ViewFactory viewFactory;
     private final DatabaseDriver databaseDriver;
+    private String currentUserId;
 //    Resiptionist Section
     private final ObservableList<Rooms> rooms;
     private final ObservableList<Activity> activity;
@@ -93,6 +94,10 @@ public class Model {
         return viewFactory;
     }
     public DatabaseDriver getDatabaseDriver() {return databaseDriver;}
+    public String getCurrentUserId() {return currentUserId;}
 
-
+    public void setCurrentUserId(String currentUserId) {this.currentUserId = currentUserId;}
+    public void clearUserData(){
+        currentUserId = null;
+    }
 }

@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cb53ce1-52ab-4f92-ada7-3d7e4dec3b08" name="Changes" comment="Authentication Logic" />
+    <list default="true" id="4cb53ce1-52ab-4f92-ada7-3d7e4dec3b08" name="Changes" comment="Authentication Logic">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/ReciptionistSidebarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/ReciptionistSidebarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/DatabaseDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/DatabaseDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Model.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -147,7 +153,8 @@
       <workItem from="1714203129425" duration="7343000" />
       <workItem from="1714627481253" duration="5278000" />
       <workItem from="1714724324292" duration="10459000" />
-      <workItem from="1714801698065" duration="24072000" />
+      <workItem from="1714801698065" duration="25411000" />
+      <workItem from="1714881423891" duration="1028000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0 Reciptionist">
       <option name="closed" value="true" />
@@ -261,7 +268,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714852101622</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Authentication Logic">
+      <option name="closed" value="true" />
+      <created>1714852567268</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1714852567268</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

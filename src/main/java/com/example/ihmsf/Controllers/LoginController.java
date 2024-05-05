@@ -19,6 +19,8 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loginButton.setOnAction(event -> onLogin());
+
+
     }
 private void onLogin(){
     String id = usernameTextField.getText().trim();
@@ -47,9 +49,19 @@ private void onLogin(){
         } else {
             loginErrorLabel.setText("Invalid user type");
         }
+        Model.getInstance().setCurrentUserId(id);
     } else {
         loginErrorLabel.setText("Invalid ID or password");
     }
 }
+    private void onLogout(){
+        clearUserSession();
+        Model.getInstance().getViewFactory().showLoginWindow();
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        stage.close();
+    }
+    private void clearUserSession(){
+        Model.getInstance().clearUserData();
+    }
 
 }

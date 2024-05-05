@@ -3,6 +3,7 @@ package com.example.ihmsf.Controllers.Receptionist;
 import com.example.ihmsf.Models.Model;
 import javafx.scene.control.Button;
 import javafx.fxml.Initializable;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,6 +29,7 @@ public class ReciptionistSidebarController implements Initializable {
         patientsButton.setOnAction(event -> onPatients());
         attendanceButton.setOnAction(event -> onAttendance());
         profileButton.setOnAction(event -> onProfile());
+        logoutButton.setOnAction(event -> onLogout());
     }
 
     private void onProfile() {
@@ -46,5 +48,11 @@ public class ReciptionistSidebarController implements Initializable {
     }
     private void onAttendance() {
         Model.getInstance().getViewFactory().getRecipSelection().set("Attendance");
+    }
+    private void onLogout(){
+        Stage currentStage = (Stage) logoutButton.getScene().getWindow();
+        Model.getInstance().clearUserData();
+        Model.getInstance().getViewFactory().showLoginWindow();
+        currentStage.close();
     }
 }
