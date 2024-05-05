@@ -26,16 +26,33 @@ public class AppointmentController implements Initializable {
     public Label hospital;
     public Label room;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        initAvailableDoctors();
+@Override
+public void initialize(URL url, ResourceBundle resourceBundle) {
+    specialityChoiceBox.getItems().add("General");
+    specialityChoiceBox.getItems().add("Dermatology");
+    specialityChoiceBox.getItems().add("Cardiology");
+    specialityChoiceBox.getItems().add("Neurology");
+    specialityChoiceBox.getItems().add("Orthopedics");
+    specialityChoiceBox.getItems().add("Pediatrics");
+    // Set a default value
+    specialityChoiceBox.setValue("General");
+
+    // Add a listener to the specialityChoiceBox
+    specialityChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        // Clear the previous doctors
+        Model.getInstance().getAvailableDoctors().clear();
+        // Fetch the doctors for the selected specialty
+        Model.getInstance().setAvailableDoctors(newValue.toString());
+        // Update the ListView
         availableDoctorsListView.setItems(Model.getInstance().getAvailableDoctors());
-        System.out.println("Available doctors: " + Model.getInstance().getAvailableDoctors()); // print statement
-        availableDoctorsListView.setCellFactory(e -> new AvailableDoctorsCellFactory());
-    }
-    private void initAvailableDoctors(){
-        if (Model.getInstance().getAvailableDoctors().isEmpty()){
-            Model.getInstance().setAvailableDoctors();
-        }
-    }
+    });
+
+    // Set the cell factory for the ListView
+    availableDoctorsListView.setCellFactory(e -> new AvailableDoctorsCellFactory());
+}
+//    private void initAvailableDoctors(){
+//        if (Model.getInstance().getAvailableDoctors().isEmpty()){
+//            Model.getInstance().setAvailableDoctors();
+//        }
+//    }
 }

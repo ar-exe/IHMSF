@@ -56,9 +56,9 @@ public class Model {
             System.out.println("Error in getting rooms");
         }
     }
-    public void setAvailableDoctors(){prepareAvailableDoctors(this.availableDoctors,4);}
-    private void prepareAvailableDoctors(ObservableList<Doctor> availableDoctors, int limit){
-        ResultSet resultSet = databaseDriver.getAvailableDoctors();
+    public void setAvailableDoctors(String speciality){prepareAvailableDoctors(this.availableDoctors,4,speciality);}
+    private void prepareAvailableDoctors(ObservableList<Doctor> availableDoctors, int limit, String speciality){
+        ResultSet resultSet = databaseDriver.getAvailableDoctors(speciality);
 
         try{
             if (!resultSet.next()) {
