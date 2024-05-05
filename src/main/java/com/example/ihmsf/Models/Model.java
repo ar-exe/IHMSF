@@ -18,6 +18,7 @@ public class Model {
     private final ObservableList<Rooms> rooms;
     private final ObservableList<Activity> activity;
     private final ObservableList<TakeAttendance> takeAttendance;
+    private final ObservableList<Doctor> availableDoctors;
 
 //    Doctor Section
     private Model(){
@@ -26,6 +27,7 @@ public class Model {
         this.rooms = FXCollections.observableArrayList();
         this.activity = FXCollections.observableArrayList();
         this.takeAttendance = FXCollections.observableArrayList();
+        this.availableDoctors = FXCollections.observableArrayList();
     }
     public static synchronized Model getInstance(){
         if(model == null){
@@ -53,7 +55,30 @@ public class Model {
             e.printStackTrace();
             System.out.println("Error in getting rooms");
         }
-    }    public void setTakeAttendance(){prepareTakeAttendance(this.takeAttendance,4);}
+    }
+    public void setAvailableDoctors(){prepareAvailableDoctors(this.availableDoctors,4);}
+    private void prepareAvailableDoctors(ObservableList<Doctor> availableDoctors, int limit){
+        ResultSet resultSet = databaseDriver.getAvailableDoctors();
+
+        try{
+            if (!resultSet.next()) {
+                System.out.println("No available doctors in the ResultSet.");
+            } else {
+                resultSet.beforeFirst(); // reset the cursor position
+                while (resultSet.next()){
+                    String doctorID = resultSet.getString("id");
+                    String doctorName = resultSet.getString("name");
+                    String department = resultSet.getString("department");
+                    String availability = resultSet.getString("availability");
+                    availableDoctors.add(new Doctor(doctorID,doctorName,department,availability));
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Error in getting available doctors(Model.java)");
+        }
+    }
+    public void setTakeAttendance(){prepareTakeAttendance(this.takeAttendance,4);}
     private void prepareTakeAttendance(ObservableList<TakeAttendance> rooms, int limit){
         ResultSet resultSet = databaseDriver.getTakeAttendance();
 
@@ -95,9 +120,22 @@ public class Model {
     }
     public DatabaseDriver getDatabaseDriver() {return databaseDriver;}
     public String getCurrentUserId() {return currentUserId;}
+    public ObservableList<Doctor> getAvailableDoctors() {return availableDoctors;}
 
     public void setCurrentUserId(String currentUserId) {this.currentUserId = currentUserId;}
     public void clearUserData(){
         currentUserId = null;
     }
 }
+
+
+
+
+
+
+
+// DatabaseDriver.java
+
+
+// Model.java
+

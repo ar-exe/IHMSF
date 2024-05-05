@@ -8,8 +8,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class ViewFactory {
     //Reciptionist Dashboard View
@@ -163,7 +168,14 @@ public class ViewFactory {
         }
         Stage stage = new Stage();
         stage.setScene(scene);
-//        stage.getIcons().add(new Image(getClass().getResourceAsStream("/icon.png")));
+        try {
+            InputStream is = new FileInputStream("G:\\IHMSF\\IHMSF\\src\\main\\resources\\Images\\hospital.png");
+            Image image = new Image(is);
+            stage.getIcons().add(image);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("ERROR in setting icon");
+        }
         stage.setTitle("IHMS");
         stage.show();
     }

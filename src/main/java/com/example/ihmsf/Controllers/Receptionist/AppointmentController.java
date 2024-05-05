@@ -1,5 +1,7 @@
 package com.example.ihmsf.Controllers.Receptionist;
 
+import com.example.ihmsf.Models.Model;
+import com.example.ihmsf.Views.AvailableDoctorsCellFactory;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
@@ -26,6 +28,14 @@ public class AppointmentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        initAvailableDoctors();
+        availableDoctorsListView.setItems(Model.getInstance().getAvailableDoctors());
+        System.out.println("Available doctors: " + Model.getInstance().getAvailableDoctors()); // print statement
+        availableDoctorsListView.setCellFactory(e -> new AvailableDoctorsCellFactory());
+    }
+    private void initAvailableDoctors(){
+        if (Model.getInstance().getAvailableDoctors().isEmpty()){
+            Model.getInstance().setAvailableDoctors();
+        }
     }
 }

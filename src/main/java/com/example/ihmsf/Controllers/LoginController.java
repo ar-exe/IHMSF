@@ -21,16 +21,18 @@ public class LoginController implements Initializable {
         loginButton.setOnAction(event -> onLogin());
 
 
+
     }
 private void onLogin(){
     String id = usernameTextField.getText().trim();
     String password = passwordTextField.getText().trim();
-    String hospitalId = id.substring(0, 3);
 
     if (id.isEmpty() || password.isEmpty()) {
         loginErrorLabel.setText("ID or password cannot be empty");
         return;
     }
+
+    String hospitalId = id.length() >= 3 ? id.substring(0, 3) : id;
 
     // Authenticate the user against the database using the id, password, and hospitalId
     boolean isAuthenticated = Model.getInstance().getDatabaseDriver().authenticateUser(id, password, hospitalId);
