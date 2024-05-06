@@ -21,11 +21,11 @@ public class Doctor {
         return this.doctorID;
     }
     public StringProperty getDoctorName() {
-        System.out.println("Doctor Name: (Doctor.java) " + this.doctorName);
+//        System.out.println("Doctor Name: (Doctor.java) " + this.doctorName);
         return this.doctorName;
     }
     public StringProperty getAvailable() {
-        System.out.println("Available: (Doctor.java) " + this.available);
+//        System.out.println("Available: (Doctor.java) " + this.available);
         return this.available;
     }
     public StringProperty getDepartment() {

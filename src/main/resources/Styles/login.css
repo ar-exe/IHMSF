@@ -2,7 +2,7 @@
     -fx-background-color: #f2f2f2;
 }
 .login_logo_container{
-    -fx-background-color: #132A13;
+    -fx-background-color: teal;
 }
 .login_login_container Text{
     -fx-font-size: 2em;
@@ -19,7 +19,7 @@
 }
 .login_form_container Label{
     -fx-font-size: 12em;
-    -fx-text-fill: #132A13;
+    -fx-text-fill: teal;
     -fx-font-weight: bold;
 }
 .input_field{
@@ -28,7 +28,7 @@
     -fx-font-size: 1.2em;
 }
 .input_form_container Button{
-    -fx-background-color: #132A13;
+    -fx-background-color: teal;
     -fx-text-fill: #ffffff;
     -fx-font-size: 1.2em;
     -fx-font-weight: bold;

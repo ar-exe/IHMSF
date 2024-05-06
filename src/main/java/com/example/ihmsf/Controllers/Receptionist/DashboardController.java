@@ -27,11 +27,18 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        Model.getInstance().setCurrentUserId(Model.getInstance().getDatabaseDriver().getUserName());
+        String currentUserId = Model.getInstance().getCurrentUserId();
+        String currentuserName = Model.getInstance().getDatabaseDriver().getUserName(currentUserId);
+        String hospitalName = Model.getInstance().getDatabaseDriver().getHospitalName(currentUserId);
         bindData();
         initRooms();
         rooms_listview.setItems(Model.getInstance().getRooms());
         rooms_listview.setCellFactory(e -> new RoomsCellFactory());
         initPieChart();
+        user_name.setText("Welcome, " + currentuserName);
+        hospital_name.setText(hospitalName);
+
     }
     private void bindData(){
 //        user_name.textProperty().bind(Bindings.concat("Hi, ").concat(Model.getInstance().getReciptionist().firstNameProperty());

@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cb53ce1-52ab-4f92-ada7-3d7e4dec3b08" name="Changes" comment="Beta Available Doctors Mechanism">
+    <list default="true" id="4cb53ce1-52ab-4f92-ada7-3d7e4dec3b08" name="Changes" comment="Beta 2 Available Doctors Mechanism">
       <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Appointment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/AppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/AppointmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/AvailableDoctorCellController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/AvailableDoctorCellController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Controllers/Receptionist/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Appointment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/DatabaseDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/DatabaseDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Doctor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ihmsf/Models/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/Appointment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/Appointment.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/Dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/Reciptionist/Dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Styles/mainDashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Styles/mainDashboard.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +162,10 @@
       <workItem from="1714627481253" duration="5278000" />
       <workItem from="1714724324292" duration="10459000" />
       <workItem from="1714801698065" duration="25411000" />
-      <workItem from="1714881423891" duration="13563000" />
+      <workItem from="1714881423891" duration="25460000" />
+      <workItem from="1714981021479" duration="3883000" />
+      <workItem from="1714984962382" duration="82000" />
+      <workItem from="1714985058697" duration="3568000" />
     </task>
     <task id="LOCAL-00001" summary="v1.0 Reciptionist">
       <option name="closed" value="true" />
@@ -295,13 +303,46 @@
       <option name="project" value="LOCAL" />
       <updated>1714899154332</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Beta 2 Available Doctors Mechanism">
+      <option name="closed" value="true" />
+      <created>1714900981028</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1714900981028</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/master" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -312,7 +353,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
@@ -340,7 +381,8 @@
     <MESSAGE value="Authentication Logic" />
     <MESSAGE value="Logout process Implementation" />
     <MESSAGE value="Beta Available Doctors Mechanism" />
-    <option name="LAST_COMMIT_MESSAGE" value="Beta Available Doctors Mechanism" />
+    <MESSAGE value="Beta 2 Available Doctors Mechanism" />
+    <option name="LAST_COMMIT_MESSAGE" value="Beta 2 Available Doctors Mechanism" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -355,6 +397,10 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/IHMSF$App.ic" NAME="App Coverage Results" MODIFIED="1714126044579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />

@@ -14,6 +14,7 @@ public class Model {
     private final ViewFactory viewFactory;
     private final DatabaseDriver databaseDriver;
     private String currentUserId;
+    private String currentUserName;
 //    Resiptionist Section
     private final ObservableList<Rooms> rooms;
     private final ObservableList<Activity> activity;
@@ -21,6 +22,7 @@ public class Model {
     private final ObservableList<Doctor> availableDoctors;
 
 //    Doctor Section
+    private Doctor selectedDoctor;
     private Model(){
         this.viewFactory = new ViewFactory();
         this.databaseDriver = new DatabaseDriver();
@@ -121,11 +123,12 @@ public class Model {
     public DatabaseDriver getDatabaseDriver() {return databaseDriver;}
     public String getCurrentUserId() {return currentUserId;}
     public ObservableList<Doctor> getAvailableDoctors() {return availableDoctors;}
-
+    public String getCurrentUserName(){return currentUserName;}
     public void setCurrentUserId(String currentUserId) {this.currentUserId = currentUserId;}
-    public void clearUserData(){
-        currentUserId = null;
-    }
+    public void clearUserData(){currentUserId = null;}
+    public Doctor getSelectedDoctor(){return selectedDoctor;}
+    public void setSelectedDoctor(Doctor selectedDoctor){this.selectedDoctor = selectedDoctor;}
+    public void setCurrentUserName(String currentUserName) {this.currentUserName = currentUserName;}
 }
 
 

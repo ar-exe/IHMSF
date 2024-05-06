@@ -41,7 +41,7 @@
     -fx-fill: #FFFFFF;
 }
 .account_gradient{
-    -fx-background-color: linear-gradient(to right,#132A13,#253F25);
+    -fx-background-color: linear-gradient(to right, rgb(0, 161, 161), rgb(1, 94, 94));
 }
 .account_balance{
     -fx-text-fill: #FFFFFF;
@@ -114,7 +114,7 @@
     -fx-effect: dropshadow(three-pass-box,#AAAAAA, 3, 0,0,3);
 }
 .new_trans_container Button{
-    -fx-background-color: linear-gradient(to right,#132A13,#253F25);
+    -fx-background-color: linear-gradient(to right, rgba(0, 255, 255, 0.32), rgba(4, 136, 136, 0.32));
     -fx-effect: dropshadow(three-pass-box,#AAAAAA,3,0,0,3);
     -fx-pref-width: 230;
     -fx-font-size: 1.5em;
@@ -125,20 +125,20 @@
     -fx-cursor: hand;
 }
 .chart-pie {
-    -fx-background-color: teal;
+    -fx-background-color: transparent;
 }
 
-/*.chart-pie .chart-plot-background {*/
-/*    -fx-background-color: transparent;*/
-/*}*/
+.chart-pie .chart-plot-background {
+    -fx-background-color: transparent;
+}
 
-/*.chart-pie .chart-content {*/
-/*    -fx-background-color: transparent;*/
-/*}*/
+.chart-pie .chart-content {
+    -fx-background-color: transparent;
+}
 
-/*.chart-pie .chart-legend {*/
-/*    -fx-background-color: transparent;*/
-/*}*/
+.chart-pie .chart-legend {
+    -fx-background-color: transparent;
+}
 
 .chart-pie .chart-legend-item-symbol {
     -fx-background-color: teal; /* Change this to the color you want for the legend symbol */
@@ -150,5 +150,13 @@
 }
 
 .chart-pie .chart-series-pie .default-color0 {
-    -fx-pie-color: white; /* Change this to the color you want for the pie chart slice */
+    -fx-pie-color: linear-gradient(to right, #008080, #2E8B57); /* Change this to the gradient colors you want for the pie chart slice */
+}
+
+.chart-pie .chart-series-pie .default-color1 {
+    -fx-pie-color: linear-gradient(to right, #2E8B57, #3CB371); /* Change this to the gradient colors you want for the pie chart slice */
+}
+
+.chart-pie .chart-series-pie .default-color2 {
+    -fx-pie-color: linear-gradient(to right, #3CB371, #66CDAA); /* Change this to the gradient colors you want for the pie chart slice */
 }

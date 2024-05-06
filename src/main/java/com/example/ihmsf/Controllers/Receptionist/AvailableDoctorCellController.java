@@ -1,6 +1,7 @@
 package com.example.ihmsf.Controllers.Receptionist;
 
 import com.example.ihmsf.Models.Doctor;
+import com.example.ihmsf.Models.Model;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -23,6 +24,14 @@ public class AvailableDoctorCellController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         doctorNameLabel.setText(doctor.getDoctorName().get());
         AvailableLabel.setText(doctor.getAvailable().get());
+        selectButton.setOnAction(e->{
+            Model.getInstance().setSelectedDoctor(doctor);
+            System.out.println("Selected DoctorName: "+doctor.getDoctorName().get());
+            System.out.println("Selected DoctorID: "+doctor.getDoctorID().get());
+            System.out.println("Selected DoctorSpeciality: "+doctor.getDepartment().get());
+            System.out.println("Selected DoctorAvailable: "+doctor.getAvailable().get());
+
+        });
 //        selectButton.setText("Select");
     }
 }

@@ -1,11 +1,14 @@
 package com.example.ihmsf.Controllers.Receptionist;
 
+import com.example.ihmsf.Models.Appointment;
+import com.example.ihmsf.Models.Doctor;
 import com.example.ihmsf.Models.Model;
 import com.example.ihmsf.Views.AvailableDoctorsCellFactory;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class AppointmentController implements Initializable {
@@ -49,6 +52,32 @@ public void initialize(URL url, ResourceBundle resourceBundle) {
 
     // Set the cell factory for the ListView
     availableDoctorsListView.setCellFactory(e -> new AvailableDoctorsCellFactory());
+    bookButton.setOnAction(e -> bookAppointment());
+}
+public void bookAppointment() {
+    String speciality = specialityChoiceBox.getValue().toString();
+    String patientID = patientIDInput.getText();
+    LocalDate date = datePicker.getValue();
+    Doctor selectedDoctor = Model.getInstance().getSelectedDoctor();
+
+    Appointment appointment = new Appointment(speciality, patientID, date, selectedDoctor);
+
+    try {
+        // Save the appointment to the database
+        Model.getInstance().getDatabaseDriver().saveAppointment(appointment);
+
+        // Show a success message
+        System.out.println("Appointment booked successfully!");
+
+        // Clear the form inputs
+        specialityChoiceBox.setValue(null);
+        patientIDInput.clear();
+        datePicker.setValue(null);
+        availableDoctorsListView.getSelectionModel().clearSelection();
+    } catch (Exception e) {
+        // Show an error message
+        System.out.println("Failed to book appointment: (AppointmentController.java) " + e.getMessage());
+    }
 }
 //    private void initAvailableDoctors(){
 //        if (Model.getInstance().getAvailableDoctors().isEmpty()){
