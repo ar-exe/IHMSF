@@ -45,7 +45,7 @@ private void onLogin(){
         Model.getInstance().setCurrentUserId(currentUserid);
         if ("Doctor".equals(userType)) {
             System.out.println("Showing Doctor Dashboard"); // Print the name of the dashboard
-            // Model.getInstance().getViewFactory().showDoctorDashboard();
+             Model.getInstance().getViewFactory().showDoctorDashboard();
         } else if ("Reciptionist".equals(userType)) {
             System.out.println("Showing Receptionist Dashboard"); // Print the name of the dashboard
             Model.getInstance().getViewFactory().showReciptionistDashboard();

@@ -1,5 +1,6 @@
 package com.example.ihmsf.Views;
 
+import com.example.ihmsf.Controllers.Doctor.DoctorMainFormController;
 import com.example.ihmsf.Controllers.Receptionist.NewPatientController;
 import com.example.ihmsf.Controllers.Receptionist.ReciptionistController;
 import com.example.ihmsf.Controllers.Receptionist.SearchPatientsController;
@@ -141,6 +142,13 @@ public class ViewFactory {
         loader.setController(reciptionistController);
         createStage(loader);
     }
+    public void showDoctorDashboard(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Doctor/DoctorMainForm.fxml"));
+        DoctorMainFormController doctorMainFormController = new DoctorMainFormController();
+        loader.setController(doctorMainFormController);
+        createStage(loader);
+    }
+
     public void showReciptionistPatients(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Reciptionist/mainPatients.fxml"));
         mainPatientsController mainpatientsController = new mainPatientsController();
