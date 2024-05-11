@@ -487,136 +487,136 @@ public class DoctorMainFormController implements Initializable {
 
 
 
-    public void profileDisplayImages() {
-
-        String selectData = "SELECT * FROM doctor WHERE doctor_id = '"
-                + Data.doctor_id + "'";
-        String temp_path1 = "";
-        String temp_path2 = "";
-//        connect = Database.connectDB();
-
-        try {
-            prepare = connect.prepareStatement(selectData);
-            result = prepare.executeQuery();
-
-            if (result.next()) {
-                temp_path1 = "File:" + result.getString("image");
-                temp_path2 = "File:" + result.getString("image");
-
-                if (result.getString("image") != null) {
-                    image = new Image(temp_path1, 1012, 22, false, true);
-                    top_profile.setFill(new ImagePattern(image));
-
-                    image = new Image(temp_path2, 128, 103, false, true);
-                    profile_circleImage.setFill(new ImagePattern(image));
-                }
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
+//    public void profileDisplayImages() {
+//
+//        String selectData = "SELECT * FROM doctor WHERE doctor_id = '"
+//                + Data.doctor_id + "'";
+//        String temp_path1 = "";
+//        String temp_path2 = "";
+////        connect = Database.connectDB();
+//
+//        try {
+//            prepare = connect.prepareStatement(selectData);
+//            result = prepare.executeQuery();
+//
+//            if (result.next()) {
+//                temp_path1 = "File:" + result.getString("image");
+//                temp_path2 = "File:" + result.getString("image");
+//
+//                if (result.getString("image") != null) {
+//                    image = new Image(temp_path1, 1012, 22, false, true);
+//                    top_profile.setFill(new ImagePattern(image));
+//
+//                    image = new Image(temp_path2, 128, 103, false, true);
+//                    profile_circleImage.setFill(new ImagePattern(image));
+//                }
+//
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 //    private final AlertMessage alert = new AlertMessage();
 
-public void profileUpdateBtn() {
+//public void profileUpdateBtn() {
+//
+////    connect = Database.connectDB();
+//
+//    if (profile_doctorID.getText().isEmpty()
+//            || profile_name.getText().isEmpty()
+//            || profile_email.getText().isEmpty()
+//            || profile_gender.getSelectionModel().getSelectedItem() == null
+//            || profile_mobileNumber.getText().isEmpty()
+//            || profile_address.getText().isEmpty()
+//            || profile_specialized.getSelectionModel().getSelectedItem() == null
+//            || profile_status.getSelectionModel().getSelectedItem() == null) {
+////        alert.errorMessage("Please fill all blank fields");
+//    } else {
+//        // CHECK IF THE PATH IS NULL
+//        if (Data.path == null || "".equals(Data.path)) {
+//            String updateData = "UPDATE doctor SET full_name = ?, email = ?"
+//                    + ", gender = ?, mobile_number = ?, address = ?, specialized = ?, status = ?, modify_date = ?"
+//                    + " WHERE doctor_id = '"
+//                    + Data.doctor_id + "'";
+//            try {
+//                Date date = new Date();
+//                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+//                prepare = connect.prepareStatement(updateData);
+//                prepare.setString(1, profile_name.getText());
+//                prepare.setString(2, profile_email.getText());
+//                prepare.setString(3, profile_gender.getSelectionModel().getSelectedItem());
+//                prepare.setString(4, profile_mobileNumber.getText());
+//                prepare.setString(5, profile_address.getText());
+//                prepare.setString(6, profile_specialized.getSelectionModel().getSelectedItem());
+//                prepare.setString(7, profile_status.getSelectionModel().getSelectedItem());
+//                prepare.setString(8, String.valueOf(sqlDate));
+//
+//                prepare.executeUpdate();
+//
+////                alert.successMessage("Updated Successfully!");
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        } else {
+//            String updateData = "UPDATE doctor SET full_name = ?, email = ?"
+//                    + ", gender = ?, mobile_number = ?, address = ?, image = ?, specialized = ?, status = ?, modify_date = ?"
+//                    + " WHERE doctor_id = '"
+//                    + Data.doctor_id + "'";
+//            try {
+//                Date date = new Date();
+//                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+//                prepare = connect.prepareStatement(updateData);
+//                prepare.setString(1, profile_name.getText());
+//                prepare.setString(2, profile_email.getText());
+//                prepare.setString(3, profile_gender.getSelectionModel().getSelectedItem());
+//                prepare.setString(4, profile_mobileNumber.getText());
+//                prepare.setString(5, profile_address.getText());
+//                String path = Data.path;
+//                path = path.replace("\\", "\\\\");
+//                Path transfer = Paths.get(path);
+//
+//                // LINK YOUR DIRECTORY FOLDER
+//                Path copy = Paths.get("C:\\Users\\WINDOWS 10\\Documents\\NetBeansProjects\\HospitalManagementSystem\\src\\Directory\\"
+//                        + Data.doctor_id + ".jpg");
+//
+//                try {
+//                    // TO PUT THE IMAGE FILE TO YOUR DIRECTORY FOLDER
+//                    Files.copy(transfer, copy, StandardCopyOption.REPLACE_EXISTING);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                prepare.setString(6, copy.toAbsolutePath().toString());
+//                prepare.setString(7, profile_specialized.getSelectionModel().getSelectedItem());
+//                prepare.setString(8, profile_status.getSelectionModel().getSelectedItem());
+//                prepare.setString(9, String.valueOf(sqlDate));
+//
+//                prepare.executeUpdate();
+//
+////                alert.successMessage("Updated Successfully!");
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+//}
 
-//    connect = Database.connectDB();
-
-    if (profile_doctorID.getText().isEmpty()
-            || profile_name.getText().isEmpty()
-            || profile_email.getText().isEmpty()
-            || profile_gender.getSelectionModel().getSelectedItem() == null
-            || profile_mobileNumber.getText().isEmpty()
-            || profile_address.getText().isEmpty()
-            || profile_specialized.getSelectionModel().getSelectedItem() == null
-            || profile_status.getSelectionModel().getSelectedItem() == null) {
-//        alert.errorMessage("Please fill all blank fields");
-    } else {
-        // CHECK IF THE PATH IS NULL
-        if (Data.path == null || "".equals(Data.path)) {
-            String updateData = "UPDATE doctor SET full_name = ?, email = ?"
-                    + ", gender = ?, mobile_number = ?, address = ?, specialized = ?, status = ?, modify_date = ?"
-                    + " WHERE doctor_id = '"
-                    + Data.doctor_id + "'";
-            try {
-                Date date = new Date();
-                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-                prepare = connect.prepareStatement(updateData);
-                prepare.setString(1, profile_name.getText());
-                prepare.setString(2, profile_email.getText());
-                prepare.setString(3, profile_gender.getSelectionModel().getSelectedItem());
-                prepare.setString(4, profile_mobileNumber.getText());
-                prepare.setString(5, profile_address.getText());
-                prepare.setString(6, profile_specialized.getSelectionModel().getSelectedItem());
-                prepare.setString(7, profile_status.getSelectionModel().getSelectedItem());
-                prepare.setString(8, String.valueOf(sqlDate));
-
-                prepare.executeUpdate();
-
-//                alert.successMessage("Updated Successfully!");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            String updateData = "UPDATE doctor SET full_name = ?, email = ?"
-                    + ", gender = ?, mobile_number = ?, address = ?, image = ?, specialized = ?, status = ?, modify_date = ?"
-                    + " WHERE doctor_id = '"
-                    + Data.doctor_id + "'";
-            try {
-                Date date = new Date();
-                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-                prepare = connect.prepareStatement(updateData);
-                prepare.setString(1, profile_name.getText());
-                prepare.setString(2, profile_email.getText());
-                prepare.setString(3, profile_gender.getSelectionModel().getSelectedItem());
-                prepare.setString(4, profile_mobileNumber.getText());
-                prepare.setString(5, profile_address.getText());
-                String path = Data.path;
-                path = path.replace("\\", "\\\\");
-                Path transfer = Paths.get(path);
-
-                // LINK YOUR DIRECTORY FOLDER
-                Path copy = Paths.get("C:\\Users\\WINDOWS 10\\Documents\\NetBeansProjects\\HospitalManagementSystem\\src\\Directory\\"
-                        + Data.doctor_id + ".jpg");
-
-                try {
-                    // TO PUT THE IMAGE FILE TO YOUR DIRECTORY FOLDER
-                    Files.copy(transfer, copy, StandardCopyOption.REPLACE_EXISTING);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                prepare.setString(6, copy.toAbsolutePath().toString());
-                prepare.setString(7, profile_specialized.getSelectionModel().getSelectedItem());
-                prepare.setString(8, profile_status.getSelectionModel().getSelectedItem());
-                prepare.setString(9, String.valueOf(sqlDate));
-
-                prepare.executeUpdate();
-
-//                alert.successMessage("Updated Successfully!");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-}
-
-        public void profileChangeProfile() {
-
-        FileChooser open = new FileChooser();
-        open.getExtensionFilters().add(new ExtensionFilter("Open Image", "*png", "*jpg", "*jpeg"));
-
-        File file = open.showOpenDialog(profile_importBtn.getScene().getWindow());
-
-        if (file != null) {
-            Data.path = file.getAbsolutePath();
-
-            image = new Image(file.toURI().toString(), 128, 103, false, true);
-            profile_circleImage.setFill(new ImagePattern(image));
-        }
-
-    }
+//        public void profileChangeProfile() {
+//
+//        FileChooser open = new FileChooser();
+//        open.getExtensionFilters().add(new ExtensionFilter("Open Image", "*png", "*jpg", "*jpeg"));
+//
+//        File file = open.showOpenDialog(profile_importBtn.getScene().getWindow());
+//
+//        if (file != null) {
+//            Data.path = file.getAbsolutePath();
+//
+//            image = new Image(file.toURI().toString(), 128, 103, false, true);
+//            profile_circleImage.setFill(new ImagePattern(image));
+//        }
+//
+//    }
         public void profileLabels() {
         String selectData = "SELECT * FROM doctor WHERE doctor_id = '"
                 + Data.doctor_id + "'";
@@ -1187,7 +1187,7 @@ public ObservableList<AppointmentData> appointmentGetData() {
           profileSpecializedList();
           profileFields(); // TO DISPLAY ALL DETAILS TO THE FIELDS
           profileLabels();
-          profileDisplayImages(); // TO DISPLAY THE PROFILE PICTURE OF THE DOCTOR
+//          profileDisplayImages(); // TO DISPLAY THE PROFILE PICTURE OF THE DOCTOR
           profileStatusList();
     }
 
@@ -1238,22 +1238,3 @@ public ObservableList<AppointmentData> appointmentGetData() {
 
 
 
-//    @Override
-//    public void initialize(URL location, ResourceBundle resources) {
-//        displayAdminIDNumberName();
-//
-
-//
-//        // TO SHOW THE DATA IMMEDIATELY ONCE YOU LOGGED IN YOUR ACCOUNT
-//
-//        // TO SHOW THE DATA IMMEDIATELY THE PATIENT'S GENDER COMBOXBOX
-//
-//
-////        PROFILE
-
-//
-//
-//
-//    }
-//
-//}
