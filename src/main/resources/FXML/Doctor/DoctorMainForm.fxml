@@ -23,11 +23,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hospitalmanagementsystem.DoctorMainFormController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ihmsf.Controllers.Doctor.DoctorMainFormController">
    <children>
       <AnchorPane fx:id="main_form" prefHeight="624.0" prefWidth="1100.0">
          <children>
-            <BorderPane layoutX="144.0" layoutY="64.0" prefHeight="750.0" prefWidth="1298.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-214.0" AnchorPane.topAnchor="0.0">
+            <BorderPane layoutX="144.0" layoutY="64.0" prefHeight="750.0" prefWidth="1262.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-214.0" AnchorPane.topAnchor="0.0">
                <left>
                   <AnchorPane prefHeight="750.0" prefWidth="180.0" styleClass="Main_Sidebar_Container" stylesheets="@../../Styles/ReciptionistSideBar.css" BorderPane.alignment="CENTER">
                      <children>
@@ -255,7 +255,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="patients_form" layoutX="1.0" prefHeight="750.0" prefWidth="865.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="214.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="patients_form" layoutX="1.0" prefHeight="750.0" prefWidth="865.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="214.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="13.0" prefHeight="534.0" prefWidth="510.0" stylesheets="@../../Styles/DoctorMainFormDesign.css" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="362.0" AnchorPane.topAnchor="13.0">
                                  <styleClass>
@@ -264,10 +264,14 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" text="Patient Information">
+                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-1" text="Patient Information">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
+                                       <stylesheets>
+                                          <URL value="@../../Styles/DoctorMainFormDesign.css" />
+                                          <URL value="@../../Styles/MainFormDesign.css" />
+                                       </stylesheets>
                                     </Label>
                                     <Label layoutX="25.0" layoutY="56.0" text="Patient ID:" />
                                     <TextField fx:id="patients_patientID" layoutX="25.0" layoutY="73.0" prefHeight="25.0" prefWidth="439.0" promptText="Ex. 202300001" styleClass="textfield-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="73.0" />
@@ -295,10 +299,14 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" text="Patient Account">
+                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-1" text="Patient Account">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
+                                       <stylesheets>
+                                          <URL value="@../../Styles/DoctorMainFormDesign.css" />
+                                          <URL value="@../../Styles/MainFormDesign.css" />
+                                       </stylesheets>
                                     </Label>
                                     <Label layoutX="39.0" layoutY="73.0" text="Patient ID:" />
                                     <Label fx:id="patients_PA_patientID" layoutX="102.0" layoutY="73.0" prefHeight="17.0" prefWidth="98.0" />
@@ -316,10 +324,14 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" text="Patient Information">
+                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-1" text="Patient Information">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
+                                       <stylesheets>
+                                          <URL value="@../../Styles/DoctorMainFormDesign.css" />
+                                          <URL value="@../../Styles/MainFormDesign.css" />
+                                       </stylesheets>
                                     </Label>
                                     <Label layoutX="37.0" layoutY="64.0" text="Patient Name:" />
                                     <Label fx:id="patients_PI_patientName" layoutX="117.0" layoutY="64.0" prefHeight="17.0" prefWidth="98.0" />
@@ -443,7 +455,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="profile_form" layoutX="114.0" layoutY="102.0" prefHeight="750.0" prefWidth="858.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="profile_form" layoutX="114.0" layoutY="102.0" prefHeight="750.0" prefWidth="858.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="531.0" prefWidth="256.0" stylesheets="@../../Styles/DoctorMainFormDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0">
                                  <styleClass>
