@@ -255,7 +255,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="patients_form" layoutX="1.0" prefHeight="750.0" prefWidth="865.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="214.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="patients_form" layoutX="1.0" prefHeight="750.0" prefWidth="865.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="214.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="13.0" prefHeight="534.0" prefWidth="510.0" stylesheets="@../../Styles/DoctorMainFormDesign.css" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="362.0" AnchorPane.topAnchor="13.0">
                                  <styleClass>
@@ -455,7 +455,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="profile_form" layoutX="114.0" layoutY="102.0" prefHeight="750.0" prefWidth="858.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="profile_form" layoutX="114.0" layoutY="102.0" prefHeight="750.0" prefWidth="858.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="531.0" prefWidth="256.0" stylesheets="@../../Styles/DoctorMainFormDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0">
                                  <styleClass>

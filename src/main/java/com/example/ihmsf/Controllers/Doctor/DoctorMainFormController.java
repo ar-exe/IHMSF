@@ -316,266 +316,379 @@ public class DoctorMainFormController implements Initializable {
 
     private Image image;
 
+    public ObservableList<AppointmentData> dashboardAppointmentTableView() {
+
+        ObservableList<AppointmentData> listData = FXCollections.observableArrayList();
+
+        String sql = "SELECT * FROM appointment WHERE doctor = '"
+                + Data.doctor_id + "'";
+
+//        connect = Database.connectDB();
+
+        try {
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            AppointmentData aData;
+            while (result.next()) {
+                aData = new AppointmentData(result.getInt("appointment_id"),
+                        result.getString("name"), result.getString("description"),
+                        result.getDate("date"), result.getString("status"));
+
+                listData.add(aData);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listData;
+    }
+
+
+
+    public void dashboardDisplayData() {
+        dashboardGetData = dashboardAppointmentTableView();
+
+        dashboad_col_appointmentID.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
+        dashboad_col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        dashboad_col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        dashboad_col_appointmentDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        dashboad_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        dashboad_tableView.setItems(dashboardGetData);
+    }
+
+    public void dashboardNOP() {
+
+        dashboad_chart_PD.getData().clear();
+
+        String sql = "SELECT date, COUNT(id) FROM patient WHERE doctor = '"
+                + Data.doctor_id + "' GROUP BY TIMESTAMP(date) ASC LIMIT 8";
+//        connect = Database.connectDB();
+
+        try {
+            XYChart.Series chart = new XYChart.Series<>();
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while (result.next()) {
+                chart.getData().add(new XYChart.Data<>(result.getString(1), result.getInt(2)));
+            }
+
+            dashboad_chart_PD.getData().add(chart);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void dashboardNOA() {
+
+        dashboad_chart_DD.getData().clear();
+
+        String sql = "SELECT date, COUNT(id) FROM appointment WHERE doctor = '"
+                + Data.doctor_id + "' GROUP BY TIMESTAMP(date) ASC LIMIT 7";
+//        connect = Database.connectDB();
+
+        try {
+            XYChart.Series chart = new XYChart.Series<>();
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while (result.next()) {
+                chart.getData().add(new XYChart.Data<>(result.getString(1), result.getInt(2)));
+            }
+
+            dashboad_chart_DD.getData().add(chart);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+        public void dashbboardDisplayTP() {
+        String sql = "SELECT COUNT(id) FROM patient WHERE doctor = '"
+                + Data.doctor_id + "'";
+//        connect = Database.connectDB();
+        int getTP = 0;
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                getTP = result.getInt("COUNT(id)");
+            }
+            dashboard_TP.setText(String.valueOf(getTP));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void dashbboardDisplayAP() {
+        String sql = "SELECT COUNT(id) FROM patient WHERE status = 'Active' AND doctor = '"
+                + Data.doctor_id + "'";
+//        connect = Database.connectDB();
+        int getAP = 0;
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                getAP = result.getInt("COUNT(id)");
+            }
+            dashboard_TP.setText(String.valueOf(getAP));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+        public void dashbboardDisplayTA() {
+        String sql = "SELECT COUNT(id) FROM appointment WHERE status = 'Active' AND doctor = '"
+                + Data.doctor_id + "'";
+//        connect = Database.connectDB();
+        int getTA = 0;
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                getTA = result.getInt("COUNT(id)");
+            }
+            dashboard_tA.setText(String.valueOf(getTA));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    //    private final AlertMessage alert = new AlertMessage();
+
+    public void dashbboardDisplayIP() {
+        String sql = "SELECT COUNT(id) FROM patient WHERE status = 'Inactive' AND doctor = '"
+                + Data.doctor_id + "'";
+//        connect = Database.connectDB();
+        int getIP = 0;
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                getIP = result.getInt("COUNT(id)");
+            }
+            dashboard_IP.setText(String.valueOf(getIP));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+    public void profileDisplayImages() {
+
+        String selectData = "SELECT * FROM doctor WHERE doctor_id = '"
+                + Data.doctor_id + "'";
+        String temp_path1 = "";
+        String temp_path2 = "";
+//        connect = Database.connectDB();
+
+        try {
+            prepare = connect.prepareStatement(selectData);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                temp_path1 = "File:" + result.getString("image");
+                temp_path2 = "File:" + result.getString("image");
+
+                if (result.getString("image") != null) {
+                    image = new Image(temp_path1, 1012, 22, false, true);
+                    top_profile.setFill(new ImagePattern(image));
+
+                    image = new Image(temp_path2, 128, 103, false, true);
+                    profile_circleImage.setFill(new ImagePattern(image));
+                }
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 //    private final AlertMessage alert = new AlertMessage();
 
-//    public void dashbboardDisplayIP() {
-//        String sql = "SELECT COUNT(id) FROM patient WHERE status = 'Inactive' AND doctor = '"
-//                + Data.doctor_id + "'";
+public void profileUpdateBtn() {
+
+//    connect = Database.connectDB();
+
+    if (profile_doctorID.getText().isEmpty()
+            || profile_name.getText().isEmpty()
+            || profile_email.getText().isEmpty()
+            || profile_gender.getSelectionModel().getSelectedItem() == null
+            || profile_mobileNumber.getText().isEmpty()
+            || profile_address.getText().isEmpty()
+            || profile_specialized.getSelectionModel().getSelectedItem() == null
+            || profile_status.getSelectionModel().getSelectedItem() == null) {
+//        alert.errorMessage("Please fill all blank fields");
+    } else {
+        // CHECK IF THE PATH IS NULL
+        if (Data.path == null || "".equals(Data.path)) {
+            String updateData = "UPDATE doctor SET full_name = ?, email = ?"
+                    + ", gender = ?, mobile_number = ?, address = ?, specialized = ?, status = ?, modify_date = ?"
+                    + " WHERE doctor_id = '"
+                    + Data.doctor_id + "'";
+            try {
+                Date date = new Date();
+                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                prepare = connect.prepareStatement(updateData);
+                prepare.setString(1, profile_name.getText());
+                prepare.setString(2, profile_email.getText());
+                prepare.setString(3, profile_gender.getSelectionModel().getSelectedItem());
+                prepare.setString(4, profile_mobileNumber.getText());
+                prepare.setString(5, profile_address.getText());
+                prepare.setString(6, profile_specialized.getSelectionModel().getSelectedItem());
+                prepare.setString(7, profile_status.getSelectionModel().getSelectedItem());
+                prepare.setString(8, String.valueOf(sqlDate));
+
+                prepare.executeUpdate();
+
+//                alert.successMessage("Updated Successfully!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            String updateData = "UPDATE doctor SET full_name = ?, email = ?"
+                    + ", gender = ?, mobile_number = ?, address = ?, image = ?, specialized = ?, status = ?, modify_date = ?"
+                    + " WHERE doctor_id = '"
+                    + Data.doctor_id + "'";
+            try {
+                Date date = new Date();
+                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                prepare = connect.prepareStatement(updateData);
+                prepare.setString(1, profile_name.getText());
+                prepare.setString(2, profile_email.getText());
+                prepare.setString(3, profile_gender.getSelectionModel().getSelectedItem());
+                prepare.setString(4, profile_mobileNumber.getText());
+                prepare.setString(5, profile_address.getText());
+                String path = Data.path;
+                path = path.replace("\\", "\\\\");
+                Path transfer = Paths.get(path);
+
+                // LINK YOUR DIRECTORY FOLDER
+                Path copy = Paths.get("C:\\Users\\WINDOWS 10\\Documents\\NetBeansProjects\\HospitalManagementSystem\\src\\Directory\\"
+                        + Data.doctor_id + ".jpg");
+
+                try {
+                    // TO PUT THE IMAGE FILE TO YOUR DIRECTORY FOLDER
+                    Files.copy(transfer, copy, StandardCopyOption.REPLACE_EXISTING);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                prepare.setString(6, copy.toAbsolutePath().toString());
+                prepare.setString(7, profile_specialized.getSelectionModel().getSelectedItem());
+                prepare.setString(8, profile_status.getSelectionModel().getSelectedItem());
+                prepare.setString(9, String.valueOf(sqlDate));
+
+                prepare.executeUpdate();
+
+//                alert.successMessage("Updated Successfully!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+        public void profileChangeProfile() {
+
+        FileChooser open = new FileChooser();
+        open.getExtensionFilters().add(new ExtensionFilter("Open Image", "*png", "*jpg", "*jpeg"));
+
+        File file = open.showOpenDialog(profile_importBtn.getScene().getWindow());
+
+        if (file != null) {
+            Data.path = file.getAbsolutePath();
+
+            image = new Image(file.toURI().toString(), 128, 103, false, true);
+            profile_circleImage.setFill(new ImagePattern(image));
+        }
+
+    }
+        public void profileLabels() {
+        String selectData = "SELECT * FROM doctor WHERE doctor_id = '"
+                + Data.doctor_id + "'";
 //        connect = Database.connectDB();
-//        int getIP = 0;
-//        try {
-//            prepare = connect.prepareStatement(sql);
-//            result = prepare.executeQuery();
-//
-//            if (result.next()) {
-//                getIP = result.getInt("COUNT(id)");
-//            }
-//            dashboard_IP.setText(String.valueOf(getIP));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
-//    public void dashbboardDisplayTP() {
-//        String sql = "SELECT COUNT(id) FROM patient WHERE doctor = '"
-//                + Data.doctor_id + "'";
+        try {
+            prepare = connect.prepareStatement(selectData);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                profile_label_doctorID.setText(result.getString("doctor_id"));
+                profile_label_name.setText(result.getString("full_name"));
+                profile_label_email.setText(result.getString("email"));
+                profile_label_dateCreated.setText(result.getString("date"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void profileFields() {
+        String selectData = "SELECT * FROM doctor WHERE doctor_id = '"
+                + Data.doctor_id + "'";
+
 //        connect = Database.connectDB();
-//        int getTP = 0;
-//        try {
-//            prepare = connect.prepareStatement(sql);
-//            result = prepare.executeQuery();
-//
-//            if (result.next()) {
-//                getTP = result.getInt("COUNT(id)");
-//            }
-//            dashboard_TP.setText(String.valueOf(getTP));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+        try {
+            prepare = connect.prepareStatement(selectData);
+            result = prepare.executeQuery();
 
-//    public void dashbboardDisplayAP() {
-//        String sql = "SELECT COUNT(id) FROM patient WHERE status = 'Active' AND doctor = '"
-//                + Data.doctor_id + "'";
-//        connect = Database.connectDB();
-//        int getAP = 0;
-//        try {
-//            prepare = connect.prepareStatement(sql);
-//            result = prepare.executeQuery();
-//
-//            if (result.next()) {
-//                getAP = result.getInt("COUNT(id)");
-//            }
-//            dashboard_TP.setText(String.valueOf(getAP));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+            if (result.next()) {
+                profile_doctorID.setText(result.getString("doctor_id"));
+                profile_name.setText(result.getString("full_name"));
+                profile_email.setText(result.getString("email"));
+                profile_gender.getSelectionModel().select(result.getString("gender"));
+                profile_mobileNumber.setText(result.getString("mobile_number"));
+                profile_address.setText(result.getString("address"));
+                profile_specialized.getSelectionModel().select(result.getString("specialized"));
+                profile_status.getSelectionModel().select(result.getString("status"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-//    public void dashbboardDisplayTA() {
-//        String sql = "SELECT COUNT(id) FROM appointment WHERE status = 'Active' AND doctor = '"
-//                + Data.doctor_id + "'";
-//        connect = Database.connectDB();
-//        int getTA = 0;
-//        try {
-//            prepare = connect.prepareStatement(sql);
-//            result = prepare.executeQuery();
-//
-//            if (result.next()) {
-//                getTA = result.getInt("COUNT(id)");
-//            }
-//            dashboard_tA.setText(String.valueOf(getTA));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    }
+public void profileStatusList() {
 
-//    public ObservableList<AppointmentData> dashboardAppointmentTableView() {
-//
-//        ObservableList<AppointmentData> listData = FXCollections.observableArrayList();
-//
-//        String sql = "SELECT * FROM appointment WHERE doctor = '"
-//                + Data.doctor_id + "'";
-//
-//        connect = Database.connectDB();
-//
-//        try {
-//
-//            prepare = connect.prepareStatement(sql);
-//            result = prepare.executeQuery();
-//
-//            AppointmentData aData;
-//            while (result.next()) {
-//                aData = new AppointmentData(result.getInt("appointment_id"),
-//                        result.getString("name"), result.getString("description"),
-//                        result.getDate("date"), result.getString("status"));
-//
-//                listData.add(aData);
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return listData;
-//    }
+    List<String> listS = new ArrayList<>();
+
+    for (String data : Data.status) {
+        listS.add(data);
+    }
+
+    ObservableList listData = FXCollections.observableArrayList(listS);
+    profile_status.setItems(listData);
+}
+private String[] specialization = {"Allergist", "Dermatologist", "Ophthalmologist", "Gynecologist", "Cardiologist"};
+    public void profileSpecializedList() {
+
+        List<String> listS = new ArrayList<>();
+
+        for (String data : specialization) {
+            listS.add(data);
+        }
+
+        ObservableList listData = FXCollections.observableArrayList(listS);
+        profile_specialized.setItems(listData);
+    }
 
 
 
-//    public void dashboardDisplayData() {
-//        dashboardGetData = dashboardAppointmentTableView();
-//
-//        dashboad_col_appointmentID.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
-//        dashboad_col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-//        dashboad_col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
-//        dashboad_col_appointmentDate.setCellValueFactory(new PropertyValueFactory<>("date"));
-//        dashboad_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
-//
-//        dashboad_tableView.setItems(dashboardGetData);
-//    }
 
-//    public void dashboardNOP() {
-//
-//        dashboad_chart_PD.getData().clear();
-//
-//        String sql = "SELECT date, COUNT(id) FROM patient WHERE doctor = '"
-//                + Data.doctor_id + "' GROUP BY TIMESTAMP(date) ASC LIMIT 8";
-//        connect = Database.connectDB();
-//
-//        try {
-//            XYChart.Series chart = new XYChart.Series<>();
-//            prepare = connect.prepareStatement(sql);
-//            result = prepare.executeQuery();
-//
-//            while (result.next()) {
-//                chart.getData().add(new XYChart.Data<>(result.getString(1), result.getInt(2)));
-//            }
-//
-//            dashboad_chart_PD.getData().add(chart);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-
-//    public void dashboardNOA() {
-//
-//        dashboad_chart_DD.getData().clear();
-//
-//        String sql = "SELECT date, COUNT(id) FROM appointment WHERE doctor = '"
-//                + Data.doctor_id + "' GROUP BY TIMESTAMP(date) ASC LIMIT 7";
-//        connect = Database.connectDB();
-//
-//        try {
-//            XYChart.Series chart = new XYChart.Series<>();
-//            prepare = connect.prepareStatement(sql);
-//            result = prepare.executeQuery();
-//
-//            while (result.next()) {
-//                chart.getData().add(new XYChart.Data<>(result.getString(1), result.getInt(2)));
-//            }
-//
-//            dashboad_chart_DD.getData().add(chart);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-
-//    public void patientConfirmBtn() {
-//
-//        // CHECK IF SOME OR ALL FIELDS ARE EMPTY
-//        if (patients_patientID.getText().isEmpty()
-//                || patients_patientName.getText().isEmpty()
-//                || patients_gender.getSelectionModel().getSelectedItem() == null
-//                || patients_mobileNumber.getText().isEmpty()
-//                || patients_password.getText().isEmpty()
-//                || patients_address.getText().isEmpty()) {
-//            alert.errorMessage("Please fill all blank fields");
-//        } else {
-//            Date date = new Date();
-//            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-//
-//            // TO DISPLAY THE DATA FROM PERSONAL ACCOUNT
-//            patients_PA_patientID.setText(patients_patientID.getText());
-//            patients_PA_password.setText(patients_password.getText());
-//            patients_PA_dateCreated.setText(String.valueOf(sqlDate));
-//
-//            // TO DISPLAY THE DATA FROM PERSONAL INFORMATION
-//            patients_PI_patientName.setText(patients_patientName.getText());
-//            patients_PI_gender.setText(patients_gender.getSelectionModel().getSelectedItem());
-//            patients_PI_mobileNumber.setText(patients_mobileNumber.getText());
-//            patients_PI_address.setText(patients_address.getText());
-//        }
-//
-//    }
-
-//    public void patientAddBtn() {
-//
-//        if (patients_PA_patientID.getText().isEmpty()
-//                || patients_PA_password.getText().isEmpty()
-//                || patients_PA_dateCreated.getText().isEmpty()
-//                || patients_PI_patientName.getText().isEmpty()
-//                || patients_PI_gender.getText().isEmpty()
-//                || patients_PI_mobileNumber.getText().isEmpty()
-//                || patients_PI_address.getText().isEmpty()) {
-//            alert.errorMessage("Something wenr wrong");
-//        } else {
-//
-//            Database.connectDB();
-//            try {
-//                String doctorName = "";
-//                String doctorSpecialized = "";
-//
-//                String getDoctor = "SELECT * FROM doctor WHERE doctor_id = '"
-//                        + nav_adminID.getText() + "'";
-//
-//                statement = connect.createStatement();
-//                result = statement.executeQuery(getDoctor);
-//
-//                if (result.next()) {
-//                    doctorName = result.getString("full_name");
-//                    doctorSpecialized = result.getString("specialized");
-//                }
-//                // CHECK IF THE PATIENT ID THAT THE DOCTORS WANT TO INSERT/ADD IS EXISTING ALREADY
-//                String checkPatientID = "SELECT * FROM patient WHERE patient_id = '"
-//                        + patients_PA_patientID.getText() + "'";
-//                statement = connect.createStatement();
-//                result = statement.executeQuery(checkPatientID);
-//                if (result.next()) {
-//                    alert.errorMessage(patients_PA_patientID.getText() + " is already exist");
-//                } else {
-//                    String insertData = "INSERT INTO patient (patient_id, password, full_name, mobile_number, "
-//                            + "address, doctor, specialized, date, "
-//                            + "status) "
-//                            + "VALUES(?,?,?,?,?,?,?,?,?)";
-//                    Date date = new Date();
-//                    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-//                    prepare = connect.prepareStatement(insertData);
-//                    prepare.setString(1, patients_PA_patientID.getText());
-//                    prepare.setString(2, patients_PA_password.getText());
-//                    prepare.setString(3, patients_PI_patientName.getText());
-//                    prepare.setString(4, patients_PI_mobileNumber.getText());
-//                    prepare.setString(5, patients_PI_address.getText());
-//                    prepare.setString(6, nav_adminID.getText());
-//                    prepare.setString(7, doctorSpecialized);
-//                    prepare.setString(8, "" + sqlDate);
-//                    prepare.setString(9, "Confirm");
-//
-//                    prepare.executeUpdate();
-//
-//                    alert.successMessage("Added successfully!");
-//                    // TO CLEAR ALL FIELDS AND SOME LABELS
-//                    patientClearFields();
-//                }
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//// NOW, LETS TRY
-//        }
-//    }
 
     public void patientRecordBtn() {
         try {
@@ -592,7 +705,6 @@ public class DoctorMainFormController implements Initializable {
         }
 
     }
-
     public void patientClearFields() {
         patients_patientID.clear();
         patients_patientName.clear();
@@ -610,239 +722,115 @@ public class DoctorMainFormController implements Initializable {
         patients_PI_mobileNumber.setText("");
         patients_PI_address.setText("");
     }
+public void patientAddBtn() {
 
-    private void patientGenderList() {
+    if (patients_PA_patientID.getText().isEmpty()
+            || patients_PA_password.getText().isEmpty()
+            || patients_PA_dateCreated.getText().isEmpty()
+            || patients_PI_patientName.getText().isEmpty()
+            || patients_PI_gender.getText().isEmpty()
+            || patients_PI_mobileNumber.getText().isEmpty()
+            || patients_PI_address.getText().isEmpty()) {
+//        alert.errorMessage("Something went wrong");
+    } else {
 
-        List<String> listG = new ArrayList<>();
+//        Database.connectDB();
+        try {
+            String doctorName = "";
+            String doctorSpecialized = "";
 
-        for (String data : Data.gender) {
-            listG.add(data);
+            String getDoctor = "SELECT * FROM doctor WHERE doctor_id = '"
+                    + nav_adminID.getText() + "'";
+
+            statement = connect.createStatement();
+            result = statement.executeQuery(getDoctor);
+
+            if (result.next()) {
+                doctorName = result.getString("full_name");
+                doctorSpecialized = result.getString("specialized");
+            }
+            // CHECK IF THE PATIENT ID THAT THE DOCTORS WANT TO INSERT/ADD IS EXISTING ALREADY
+            String checkPatientID = "SELECT * FROM patient WHERE patient_id = '"
+                    + patients_PA_patientID.getText() + "'";
+            statement = connect.createStatement();
+            result = statement.executeQuery(checkPatientID);
+            if (result.next()) {
+//                alert.errorMessage(patients_PA_patientID.getText() + " is already exist");
+            } else {
+                String insertData = "INSERT INTO patient (patient_id, password, full_name, mobile_number, "
+                        + "address, doctor, specialized, date, "
+                        + "status) "
+                        + "VALUES(?,?,?,?,?,?,?,?,?)";
+                Date date = new Date();
+                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                prepare = connect.prepareStatement(insertData);
+                prepare.setString(1, patients_PA_patientID.getText());
+                prepare.setString(2, patients_PA_password.getText());
+                prepare.setString(3, patients_PI_patientName.getText());
+                prepare.setString(4, patients_PI_mobileNumber.getText());
+                prepare.setString(5, patients_PI_address.getText());
+                prepare.setString(6, nav_adminID.getText());
+                prepare.setString(7, doctorSpecialized);
+                prepare.setString(8, "" + sqlDate);
+                prepare.setString(9, "Confirm");
+
+                prepare.executeUpdate();
+
+//                alert.successMessage("Added successfully!");
+                // TO CLEAR ALL FIELDS AND SOME LABELS
+                patientClearFields();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        ObservableList listData = FXCollections.observableList(listG);
+// NOW, LETS TRY
+    }
+}
+public void patientConfirmBtn() {
 
-        patients_gender.setItems(listData);
+    // CHECK IF SOME OR ALL FIELDS ARE EMPTY
+    if (patients_patientID.getText().isEmpty()
+            || patients_patientName.getText().isEmpty()
+            || patients_gender.getSelectionModel().getSelectedItem() == null
+            || patients_mobileNumber.getText().isEmpty()
+            || patients_password.getText().isEmpty()
+            || patients_address.getText().isEmpty()) {
+//        alert.errorMessage("Please fill all blank fields");
+    } else {
+        Date date = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
+        // TO DISPLAY THE DATA FROM PERSONAL ACCOUNT
+        patients_PA_patientID.setText(patients_patientID.getText());
+        patients_PA_password.setText(patients_password.getText());
+        patients_PA_dateCreated.setText(String.valueOf(sqlDate));
+
+        // TO DISPLAY THE DATA FROM PERSONAL INFORMATION
+        patients_PI_patientName.setText(patients_patientName.getText());
+        patients_PI_gender.setText(patients_gender.getSelectionModel().getSelectedItem());
+        patients_PI_mobileNumber.setText(patients_mobileNumber.getText());
+        patients_PI_address.setText(patients_address.getText());
     }
 
-//    public void appointmentDeleteBtn() {
-//
-//        if (appointment_appointmentID.getText().isEmpty()) {
-//            alert.errorMessage("Please select the item first");
-//        } else {
-//
-//            String updateData = "UPDATE appointment SET date_delete = ? WHERE appointment_id = '"
-//                    + appointment_appointmentID.getText() + "'";
-//
-//            connect = Database.connectDB();
-//
-//            try {
-//                java.sql.Date sqlDate = new java.sql.Date(new Date().getTime());
-//
-//                if (alert.confirmationMessage("Are you sure you want to DELETE Appointment ID: "
-//                        + appointment_appointmentID.getText() + "?")) {
-//                    prepare = connect.prepareStatement(updateData);
-//
-//                    prepare.setString(1, String.valueOf(sqlDate));
-//                    prepare.executeUpdate();
-//
-//                    appointmentShowData();
-//                    appointmentAppointmentID();
-//                    appointmentClearBtn();
-//
-//                    alert.successMessage("Successully Updated!");
-//                } else {
-//                    alert.errorMessage("Cancelled.");
-//                }
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//
-//        }
-//
-//    }
+}
+private void patientGenderList() {
+
+    List<String> listG = new ArrayList<>();
+
+    for (String data : Data.gender) {
+        listG.add(data);
+    }
+    ObservableList listData = FXCollections.observableList(listG);
+
+    patients_gender.setItems(listData);
+
+}
 
 
 
 
 
-
-//    public void profileChangeProfile() {
-//
-//        FileChooser open = new FileChooser();
-//        open.getExtensionFilters().add(new ExtensionFilter("Open Image", "*png", "*jpg", "*jpeg"));
-//
-//        File file = open.showOpenDialog(profile_importBtn.getScene().getWindow());
-//
-//        if (file != null) {
-//            Data.path = file.getAbsolutePath();
-//
-//            image = new Image(file.toURI().toString(), 128, 103, false, true);
-//            profile_circleImage.setFill(new ImagePattern(image));
-//        }
-//
-//    }
-
-//    public void profileLabels() {
-//        String selectData = "SELECT * FROM doctor WHERE doctor_id = '"
-//                + Data.doctor_id + "'";
-//        connect = Database.connectDB();
-//
-//        try {
-//            prepare = connect.prepareStatement(selectData);
-//            result = prepare.executeQuery();
-//
-//            if (result.next()) {
-//                profile_label_doctorID.setText(result.getString("doctor_id"));
-//                profile_label_name.setText(result.getString("full_name"));
-//                profile_label_email.setText(result.getString("email"));
-//                profile_label_dateCreated.setText(result.getString("date"));
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-//    public void profileFields() {
-//        String selectData = "SELECT * FROM doctor WHERE doctor_id = '"
-//                + Data.doctor_id + "'";
-//
-//        connect = Database.connectDB();
-//        try {
-//            prepare = connect.prepareStatement(selectData);
-//            result = prepare.executeQuery();
-//
-//            if (result.next()) {
-//                profile_doctorID.setText(result.getString("doctor_id"));
-//                profile_name.setText(result.getString("full_name"));
-//                profile_email.setText(result.getString("email"));
-//                profile_gender.getSelectionModel().select(result.getString("gender"));
-//                profile_mobileNumber.setText(result.getString("mobile_number"));
-//                profile_address.setText(result.getString("address"));
-//                profile_specialized.getSelectionModel().select(result.getString("specialized"));
-//                profile_status.getSelectionModel().select(result.getString("status"));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-
-//    public void profileDisplayImages() {
-//
-//        String selectData = "SELECT * FROM doctor WHERE doctor_id = '"
-//                + Data.doctor_id + "'";
-//        String temp_path1 = "";
-//        String temp_path2 = "";
-//        connect = Database.connectDB();
-//
-//        try {
-//            prepare = connect.prepareStatement(selectData);
-//            result = prepare.executeQuery();
-//
-//            if (result.next()) {
-//                temp_path1 = "File:" + result.getString("image");
-//                temp_path2 = "File:" + result.getString("image");
-//
-//                if (result.getString("image") != null) {
-//                    image = new Image(temp_path1, 1012, 22, false, true);
-//                    top_profile.setFill(new ImagePattern(image));
-//
-//                    image = new Image(temp_path2, 128, 103, false, true);
-//                    profile_circleImage.setFill(new ImagePattern(image));
-//                }
-//
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-//    private final AlertMessage alert = new AlertMessage();
-
-//public void profileUpdateBtn() {
-//
-////    connect = Database.connectDB();
-//
-//    if (profile_doctorID.getText().isEmpty()
-//            || profile_name.getText().isEmpty()
-//            || profile_email.getText().isEmpty()
-//            || profile_gender.getSelectionModel().getSelectedItem() == null
-//            || profile_mobileNumber.getText().isEmpty()
-//            || profile_address.getText().isEmpty()
-//            || profile_specialized.getSelectionModel().getSelectedItem() == null
-//            || profile_status.getSelectionModel().getSelectedItem() == null) {
-////        alert.errorMessage("Please fill all blank fields");
-//    } else {
-//        // CHECK IF THE PATH IS NULL
-//        if (Data.path == null || "".equals(Data.path)) {
-//            String updateData = "UPDATE doctor SET full_name = ?, email = ?"
-//                    + ", gender = ?, mobile_number = ?, address = ?, specialized = ?, status = ?, modify_date = ?"
-//                    + " WHERE doctor_id = '"
-//                    + Data.doctor_id + "'";
-//            try {
-//                Date date = new Date();
-//                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-//                prepare = connect.prepareStatement(updateData);
-//                prepare.setString(1, profile_name.getText());
-//                prepare.setString(2, profile_email.getText());
-//                prepare.setString(3, profile_gender.getSelectionModel().getSelectedItem());
-//                prepare.setString(4, profile_mobileNumber.getText());
-//                prepare.setString(5, profile_address.getText());
-//                prepare.setString(6, profile_specialized.getSelectionModel().getSelectedItem());
-//                prepare.setString(7, profile_status.getSelectionModel().getSelectedItem());
-//                prepare.setString(8, String.valueOf(sqlDate));
-//
-//                prepare.executeUpdate();
-//
-////                alert.successMessage("Updated Successfully!");
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        } else {
-//            String updateData = "UPDATE doctor SET full_name = ?, email = ?"
-//                    + ", gender = ?, mobile_number = ?, address = ?, image = ?, specialized = ?, status = ?, modify_date = ?"
-//                    + " WHERE doctor_id = '"
-//                    + Data.doctor_id + "'";
-//            try {
-//                Date date = new Date();
-//                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-//                prepare = connect.prepareStatement(updateData);
-//                prepare.setString(1, profile_name.getText());
-//                prepare.setString(2, profile_email.getText());
-//                prepare.setString(3, profile_gender.getSelectionModel().getSelectedItem());
-//                prepare.setString(4, profile_mobileNumber.getText());
-//                prepare.setString(5, profile_address.getText());
-//                String path = Data.path;
-//                path = path.replace("\\", "\\\\");
-//                Path transfer = Paths.get(path);
-//
-//                // LINK YOUR DIRECTORY FOLDER
-//                Path copy = Paths.get("C:\\Users\\WINDOWS 10\\Documents\\NetBeansProjects\\HospitalManagementSystem\\src\\Directory\\"
-//                        + Data.doctor_id + ".jpg");
-//
-//                try {
-//                    // TO PUT THE IMAGE FILE TO YOUR DIRECTORY FOLDER
-//                    Files.copy(transfer, copy, StandardCopyOption.REPLACE_EXISTING);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//                prepare.setString(6, copy.toAbsolutePath().toString());
-//                prepare.setString(7, profile_specialized.getSelectionModel().getSelectedItem());
-//                prepare.setString(8, profile_status.getSelectionModel().getSelectedItem());
-//                prepare.setString(9, String.valueOf(sqlDate));
-//
-//                prepare.executeUpdate();
-//
-////                alert.successMessage("Updated Successfully!");
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-//}
 
 
 public void appointmentDeleteBtn() {
@@ -882,8 +870,6 @@ public void appointmentDeleteBtn() {
     }
 
 }
-
-
 // TO SELECT THE DATA PER ROW IN THE TABLE
     public void appointmentSelect() {
 
@@ -905,7 +891,6 @@ public void appointmentDeleteBtn() {
         appointment_status.getSelectionModel().select(appData.getStatus());
 
     }
-
     public void appointmentUpdateBtn() {
 
         if (appointment_appointmentID.getText().isEmpty()
@@ -933,7 +918,6 @@ public void appointmentDeleteBtn() {
                     + appointment_appointmentID.getText() + "'";
 
 //            connect = Database.connectDB();
-
 //            try {
 //                if (alert.confirmationMessage("Are you sure you want to UPDATE Appointment ID: "
 //                        + appointment_appointmentID.getText() + "?")) {
@@ -1145,44 +1129,6 @@ public ObservableList<AppointmentData> appointmentGetData() {
         appointment_status.setItems(listData);
 
     }
-    public void profileGenderList() {
-
-        List<String> listG = new ArrayList<>();
-
-        for (String data : Data.gender) {
-            listG.add(data);
-        }
-
-        ObservableList listData = FXCollections.observableArrayList(listG);
-        profile_gender.setItems(listData);
-
-    }
-    private String[] specialization = {"Allergist", "Dermatologist", "Ophthalmologist", "Gynecologist", "Cardiologist"};
-
-    public void profileSpecializedList() {
-
-        List<String> listS = new ArrayList<>();
-
-        for (String data : specialization) {
-            listS.add(data);
-        }
-
-        ObservableList listData = FXCollections.observableArrayList(listS);
-        profile_specialized.setItems(listData);
-    }
-
-    public void profileStatusList() {
-
-        List<String> listS = new ArrayList<>();
-
-        for (String data : Data.status) {
-            listS.add(data);
-        }
-
-        ObservableList listData = FXCollections.observableArrayList(listS);
-        profile_status.setItems(listData);
-    }
-
     public void displayAdminIDNumberName() {
 
         String name = Data.doctor_name;
@@ -1220,11 +1166,40 @@ public ObservableList<AppointmentData> appointmentGetData() {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+            dashbboardDisplayIP();
+            dashbboardDisplayTP();
+            dashbboardDisplayAP();
+            dashbboardDisplayTA();
+            dashboardDisplayData();
+            dashboardNOP();
+            dashboardNOA();
 
+        // TO SHOW THE DATA IMMEDIATELY ONCE YOU LOGGED IN YOUR ACCOUNT
         appointmentShowData();
         appointmentStatusList();
         appointmentGenderList();
         appointmentGetAppointmentID();
+
+        // TO SHOW THE DATA IMMEDIATELY THE PATIENT'S GENDER COMBOXBOX
+        patientGenderList();
+
+          profileGenderList();
+          profileSpecializedList();
+          profileFields(); // TO DISPLAY ALL DETAILS TO THE FIELDS
+          profileLabels();
+          profileDisplayImages(); // TO DISPLAY THE PROFILE PICTURE OF THE DOCTOR
+          profileStatusList();
+    }
+
+    private void profileGenderList() {
+        List<String> listG = new ArrayList<>();
+
+        for (String data : Data.status) {
+            listG.add(data);
+        }
+
+        ObservableList listData = FXCollections.observableArrayList(listG);
+        profile_status.setItems(listData);
     }
 }
 
@@ -1267,26 +1242,17 @@ public ObservableList<AppointmentData> appointmentGetData() {
 //    public void initialize(URL location, ResourceBundle resources) {
 //        displayAdminIDNumberName();
 //
-//        dashbboardDisplayIP();
-//        dashbboardDisplayTP();
-//        dashbboardDisplayAP();
-//        dashbboardDisplayTA();
-//        dashboardDisplayData();
-//        dashboardNOP();
-//        dashboardNOA();
+
 //
 //        // TO SHOW THE DATA IMMEDIATELY ONCE YOU LOGGED IN YOUR ACCOUNT
 //
 //        // TO SHOW THE DATA IMMEDIATELY THE PATIENT'S GENDER COMBOXBOX
-//        patientGenderList();
+//
 //
 ////        PROFILE
-//        profileLabels();
-//        profileFields(); // TO DISPLAY ALL DETAILS TO THE FIELDS
-//        profileGenderList();
-//        profileSpecializedList();
-//        profileStatusList();
-//        profileDisplayImages(); // TO DISPLAY THE PROFILE PICTURE OF THE DOCTOR
+
+//
+//
 //
 //    }
 //
