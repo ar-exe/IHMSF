@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pharmacymanagementsystem.dashboardContoller">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ihmsf.Controllers.Pharmacy.dashboardController">
    <children>
       <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -29,7 +29,7 @@
                      <children>
                         <AnchorPane layoutY="-86.0" prefHeight="35.0" prefWidth="1100.0" styleClass="top-form" stylesheets="@../../Styles/dashboardDesign.css" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <FontAwesomeIcon glyphName="STETHOSCOPE" layoutX="14.0" layoutY="24.0" size="1.5em" />
+<!--                              <FontAwesomeIcon glyphName="STETHOSCOPE" layoutX="14.0" layoutY="24.0" size="1.5em" />-->
                               <Label layoutX="40.0" layoutY="9.0" text="Pharmacy Management System">
                                  <font>
                                     <Font name="Tahoma" size="14.0" />
@@ -37,12 +37,12 @@
                               </Label>
                               <Button fx:id="close" layoutX="1018.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="58.0" styleClass="close" stylesheets="@../../Styles/dashboardDesign.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                  <graphic>
-                                    <FontAwesomeIcon glyphName="CLOSE" size="1.2em" />
+<!--                                    <FontAwesomeIcon glyphName="CLOSE" size="1.2em" />-->
                                  </graphic>
                               </Button>
                               <Button fx:id="minimize" layoutX="996.0" layoutY="2.0" mnemonicParsing="false" onAction="#minimize" prefHeight="24.0" prefWidth="44.0" styleClass="minimize" stylesheets="@../../Styles/dashboardDesign.css">
                                  <graphic>
-                                    <FontAwesomeIcon glyphName="MINUS" size="1.2em" />
+<!--                                    <FontAwesomeIcon glyphName="MINUS" size="1.2em" />-->
                                  </graphic>
                               </Button>
                            </children>
@@ -55,7 +55,7 @@
                      <children>
                         <AnchorPane layoutX="3.0" layoutY="128.0" prefHeight="555.0" prefWidth="205.0" stylesheets="@../../Styles/dashboardDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <FontAwesomeIcon fill="WHITE" glyphName="USER_MD" layoutX="65.0" layoutY="111.0" size="8em" />
+<!--                              <FontAwesomeIcon fill="WHITE" glyphName="USER_MD" layoutX="65.0" layoutY="111.0" size="8em" />-->
                               <Label layoutX="66.0" layoutY="125.0" text="Welcome," textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="17.0" />
@@ -69,22 +69,22 @@
                               <Line endX="73.0" layoutX="116.0" layoutY="190.0" startX="-100.0" stroke="WHITE" />
                               <Button fx:id="dashboard_btn" layoutX="9.0" layoutY="214.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="189.0" styleClass="nav-btn" stylesheets="@../../Styles/dashboardDesign.css" text="Dashboard">
                                  <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="DASHBOARD" size="1.5em" />
+<!--                                    <FontAwesomeIcon fill="WHITE" glyphName="DASHBOARD" size="1.5em" />-->
                                  </graphic>
                               </Button>
                               <Button fx:id="addMed_btn" layoutX="8.0" layoutY="252.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="189.0" styleClass="nav-btn" stylesheets="@../../Styles/dashboardDesign.css" text="Add Medicines">
                                  <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="PLUS_CIRCLE" size="1.5em" />
+<!--                                    <FontAwesomeIcon fill="WHITE" glyphName="PLUS_CIRCLE" size="1.5em" />-->
                                  </graphic>
                               </Button>
                               <Button fx:id="pruchase_btn" layoutX="8.0" layoutY="290.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="38.0" prefWidth="189.0" styleClass="nav-btn" stylesheets="@../../Styles/dashboardDesign.css" text="Purchase Medicines">
                                  <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="MONEY" size="1.5em" />
+<!--                                    <FontAwesomeIcon fill="WHITE" glyphName="MONEY" size="1.5em" />-->
                                  </graphic>
                               </Button>
                               <Button fx:id="logout" layoutX="16.0" layoutY="509.0" mnemonicParsing="false" onAction="#logout" stylesheets="@../../Styles/dashboardDesign.css">
                                  <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="2em" />
+<!--                                    <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="2em" />-->
                                  </graphic>
                                  <styleClass>
                                     <String fx:value="logout-btn" />
@@ -135,7 +135,7 @@
                                  <children>
                                     <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="137.0" prefWidth="257.0" styleClass="card" stylesheets="@../../Styles/dashboardDesign.css">
                                        <children>
-                                          <FontAwesomeIcon fill="WHITE" glyphName="CHECK" layoutX="14.0" layoutY="89.0" size="5em" />
+<!--                                          <FontAwesomeIcon fill="WHITE" glyphName="CHECK" layoutX="14.0" layoutY="89.0" size="5em" />-->
                                           <Label layoutX="60.0" layoutY="103.0" text="Available Medicines" textFill="WHITE">
                                              <font>
                                                 <Font name="Tahoma" size="16.0" />
@@ -150,7 +150,7 @@
                                     </AnchorPane>
                                     <AnchorPane layoutX="305.0" layoutY="15.0" prefHeight="137.0" prefWidth="257.0" styleClass="card" stylesheets="@../../Styles/dashboardDesign.css">
                                        <children>
-                                          <FontAwesomeIcon fill="WHITE" glyphName="MONEY" layoutX="14.0" layoutY="85.0" size="4em" />
+<!--                                          <FontAwesomeIcon fill="WHITE" glyphName="MONEY" layoutX="14.0" layoutY="85.0" size="4em" />-->
                                           <Label layoutX="82.0" layoutY="103.0" text="Total Income" textFill="WHITE">
                                              <font>
                                                 <Font name="Tahoma" size="16.0" />
@@ -165,7 +165,7 @@
                                     </AnchorPane>
                                     <AnchorPane layoutX="595.0" layoutY="15.0" prefHeight="137.0" prefWidth="257.0" styleClass="card" stylesheets="@../../Styles/dashboardDesign.css">
                                        <children>
-                                          <FontAwesomeIcon fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="85.0" size="4em" />
+<!--                                          <FontAwesomeIcon fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="85.0" size="4em" />-->
                                           <Label layoutX="82.0" layoutY="103.0" text="Total Customers" textFill="WHITE">
                                              <font>
                                                 <Font name="Tahoma" size="16.0" />
@@ -253,7 +253,7 @@
                                           <Font size="13.0" />
                                        </font>
                                     </TextField>
-                                    <FontAwesomeIcon fill="#727272" glyphName="SEARCH" layoutX="20.0" layoutY="35.0" size="1.5em" />
+<!--                                    <FontAwesomeIcon fill="#727272" glyphName="SEARCH" layoutX="20.0" layoutY="35.0" size="1.5em" />-->
                                     <TableView fx:id="addMedicines_tableView" layoutX="15.0" layoutY="61.0" onMouseClicked="#addMedicineSelect" prefHeight="206.0" prefWidth="840.0">
                                       <columns>
                                         <TableColumn fx:id="addMedicines_col_medicineID" prefWidth="99.0" text="Medicine ID" />

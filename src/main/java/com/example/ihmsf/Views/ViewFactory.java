@@ -144,8 +144,13 @@ public class ViewFactory {
     }
     public void showDoctorDashboard(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Doctor/DoctorMainForm.fxml"));
-        DoctorMainFormController doctorMainFormController = new DoctorMainFormController();
-        loader.setController(doctorMainFormController);
+//        DoctorMainFormController doctorMainFormController = new DoctorMainFormController();
+//        loader.setController(doctorMainFormController);
+        createStage(loader);
+    }    public void showPharmacyDashboard(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Pharmacy/dashboard.fxml"));
+//        DoctorMainFormController doctorMainFormController = new DoctorMainFormController();
+//        loader.setController(doctorMainFormController);
         createStage(loader);
     }
 
@@ -176,14 +181,14 @@ public class ViewFactory {
         }
         Stage stage = new Stage();
         stage.setScene(scene);
-        try {
-            InputStream is = new FileInputStream("G:\\IHMSF\\IHMSF\\src\\main\\resources\\Images\\hospital.png");
-            Image image = new Image(is);
-            stage.getIcons().add(image);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("ERROR in setting icon");
-        }
+//        try {
+//            InputStream is = new FileInputStream("G:\\IHMSF\\IHMSF\\src\\main\\resources\\Images\\hospital.png");
+//            Image image = new Image(is);
+//            stage.getIcons().add(image);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//            System.out.println("ERROR in setting icon");
+//        }
         stage.setTitle("IHMS");
         stage.show();
     }

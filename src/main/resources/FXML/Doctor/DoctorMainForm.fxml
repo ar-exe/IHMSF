@@ -23,6 +23,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
+
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ihmsf.Controllers.Doctor.DoctorMainFormController">
    <children>
       <AnchorPane fx:id="main_form" prefHeight="624.0" prefWidth="1100.0">
@@ -33,7 +34,7 @@
                      <children>
                         <VBox layoutX="-2.0" prefHeight="96.0" prefWidth="187.0" styleClass="Title_Container" stylesheets="@../../Styles/ReciptionistSideBar.css">
                            <children>
-                              <FontAwesomeIcon glyphName="AMBULANCE" size="36" wrappingWidth="38.990424394607544" />
+<!--                              <FontAwesomeIcon glyphName="AMBULANCE" size="36" wrappingWidth="38.990424394607544" />-->
                               <Label text="IHMS">
                                  <font>
                                     <Font size="24.0" />
@@ -45,23 +46,23 @@
                            <children>
                               <Button fx:id="dashboard_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="100.0" text="Dashboard">
                                  <graphic>
-                                    <FontAwesomeIcon glyphName="DASHBOARD" size="1.5em" />
+<!--                                    <FontAwesomeIcon glyphName="DASHBOARD" size="1.5em" />-->
                                  </graphic>
                               </Button>
                               <Button fx:id="patients_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="100.0" text="Patients">
                                  <graphic>
-                                    <FontAwesomeIcon glyphName="USERS" size="1.5em" />
+<!--                                    <FontAwesomeIcon glyphName="USERS" size="1.5em" />-->
                                  </graphic>
                               </Button>
                               <Button fx:id="appointments_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="30.0" prefWidth="130.0" text="Appointments">
                                  <graphic>
-                                    <FontAwesomeIcon glyphName="CLIPBOARD" size="1.5em" />
+<!--                                    <FontAwesomeIcon glyphName="CLIPBOARD" size="1.5em" />-->
                                  </graphic>
                               </Button>
                               <Line endX="-3.16021728515625" endY="-1.7380714416503906E-4" startX="-100.0" />
                               <Button fx:id="profile_btn" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="137.0" text="Profile">
                                  <graphic>
-                                    <FontAwesomeIcon glyphName="COGS" size="1.5em" />
+<!--                                    <FontAwesomeIcon glyphName="COGS" size="1.5em" />-->
                                  </graphic>
                                  <styleClass>
                                     <String fx:value="alt_sidebar_btn" />
@@ -74,7 +75,7 @@
                               </Button>
                               <Button fx:id="profile_btn1" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="127.0" text="Log out">
                                  <graphic>
-                                    <FontAwesomeIcon glyphName="COGS" size="1.5em" />
+<!--                                    <FontAwesomeIcon glyphName="COGS" size="1.5em" />-->
                                  </graphic>
                                  <stylesheets>
                                     <URL value="@../../Styles/DoctorMainFormDesign.css" />
@@ -110,7 +111,7 @@
                                                 <String fx:value="radius" />
                                              </styleClass>
                                              <children>
-                                                <FontAwesomeIcon fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="78.0" size="5em" />
+<!--                                                <FontAwesomeIcon fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="78.0" size="5em" />-->
                                                 <Label fx:id="dashboard_IP" alignment="CENTER_RIGHT" layoutX="92.0" layoutY="17.0" prefHeight="18.0" prefWidth="87.0" text="0" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
@@ -129,7 +130,7 @@
                                                 <String fx:value="radius" />
                                              </styleClass>
                                              <children>
-                                                <FontAwesomeIcon fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="78.0" size="5em" />
+<!--                                                <FontAwesomeIcon fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="78.0" size="5em" />-->
                                                 <Label fx:id="dashboard_TP" alignment="CENTER_RIGHT" layoutX="150.0" layoutY="14.0" prefHeight="18.0" prefWidth="25.0" text="0" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
@@ -148,7 +149,7 @@
                                                 <String fx:value="radius" />
                                              </styleClass>
                                              <children>
-                                                <FontAwesomeIcon fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="78.0" size="5em" />
+<!--                                                <FontAwesomeIcon fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="78.0" size="5em" />-->
                                                 <Label fx:id="dashboard_AP" alignment="CENTER_RIGHT" layoutX="92.0" layoutY="17.0" prefHeight="18.0" prefWidth="88.0" text="0" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
@@ -167,7 +168,7 @@
                                                 <String fx:value="radius" />
                                              </styleClass>
                                              <children>
-                                                <FontAwesomeIcon fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="78.0" size="5em" />
+<!--                                                <FontAwesomeIcon fill="WHITE" glyphName="USERS" layoutX="14.0" layoutY="78.0" size="5em" />-->
                                                 <Label fx:id="dashboard_tA" alignment="CENTER_RIGHT" layoutX="92.0" layoutY="17.0" prefHeight="18.0" prefWidth="104.0" text="0" textFill="WHITE">
                                                    <font>
                                                       <Font size="14.0" />
@@ -314,7 +315,7 @@
                                     <Label fx:id="patients_PA_password" layoutX="102.0" layoutY="102.0" prefHeight="17.0" prefWidth="98.0" />
                                     <Label layoutX="21.0" layoutY="138.0" text="Date Created:" />
                                     <Label fx:id="patients_PA_dateCreated" layoutX="102.0" layoutY="138.0" prefHeight="17.0" prefWidth="98.0" />
-                                    <FontAwesomeIcon fill="#3a94d6" glyphName="USER" layoutX="224.0" layoutY="144.0" opacity="0.31" size="10em" />
+<!--                                    <FontAwesomeIcon fill="#3a94d6" glyphName="USER" layoutX="224.0" layoutY="144.0" opacity="0.31" size="10em" />-->
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="539.0" layoutY="234.0" prefHeight="312.0" prefWidth="333.0" stylesheets="@../../Styles/DoctorMainFormDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="234.0">
@@ -341,10 +342,10 @@
                                     <Label fx:id="patients_PI_mobileNumber" layoutX="117.0" layoutY="126.0" prefHeight="17.0" prefWidth="98.0" />
                                     <Label layoutX="68.0" layoutY="155.0" text="Address:" />
                                     <Label fx:id="patients_PI_address" layoutX="117.0" layoutY="155.0" prefHeight="17.0" prefWidth="98.0" />
-                                    <FontAwesomeIcon fill="#3a94d6" glyphName="CLIPBOARD" layoutX="199.0" layoutY="275.0" opacity="0.3" size="10em" strokeWidth="0.0" AnchorPane.bottomAnchor="19.857139587402344" AnchorPane.rightAnchor="14.0" />
+<!--                                    <FontAwesomeIcon fill="#3a94d6" glyphName="CLIPBOARD" layoutX="199.0" layoutY="275.0" opacity="0.3" size="10em" strokeWidth="0.0" AnchorPane.bottomAnchor="19.857139587402344" AnchorPane.rightAnchor="14.0" />-->
                                     <Button fx:id="patients_PI_addBtn" layoutX="44.0" layoutY="262.0" mnemonicParsing="false" onAction="#patientAddBtn" prefHeight="36.0" prefWidth="97.0" text="Add" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="44.0">
                                        <graphic>
-                                          <FontAwesomeIcon fill="WHITE" glyphName="PLUS" />
+<!--                                          <FontAwesomeIcon fill="WHITE" glyphName="PLUS" />-->
                                        </graphic>
                                        <stylesheets>
                                           <URL value="@../../Styles/DoctorMainFormDesign.css" />
@@ -357,7 +358,7 @@
                                     </Button>
                                     <Button fx:id="patients_PI_recordBtn" layoutX="193.0" layoutY="262.0" mnemonicParsing="false" onAction="#patientRecordBtn" prefHeight="36.0" prefWidth="97.0" text="Record" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="43.0">
                                        <graphic>
-                                          <FontAwesomeIcon fill="WHITE" glyphName="CLIPBOARD" />
+<!--                                          <FontAwesomeIcon fill="WHITE" glyphName="CLIPBOARD" />-->
                                        </graphic>
                                        <stylesheets>
                                           <URL value="@../../Styles/DoctorMainFormDesign.css" />
@@ -372,7 +373,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="appointments_form" layoutX="5.0" layoutY="5.0" prefHeight="750.0" prefWidth="850.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="appointments_form" layoutX="5.0" layoutY="5.0" prefHeight="750.0" prefWidth="850.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="9.0" layoutY="14.0" prefHeight="295.0" prefWidth="868.0" stylesheets="@../../Styles/MainFormDesign.css" AnchorPane.bottomAnchor="251.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -455,7 +456,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="profile_form" layoutX="114.0" layoutY="102.0" prefHeight="750.0" prefWidth="858.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="profile_form" layoutX="114.0" layoutY="102.0" prefHeight="750.0" prefWidth="858.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="531.0" prefWidth="256.0" stylesheets="@../../Styles/DoctorMainFormDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0">
                                  <styleClass>
@@ -491,13 +492,13 @@
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <FontAwesomeIcon fill="#3a94d6" glyphName="COGS" layoutX="312.0" layoutY="478.0" opacity="0.33" size="20em" AnchorPane.bottomAnchor="18.714279174804688" AnchorPane.rightAnchor="14.857147216796875" />
+<!--                                    <FontAwesomeIcon fill="#3a94d6" glyphName="COGS" layoutX="312.0" layoutY="478.0" opacity="0.33" size="20em" AnchorPane.bottomAnchor="18.714279174804688" AnchorPane.rightAnchor="14.857147216796875" />-->
                                     <Label layoutX="14.0" layoutY="14.0" styleClass="header-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" text="Edit Profile">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
-                                    <FontAwesomeIcon glyphName="EDIT" layoutX="124.0" layoutY="37.0" size="2em" />
+<!--                                    <FontAwesomeIcon glyphName="EDIT" layoutX="124.0" layoutY="37.0" size="2em" />-->
                                     <Label layoutX="123.0" layoutY="68.0" text="Doctor ID:">
                                        <font>
                                           <Font size="15.0" />
