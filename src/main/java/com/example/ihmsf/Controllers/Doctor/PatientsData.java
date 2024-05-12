@@ -12,7 +12,7 @@ import java.sql.Date;
  * @author WINDOWS 10
  */
 public class PatientsData {
-    
+
     private Integer id;
     private Integer patientID;
     private String password;
@@ -35,6 +35,7 @@ public class PatientsData {
             , String gender, String address, String image, String description, String diagnosis, String treatment
             , String doctor, String specialized, Date date, Date dateModify
             , Date dateDelete, String status){
+        //
         this.id = id;
         this.patientID = patientID;
         this.password = password;

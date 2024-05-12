@@ -19,7 +19,7 @@
                </font>
             </Label>
             <TextField fx:id="recordpage_search" layoutX="568.0" layoutY="14.0" prefHeight="30.0" prefWidth="218.0" promptText="Search" styleClass="search" stylesheets="@../../Styles/DoctorMainFormDesign.css" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
-            <FontAwesomeIcon fill="#515151" glyphName="SEARCH" layoutX="575.0" layoutY="35.0" size="1.5em" AnchorPane.rightAnchor="208.2857151031494" AnchorPane.topAnchor="19.571428298950195" />
+<!--            <FontAwesomeIcon fill="#515151" glyphName="SEARCH" layoutX="575.0" layoutY="35.0" size="1.5em" AnchorPane.rightAnchor="208.2857151031494" AnchorPane.topAnchor="19.571428298950195" />-->
             <TableView fx:id="recordpage_tableView" layoutX="14.0" layoutY="73.0" prefHeight="413.0" prefWidth="772.0" stylesheets="@../../Styles/MainFormDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="73.0">
               <columns>
                 <TableColumn fx:id="recordpage_col_patientID" prefWidth="68.0" text="Patient ID" />

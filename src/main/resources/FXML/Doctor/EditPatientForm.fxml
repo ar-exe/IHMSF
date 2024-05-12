@@ -27,7 +27,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <FontAwesomeIcon glyphName="EDIT" layoutX="122.0" layoutY="35.0" size="1.5em" />
+<!--                  <FontAwesomeIcon glyphName="EDIT" layoutX="122.0" layoutY="35.0" size="1.5em" />-->
                   <Label layoutX="86.0" layoutY="78.0" text="Patient ID:">
                      <font>
                         <Font size="13.0" />
@@ -64,7 +64,7 @@
                      </font>
                   </Label>
                   <ComboBox fx:id="edit_status" layoutX="412.0" layoutY="75.0" prefHeight="25.0" prefWidth="179.0" promptText="Choose..." styleClass="textfield-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" />
-                  <FontAwesomeIcon fill="#a413a1" glyphName="EDIT" layoutX="365.0" layoutY="380.0" opacity="0.28" size="20em" />
+<!--                  <FontAwesomeIcon fill="#a413a1" glyphName="EDIT" layoutX="365.0" layoutY="380.0" opacity="0.28" size="20em" />-->
                   <Button fx:id="edit_updateBtn" layoutX="220.0" layoutY="373.0" mnemonicParsing="false" onAction="#updateBtn" prefHeight="40.0" prefWidth="230.0" styleClass="btn-2" stylesheets="@../../Styles/DoctorMainFormDesign.css" text="Update" />
                </children>
             </AnchorPane>

@@ -151,6 +151,7 @@ public class ViewFactory {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Pharmacy/dashboard.fxml"));
 //        DoctorMainFormController doctorMainFormController = new DoctorMainFormController();
 //        loader.setController(doctorMainFormController);
+        //
         createStage(loader);
     }
 

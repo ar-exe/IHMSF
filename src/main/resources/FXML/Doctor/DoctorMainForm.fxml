@@ -25,7 +25,7 @@
 
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ihmsf.Controllers.Doctor.DoctorMainFormController">
-   <children>
+    <children>
       <AnchorPane fx:id="main_form" prefHeight="624.0" prefWidth="1100.0">
          <children>
             <BorderPane layoutX="144.0" layoutY="64.0" prefHeight="750.0" prefWidth="1262.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-214.0" AnchorPane.topAnchor="0.0">

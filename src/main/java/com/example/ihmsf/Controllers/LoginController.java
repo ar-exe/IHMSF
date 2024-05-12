@@ -50,7 +50,7 @@ private void onLogin(){
             System.out.println("Showing Receptionist Dashboard"); // Print the name of the dashboard
             Model.getInstance().getViewFactory().showReciptionistDashboard();
         } else if ("Pharmacy".equals(userType)) {
-            System.out.println("Showing Pharmacy Dashboard");
+            System.out.println("Showing Pharmacy Dashboard");  // Print the name of the dashboard
             Model.getInstance().getViewFactory().showPharmacyDashboard();
         } else {
             loginErrorLabel.setText("Invalid user type");

@@ -14,6 +14,7 @@ import java.sql.Date;
 public class AppointmentData {
 
     private Integer id;
+
     private Integer appointmentID;
     private Integer patientID;
     private String name;
