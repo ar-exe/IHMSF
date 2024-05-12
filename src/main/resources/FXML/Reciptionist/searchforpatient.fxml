@@ -93,9 +93,9 @@
             <Label layoutX="11.0" layoutY="68.0" text="Birthdate -&gt;" />
             <Label fx:id="patientID" layoutX="103.0" layoutY="30.0" text="3452289" />
             <Label fx:id="patientName" layoutX="102.0" layoutY="48.0" text="Khalid Kamal Mohsen" />
-            <Label fx:id="appointmentDate" layoutX="92.0" layoutY="68.0" text="2024-02-03" />
+            <Label fx:id="patientBirthDate" layoutX="92.0" layoutY="68.0" text="2024-02-03" />
             <Label layoutX="11.0" layoutY="89.0" text="Hospital -&gt;" />
-            <Label fx:id="hospital" layoutX="84.0" layoutY="89.0" text="Horus Hospital" />
+            <Label fx:id="patientHospital" layoutX="84.0" layoutY="89.0" text="Horus Hospital" />
             <Label layoutX="11.0" layoutY="108.0" text="Blood Type -&gt;" />
             <Label fx:id="bloodtype" layoutX="110.0" layoutY="108.0" text="B+" />
             <Label layoutX="11.0" layoutY="125.0" text="Gender -&gt;" />

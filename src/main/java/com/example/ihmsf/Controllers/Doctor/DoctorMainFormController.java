@@ -11,14 +11,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import com.example.ihmsf.Models.DatabaseDriver;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,7 +42,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -49,11 +49,13 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
-import static java.sql.DriverManager.getConnection;
 
+/**
+ *
+ * @author WINDOWS 10
+ */
 public class DoctorMainFormController implements Initializable {
 
-    private DatabaseDriver databaseDriver = new DatabaseDriver();
     @FXML
     private AnchorPane main_form;
 
@@ -312,21 +314,13 @@ public class DoctorMainFormController implements Initializable {
     private Statement statement;
     private ResultSet result;
 
-    private Connection connection;
-
     private Image image;
 
     public ObservableList<AppointmentData> dashboardAppointmentTableView() {
 
         ObservableList<AppointmentData> listData = FXCollections.observableArrayList();
 
-//        this.connection = DriverManager.getConnection(
-//                "jdbc:mysql://mysql-2ff4c4f8-bedo2054-d043.c.aivencloud.com:24916/defaultdb?ssl-mode=REQUIRED",
-//                "avnadmin",
-//                "AVNS_pv0aowP5856X0xIw5-o"
-//        );
-
-        String sql = "SELECT * FROM hospital.appointment WHERE doctor = '"
+        String sql = "SELECT * FROM appointment WHERE doctor = '"
                 + Data.doctor_id + "'";
 
 //        connect = Database.connectDB();
@@ -877,24 +871,26 @@ public void appointmentDeleteBtn() {
 
 }
 // TO SELECT THE DATA PER ROW IN THE TABLE
-public void appointmentSelect() {
-    AppointmentData appData = appointments_tableView.getSelectionModel().getSelectedItem();
-    int num = appointments_tableView.getSelectionModel().getSelectedIndex();
+    public void appointmentSelect() {
 
-    if ((num - 1) < -1) {
-        return;
+        AppointmentData appData = appointments_tableView.getSelectionModel().getSelectedItem();
+        int num = appointments_tableView.getSelectionModel().getSelectedIndex();
+
+        if ((num - 1) < -1) {
+            return;
+        }
+
+        appointment_appointmentID.setText("" + appData.getAppointmentID());
+        appointment_name.setText(appData.getName());
+        appointment_gender.getSelectionModel().select(appData.getGender());
+        appointment_mobileNumber.setText("" + appData.getMobileNumber());
+        appointment_description.setText(appData.getDescription());
+        appointment_diagnosis.setText(appData.getDiagnosis());
+        appointment_treatment.setText(appData.getTreatment());
+        appointment_address.setText(appData.getAddress());
+        appointment_status.getSelectionModel().select(appData.getStatus());
+
     }
-
-    appointment_appointmentID.setText("" + appData.getAppointmentID());
-    appointment_name.setText(appData.getName());
-    appointment_gender.getSelectionModel().select(appData.getGender());
-    appointment_mobileNumber.setText("" + appData.getMobileNumber());
-    appointment_description.setText(appData.getDescription());
-    appointment_diagnosis.setText(appData.getDiagnosis());
-    appointment_treatment.setText(appData.getTreatment());
-    appointment_address.setText(appData.getAddress());
-    appointment_status.getSelectionModel().select(appData.getStatus());
-}
     public void appointmentUpdateBtn() {
 
         if (appointment_appointmentID.getText().isEmpty()
@@ -922,13 +918,10 @@ public void appointmentSelect() {
                     + appointment_appointmentID.getText() + "'";
 
 //            connect = Database.connectDB();
-            DatabaseDriver databaseDriver = new DatabaseDriver();
-            Connection connection = databaseDriver.getConnection();
-
 //            try {
 //                if (alert.confirmationMessage("Are you sure you want to UPDATE Appointment ID: "
 //                        + appointment_appointmentID.getText() + "?")) {
-//                    prepare = connection.prepareStatement(updateData);
+//                    prepare = connect.prepareStatement(updateData);
 //                    prepare.executeUpdate();
 //
 //                    appointmentShowData();
@@ -944,89 +937,89 @@ public void appointmentSelect() {
 
     // TO CLEAR ALL FIELDS
     public void appointmentClearBtn() {
-    appointment_appointmentID.clear();
-    appointment_name.clear();
-    appointment_gender.getSelectionModel().clearSelection();
-    appointment_mobileNumber.clear();
-    appointment_description.clear();
-    appointment_treatment.clear();
-    appointment_diagnosis.clear();
-    appointment_address.clear();
-    appointment_status.getSelectionModel().clearSelection();
-    appointment_schedule.setValue(null);
-}
+        appointment_appointmentID.clear();
+        appointment_name.clear();
+        appointment_gender.getSelectionModel().clearSelection();
+        appointment_mobileNumber.clear();
+        appointment_description.clear();
+        appointment_treatment.clear();
+        appointment_diagnosis.clear();
+        appointment_address.clear();
+        appointment_status.getSelectionModel().clearSelection();
+        appointment_schedule.setValue(null);
+    }
     public void appointmentInsertBtn() {
-    if (appointment_appointmentID.getText().isEmpty()
-            || appointment_name.getText().isEmpty()
-            || appointment_gender.getSelectionModel().getSelectedItem() == null
-            || appointment_mobileNumber.getText().isEmpty()
-            || appointment_description.getText().isEmpty()
-            || appointment_address.getText().isEmpty()
-            || appointment_status.getSelectionModel().getSelectedItem() == null
-            || appointment_schedule.getValue() == null) {
-        // alert.errorMessage("Please fill the blank fields");
-    } else {
-        String checkAppointmentID = "SELECT * FROM appointment WHERE appointment_id = "
-                + appointment_appointmentID.getText();
-        try {
-            DatabaseDriver databaseDriver = new DatabaseDriver();
-            Connection connection = databaseDriver.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(checkAppointmentID);
 
-            if (result.next()) {
-//                AlertHandler alert = new AlertHandler();
-//                 alert.errorMessage(appointment_appointmentID.getText() + " was already taken");
-            } else {
-                String getSpecialized = "";
-                String getDoctorData = "SELECT * FROM doctor WHERE doctor_id = '"
-                        + Data.doctor_id + "'";
-
-                statement = connection.createStatement();
-                result = statement.executeQuery(getDoctorData);
+//        CHECK IF THE FIELD(S) ARE EMPTY
+        if (appointment_appointmentID.getText().isEmpty()
+                || appointment_name.getText().isEmpty()
+                || appointment_gender.getSelectionModel().getSelectedItem() == null
+                || appointment_mobileNumber.getText().isEmpty()
+                || appointment_description.getText().isEmpty()
+                || appointment_address.getText().isEmpty()
+                || appointment_status.getSelectionModel().getSelectedItem() == null
+                || appointment_schedule.getValue() == null) {
+//            alert.errorMessage("Please fill the blank fields");
+        } else {
+            String checkAppointmentID = "SELECT * FROM appointment WHERE appointment_id = "
+                    + appointment_appointmentID.getText();
+//            connect = Database.connectDB();
+            try {
+                statement = connect.createStatement();
+                result = statement.executeQuery(checkAppointmentID);
 
                 if (result.next()) {
-                    getSpecialized = result.getString("specialized");
+//                    alert.errorMessage(appointment_appointmentID.getText() + " was already taken");
+                } else {
+                    String getSpecialized = "";
+                    String getDoctorData = "SELECT * FROM doctor WHERE doctor_id = '"
+                            + Data.doctor_id + "'";
+
+                    statement = connect.createStatement();
+                    result = statement.executeQuery(getDoctorData);
+
+                    if (result.next()) {
+                        getSpecialized = result.getString("specialized");
+                    }
+
+                    String insertData = "INSERT INTO appointment (appointment_id, name, gender"
+                            + ", description, diagnosis, treatment, mobile_number"
+                            + ", address, date, status, doctor, specialized, schedule) "
+                            + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    prepare = connect.prepareStatement(insertData);
+
+                    prepare.setString(1, appointment_appointmentID.getText());
+                    prepare.setString(2, appointment_name.getText());
+                    prepare.setString(3, (String) appointment_gender.getSelectionModel().getSelectedItem());
+                    prepare.setString(4, appointment_description.getText());
+                    prepare.setString(5, appointment_diagnosis.getText());
+                    prepare.setString(6, appointment_treatment.getText());
+                    prepare.setString(7, appointment_mobileNumber.getText());
+                    prepare.setString(8, appointment_address.getText());
+
+                    java.sql.Date sqlDate = new java.sql.Date(new Date().getTime());
+
+                    prepare.setString(9, "" + sqlDate);
+                    prepare.setString(10, (String) appointment_status.getSelectionModel().getSelectedItem());
+                    prepare.setString(11, Data.doctor_id);
+                    prepare.setString(12, getSpecialized);
+                    prepare.setString(13, "" + appointment_schedule.getValue());
+
+                    prepare.executeUpdate();
+
+                    appointmentShowData();
+                    appointmentAppointmentID();
+                    appointmentClearBtn();
+//                    alert.successMessage("Successully added!");
+
                 }
 
-                String insertData = "INSERT INTO appointment (appointment_id, name, gender"
-                        + ", description, diagnosis, treatment, mobile_number"
-                        + ", address, date, status, doctor, specialized, schedule) "
-                        + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                PreparedStatement prepare = connection.prepareStatement(insertData);
-
-                prepare.setString(1, appointment_appointmentID.getText());
-                prepare.setString(2, appointment_name.getText());
-                prepare.setString(3, (String) appointment_gender.getSelectionModel().getSelectedItem());
-                prepare.setString(4, appointment_description.getText());
-                prepare.setString(5, appointment_diagnosis.getText());
-                prepare.setString(6, appointment_treatment.getText());
-                prepare.setString(7, appointment_mobileNumber.getText());
-                prepare.setString(8, appointment_address.getText());
-
-                java.sql.Date sqlDate = new java.sql.Date(new Date().getTime());
-
-                prepare.setString(9, "" + sqlDate);
-                prepare.setString(10, (String) appointment_status.getSelectionModel().getSelectedItem());
-                prepare.setString(11, Data.doctor_id);
-                prepare.setString(12, getSpecialized);
-                prepare.setString(13, "" + appointment_schedule.getValue());
-
-                prepare.executeUpdate();
-
-                appointmentShowData();
-                appointmentAppointmentID();
-                appointmentClearBtn();
-                // alert.successMessage("Successully added!");
-
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-    }
 
-}
+    }
     private ObservableList<AppointmentData> dashboardGetData;
 public ObservableList<AppointmentData> appointmentGetData() {
 
@@ -1035,14 +1028,20 @@ public ObservableList<AppointmentData> appointmentGetData() {
     String sql = "SELECT * FROM appointment WHERE date_delete IS NULL and doctor = '"
             + Data.doctor_id + "'";
 
+//        connect = Database.connectDB();
+
     try {
-        Connection connection = databaseDriver.getConnection();
-        PreparedStatement prepare = connection.prepareStatement(sql);
-        ResultSet result = prepare.executeQuery();
+
+        prepare = connect.prepareStatement(sql);
+        result = prepare.executeQuery();
 
         AppointmentData appData;
 
         while (result.next()) {
+//            Integer appointmentID, String name, String gender,
+//            Long mobileNumber, String description, String diagnosis, String treatment, String address,
+//            Date date, Date dateModify, Date dateDelete, String status, Date schedule
+
             appData = new AppointmentData(result.getInt("appointment_id"),
                     result.getString("name"), result.getString("gender"),
                     result.getLong("mobile_number"), result.getString("description"),
@@ -1079,33 +1078,34 @@ public ObservableList<AppointmentData> appointmentGetData() {
     }
     private Integer appointmentID;
 
-    public void appointmentGetAppointmentID() {
-        Connection connection = databaseDriver.getConnection();
-        String sql = "SELECT MAX(appointment_id) FROM appointment";
-        int tempAppID = 0;
-        try {
-            PreparedStatement prepare = connection.prepareStatement(sql);
-            ResultSet result = prepare.executeQuery();
-            if (result.next()) {
-                tempAppID = result.getInt("MAX(appointment_id)");
+        public void appointmentGetAppointmentID() {
+            String sql = "SELECT MAX(appointment_id) FROM appointment";
+//            connect = Database.connectDB();
+
+            int tempAppID = 0;
+            try {
+                prepare = connect.prepareStatement(sql);
+                result = prepare.executeQuery();
+                if (result.next()) {
+                    tempAppID = result.getInt("MAX(appointment_id)");
+                }
+                if (tempAppID == 0) {
+                    tempAppID += 1;
+                } else {
+                    tempAppID += 1;
+                }
+                appointmentID = tempAppID;
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            if (tempAppID == 0) {
-                tempAppID += 1;
-            } else {
-                tempAppID += 1;
-            }
-            appointmentID = tempAppID;
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-    }
-    public void appointmentAppointmentID() {
+            public void appointmentAppointmentID() {
             appointmentGetAppointmentID();
 
             appointment_appointmentID.setText("" + appointmentID);
             appointment_appointmentID.setDisable(true);
 
-            }
+        }
     public void appointmentGenderList() {
         List<String> listG = new ArrayList<>();
 
@@ -1129,16 +1129,16 @@ public ObservableList<AppointmentData> appointmentGetData() {
         appointment_status.setItems(listData);
 
     }
-//    public void displayAdminIDNumberName() {
-//
-//        String name = Data.doctor_name;
-//        name = name.substring(0, 1).toUpperCase() + name.substring(1);
-//
-//        nav_username.setText(name);
-//        nav_adminID.setText(Data.doctor_id);
-//        top_username.setText(name);
-//
-//    }
+    public void displayAdminIDNumberName() {
+
+        String name = Data.doctor_name;
+        name = name.substring(0, 1).toUpperCase() + name.substring(1);
+
+        nav_username.setText(name);
+        nav_adminID.setText(Data.doctor_id);
+        top_username.setText(name);
+
+    }
 
     public void switchForm(ActionEvent event) {
         if (event.getSource() == dashboard_btn) {
@@ -1200,36 +1200,6 @@ public ObservableList<AppointmentData> appointmentGetData() {
 
         ObservableList listData = FXCollections.observableArrayList(listG);
         profile_status.setItems(listData);
-    }
-
-    public void patientConfirmBtn(ActionEvent actionEvent) {
-    }
-
-    public void patientAddBtn(ActionEvent actionEvent) {
-    }
-
-    public void patientRecordBtn(ActionEvent actionEvent) {
-    }
-
-    public void appointmentSelect(MouseEvent mouseEvent) {
-    }
-
-    public void appointmentInsertBtn(ActionEvent actionEvent) {
-    }
-
-    public void appointmentUpdateBtn(ActionEvent actionEvent) {
-    }
-
-    public void appointmentClearBtn(ActionEvent actionEvent) {
-    }
-
-    public void appointmentDeleteBtn(ActionEvent actionEvent) {
-    }
-
-    public void profileChangeProfile(ActionEvent actionEvent) {
-    }
-
-    public void profileUpdateBtn(ActionEvent actionEvent) {
     }
 }
 

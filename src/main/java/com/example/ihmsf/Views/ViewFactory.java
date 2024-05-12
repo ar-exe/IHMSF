@@ -30,6 +30,7 @@ public class ViewFactory {
     private AnchorPane takeAttendanceView;
     private AnchorPane attendanceHistoryView;
     private AnchorPane profileView;
+    private AnchorPane doctorMainView;
     public ViewFactory() {
         this.RecipSelection = new SimpleStringProperty();
     }
@@ -37,9 +38,19 @@ public class ViewFactory {
         return RecipSelection;
     }
     public AnchorPane getDashboardView() {
-        if (dashboardView == null) {
+        if (doctorMainView == null) {
             try{
                 dashboardView = new FXMLLoader(getClass().getResource("/FXML/Reciptionist/Dashboard.fxml")).load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return dashboardView;
+    }
+    public AnchorPane getDoctorMainView(){
+        if (dashboardView == null) {
+            try{
+                dashboardView = new FXMLLoader(getClass().getResource("/FXML/Doctor/DoctorMainForm.fxml")).load();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -182,14 +193,14 @@ public class ViewFactory {
         }
         Stage stage = new Stage();
         stage.setScene(scene);
-//        try {
-//            InputStream is = new FileInputStream("G:\\IHMSF\\IHMSF\\src\\main\\resources\\Images\\hospital.png");
-//            Image image = new Image(is);
-//            stage.getIcons().add(image);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//            System.out.println("ERROR in setting icon");
-//        }
+        try {
+            InputStream is = new FileInputStream("G:\\IHMSF\\IHMSF\\src\\main\\resources\\Images\\hospital.png");
+            Image image = new Image(is);
+            stage.getIcons().add(image);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("ERROR in setting icon");
+        }
         stage.setTitle("IHMS");
         stage.show();
     }

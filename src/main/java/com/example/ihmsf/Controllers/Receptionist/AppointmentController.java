@@ -3,6 +3,7 @@ package com.example.ihmsf.Controllers.Receptionist;
 import com.example.ihmsf.Models.Appointment;
 import com.example.ihmsf.Models.Doctor;
 import com.example.ihmsf.Models.Model;
+import com.example.ihmsf.Models.Patient;
 import com.example.ihmsf.Views.AvailableDoctorsCellFactory;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -45,7 +46,7 @@ public void initialize(URL url, ResourceBundle resourceBundle) {
         // Clear the previous doctors
         Model.getInstance().getAvailableDoctors().clear();
         // Fetch the doctors for the selected specialty
-        Model.getInstance().setAvailableDoctors(newValue.toString());
+        Model.getInstance().setAvailableDoctors(specialityChoiceBox.getValue().toString());
         // Update the ListView
         availableDoctorsListView.setItems(Model.getInstance().getAvailableDoctors());
     });
@@ -55,13 +56,32 @@ public void initialize(URL url, ResourceBundle resourceBundle) {
     bookButton.setOnAction(e -> bookAppointment());
 }
 public void bookAppointment() {
-    String speciality = specialityChoiceBox.getValue().toString();
-    String patientID = patientIDInput.getText();
-    LocalDate date = datePicker.getValue();
     Doctor selectedDoctor = Model.getInstance().getSelectedDoctor();
+//    String appointmentIDText = appointmentID.getText();
+    String dateText = datePicker.getValue().toString();
+    String doctorNameText = String.valueOf(selectedDoctor.getDoctorName());
+    String hospitalText = Model.getInstance().getDatabaseDriver().getHospitalNameForUser(Model.getInstance().getCurrentUserId());
+    String speciality = specialityChoiceBox.getValue().toString();
+    String clinicText = clinic.getText();
+//    String hospitalText = hospital.getText();
+    String roomText = room.getText();
+//    String doctorNameText = doctorName.getText();
+    String patientID = patientIDInput.getText();
+    String PatientName = Model.getInstance().getDatabaseDriver().getPatientName(patientID);
+    LocalDate date = datePicker.getValue();
+    String appointmentIDText = null;
+    Appointment appointment = new Appointment(speciality, patientID, PatientName, appointmentIDText, date, doctorNameText, clinicText, hospitalText, roomText, selectedDoctor);
+    appointmentIDText = Model.getInstance().getDatabaseDriver().saveAppointment(appointment);
 
-    Appointment appointment = new Appointment(speciality, patientID, date, selectedDoctor);
 
+    // Assuming you have text fields or other UI elements to get these values
+    Patient patient = Model.getInstance().getDatabaseDriver().getPatientDetails(patientID);
+    if (patient == null) {
+        System.out.println("Patient not found!");
+        return;
+    }
+    String patientName = patient.getName();
+//    appointment = new Appointment(speciality, patientID, patientName, appointmentIDText, date, doctorNameText, clinicText, hospitalText, roomText, selectedDoctor);
     try {
         // Save the appointment to the database
         Model.getInstance().getDatabaseDriver().saveAppointment(appointment);
@@ -69,15 +89,61 @@ public void bookAppointment() {
         // Show a success message
         System.out.println("Appointment booked successfully!");
 
-        // Clear the form inputs
-        specialityChoiceBox.setValue(null);
-        patientIDInput.clear();
-        datePicker.setValue(null);
-        availableDoctorsListView.getSelectionModel().clearSelection();
+        appointmentID.setText("");
+        appointmentDate.setText("");
+        doctorName.setText("");
+        clinic.setText("");
+        hospital.setText("");
+        room.setText("");
+        displayAppointmentData(appointment , appointmentIDText, hospitalText, doctorNameText, patientName);
+
+        // Debug print statements
+        System.out.println("Debug: Appointment details:");
+        System.out.println("Speciality: " + appointment.getSpeciality());
+        System.out.println("Patient ID: " + appointment.getPatientId());
+        System.out.println("Patient Name: " + patientName);
+        System.out.println("Appointment ID: " + appointmentIDText);
+        System.out.println("Date: " + appointment.getDateTime());
+        System.out.println("Doctor Name: " + doctorNameText);
+        System.out.println("Clinic: " + appointment.getClinic());
+        System.out.println("Hospital: " + hospitalText);
+        System.out.println("Room: " + appointment.getRoom());
+
+
+//        patientNameInput.clear();
+//        appointmentIDInput.clear();
+//        doctorNameInput.clear();
+//        clinicInput.clear();
+//        hospitalInput.clear();
+//        roomInput.clear();
     } catch (Exception e) {
         // Show an error message
         System.out.println("Failed to book appointment: (AppointmentController.java) " + e.getMessage());
     }
+}
+public void displayAppointmentData(Appointment appointment, String appointmentIDText, String hospitalText, String doctorNameText, String patientNameText) {
+    // Get patient details
+    Patient patient = Model.getInstance().getDatabaseDriver().getPatientDetails(appointment.getPatientId());
+
+    // Set the labels with the appointment data
+    patientID.setText(appointment.getPatientId());
+    patientName.setText(patient.getName());
+    appointmentID.setText(appointmentIDText);
+    appointmentDate.setText(appointment.getDateTime());
+    doctorName.setText(appointment.getSelectedDoctor().getDoctorName().get()); // Retrieve the doctor name correctly
+    hospital.setText(hospitalText);
+//    clinic.setText(appointment.getClinic().isEmpty() ? "N/A" : appointment.getClinic()); // Handle empty clinic
+//    room.setText(appointment.getRoom());
+}
+public void setAppointmentData(Appointment appointment, String appointmentIDText) {
+    patientID.setText(appointment.getPatientId());
+    patientName.setText(appointment.getPatientName());
+    appointmentID.setText(appointmentIDText);
+    appointmentDate.setText(appointment.getAppointmentDate().toString());
+    doctorName.setText(appointment.getDoctorName());
+    clinic.setText(appointment.getClinic());
+    hospital.setText(appointment.getHospital());
+    room.setText(appointment.getRoom());
 }
 //    private void initAvailableDoctors(){
 //        if (Model.getInstance().getAvailableDoctors().isEmpty()){
@@ -85,3 +151,9 @@ public void bookAppointment() {
 //        }
 //    }
 }
+
+
+
+
+
+
