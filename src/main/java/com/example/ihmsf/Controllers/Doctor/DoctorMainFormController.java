@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.example.ihmsf.Models.DatabaseDriver;
+import com.example.ihmsf.Models.Model;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -964,7 +965,7 @@ public void appointmentSelect() {
             || appointment_address.getText().isEmpty()
             || appointment_status.getSelectionModel().getSelectedItem() == null
             || appointment_schedule.getValue() == null) {
-        // alert.errorMessage("Please fill the blank fields");
+//         alert.errorMessage("Please fill the blank fields");
     } else {
         String checkAppointmentID = "SELECT * FROM appointment WHERE appointment_id = "
                 + appointment_appointmentID.getText();
@@ -1163,7 +1164,16 @@ public ObservableList<AppointmentData> appointmentGetData() {
             profile_form.setVisible(true);
         }
     }
+    private void profileGenderList() {
+        List<String> listG = new ArrayList<>();
 
+        for (String data : Data.status) {
+            listG.add(data);
+        }
+
+        ObservableList listData = FXCollections.observableArrayList(listG);
+        profile_status.setItems(listData);
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
             dashbboardDisplayIP();
@@ -1191,17 +1201,6 @@ public ObservableList<AppointmentData> appointmentGetData() {
           profileStatusList();
     }
 
-    private void profileGenderList() {
-        List<String> listG = new ArrayList<>();
-
-        for (String data : Data.status) {
-            listG.add(data);
-        }
-
-        ObservableList listData = FXCollections.observableArrayList(listG);
-        profile_status.setItems(listData);
-    }
-
     public void patientConfirmBtn(ActionEvent actionEvent) {
     }
 
@@ -1213,18 +1212,12 @@ public ObservableList<AppointmentData> appointmentGetData() {
 
     public void appointmentSelect(MouseEvent mouseEvent) {
     }
+//    public void appointmentUpdateBtn(ActionEvent actionEvent) {
+//    }
 
-    public void appointmentInsertBtn(ActionEvent actionEvent) {
-    }
 
-    public void appointmentUpdateBtn(ActionEvent actionEvent) {
-    }
-
-    public void appointmentClearBtn(ActionEvent actionEvent) {
-    }
-
-    public void appointmentDeleteBtn(ActionEvent actionEvent) {
-    }
+//    public void appointmentDeleteBtn(ActionEvent actionEvent) {
+//    }
 
     public void profileChangeProfile(ActionEvent actionEvent) {
     }
@@ -1234,37 +1227,28 @@ public ObservableList<AppointmentData> appointmentGetData() {
 }
 
 //    public void logoutBtn() {
+//    try {
+//        // Clear user data
+//        Data.doctor_id = "";
+//        Data.doctor_name = "";
+//        Data.temp_PatientID = 0;
+//        Data.temp_name = "";
+//        Data.temp_gender = "";
+//        Data.temp_number = Long.parseLong("0");
+//        Data.temp_address = "";
+//        Data.temp_status = "";
+//        Data.temp_date = "";
+//        Data.temp_path = "";
 //
-//        try {
-//            if (alert.confirmationMessage("Are you sure you want to logout?")) {
-//                Data.doctor_id = "";
-//                Data.doctor_name = "";
-//                Parent root = FXMLLoader.load(getClass().getResource("DoctorPage.fxml"));
-//                Stage stage = new Stage();
+//        // Load the DoctorPage.fxml scene
+//        Parent root = FXMLLoader.load(getClass().getResource("DoctorPage.fxml"));
+//        Stage stage = new Stage();
+//        stage.setScene(new Scene(root));
+//        stage.show();
 //
-//                stage.setScene(new Scene(root));
-//                stage.show();
-//
-//                // TO HIDE YOUR MAIN FORM
-//                logout_btn.getScene().getWindow().hide();
-//
-//                Data.doctor_id = "";
-//                Data.doctor_name = "";
-//                Data.temp_PatientID = 0;
-//                Data.temp_name = "";
-//                Data.temp_gender = "";
-//                Data.temp_number = Long.parseLong("0");
-//                Data.temp_address = "";
-//                Data.temp_status = "";
-//                Data.temp_date = "";
-//                Data.temp_path = "";
-//
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
+//        // Hide the current window
+//        logout_btn.getScene().getWindow().hide();
+//    } catch (Exception e) {
+//        e.printStackTrace();
 //    }
-
-
-
+//}
