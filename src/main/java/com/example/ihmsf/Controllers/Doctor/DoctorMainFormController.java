@@ -74,8 +74,6 @@ public class DoctorMainFormController implements Initializable {
 
     @FXML
     private Label nav_adminID;
-//    @FXML
-//    private Label nav_adminID;
 
     @FXML
     private Label nav_username;
