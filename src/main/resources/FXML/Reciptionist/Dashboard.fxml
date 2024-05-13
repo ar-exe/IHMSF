@@ -2,20 +2,17 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="750.0" prefWidth="850.0" stylesheets="@../../Styles/mainDashboard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ihmsf.Controllers.Receptionist.DashboardController">
     <Text fx:id="user_name" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="user_name" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="30.0" />
     <Label fx:id="hospital_name" styleClass="date_lbl" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="27.0" />
-    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section_title" text="Summary" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="90.0" />
     <Text layoutX="20.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section_title" text="Statistics" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="90.0" />
-    <HBox layoutX="20.0" layoutY="116.0" prefHeight="132.0" prefWidth="620.0" spacing="85.0" styleClass="account_view" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="120.0">
+    <HBox layoutX="20.0" layoutY="116.0" prefHeight="132.0" prefWidth="810.0" spacing="85.0" styleClass="account_view" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="120.0">
         <AnchorPane prefHeight="100.0" prefWidth="129.0">
             <styleClass>
                 <String fx:value="account" />
@@ -53,13 +50,6 @@
             <FontAwesomeIconView glyphName="TABLE" layoutX="30.0" layoutY="109.0" size="50" wrappingWidth="47.0" />
         </AnchorPane>
     </HBox>
-    <VBox layoutX="728.0" layoutY="130.0" prefHeight="180.0" prefWidth="210.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
-        <PieChart fx:id="roomsPieChart" styleClass="chart-pie" />
-    </VBox>
-    <Text layoutX="20.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section_title" text="Rooms" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="340.0" />
-    <Text layoutX="797.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section_title" text="Activity" AnchorPane.leftAnchor="797.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="340.0" />
-    <ListView fx:id="rooms_listview" layoutX="20.0" layoutY="390.0" prefHeight="365.0" prefWidth="570.0" styleClass="transaction_listview" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="20.0" />
-    <VBox layoutX="614.0" layoutY="370.0" prefHeight="366.0" prefWidth="240.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
-        <ListView fx:id="activity_listview" prefHeight="360.0" prefWidth="310.0" styleClass="transaction_listview" />
-    </VBox>
+    <Text layoutX="378.4" layoutY="360.8" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section_title" text="Rooms" AnchorPane.leftAnchor="378.4" AnchorPane.topAnchor="343.8" />
+    <ListView fx:id="rooms_listview" layoutX="123.0" layoutY="370.0" prefHeight="365.0" prefWidth="570.0" styleClass="transaction_listview" AnchorPane.bottomAnchor="14.399999999999977" AnchorPane.leftAnchor="123.0" />
 </AnchorPane>

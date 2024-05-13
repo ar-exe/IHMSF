@@ -37,7 +37,7 @@ public class DashboardController implements Initializable {
         initRooms();
         rooms_listview.setItems(Model.getInstance().getRooms());
         rooms_listview.setCellFactory(e -> new RoomsCellFactory());
-        initPieChart();
+//        initPieChart();
         user_name.setText("Welcome, " + currentuserName);
         hospital_name.setText(hospitalName);
         current_patients.setText(String.valueOf(Model.getInstance().getDatabaseDriver().getPatientCount()));
@@ -75,14 +75,14 @@ public class DashboardController implements Initializable {
             Model.getInstance().setActivity();
         }
     }
-private void initPieChart(){
-    int totalRooms = 100;
-    int filledRooms = Model.getInstance().getRooms().size();
-    double filledRoomsPercentage = (double) filledRooms / totalRooms * 100;
-
-    PieChart.Data data = new PieChart.Data("Rooms", filledRoomsPercentage);
-    roomsPieChart.getData().clear(); // Clear previous data
-    roomsPieChart.getData().add(data);
-}
+//private void initPieChart(){
+//    int totalRooms = 100;
+//    int filledRooms = Model.getInstance().getRooms().size();
+//    double filledRoomsPercentage = (double) filledRooms / totalRooms * 100;
+//
+//    PieChart.Data data = new PieChart.Data("Rooms", filledRoomsPercentage);
+//    roomsPieChart.getData().clear(); // Clear previous data
+//    roomsPieChart.getData().add(data);
+//}
 
 }
