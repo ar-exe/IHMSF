@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane prefHeight="60.0" prefWidth="370.0" styleClass="cell_container" stylesheets="@../../Styles/RoomsCell.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <FontAwesomeIconView glyphName="TABLE" layoutX="24.0" layoutY="44.0" size="35" wrappingWidth="43.87943458557129" />
+      <Label fx:id="clinicIdLabel" layoutX="109.0" layoutY="22.0" styleClass="cell_room_lbl" text="C13" />
+      <Label fx:id="clinicSpecialityLabel" layoutX="198.0" layoutY="21.0" style="-fx-text-fill: green;" styleClass="state_lbl" text="Dermatology" />
+      <Button fx:id="clinicSelectButton" layoutX="307.0" layoutY="16.0" maxWidth="60.0" mnemonicParsing="false" styleClass="heartbeat_lbl" text="Select" />
+      <Line endX="100.0" layoutX="185.0" layoutY="42.0" startX="100.0" startY="-23.300010681152344" />
+      <Line endX="100.0" layoutX="85.0" layoutY="42.0" startX="100.0" startY="-23.300010681152344" />
+   </children>
+</AnchorPane>

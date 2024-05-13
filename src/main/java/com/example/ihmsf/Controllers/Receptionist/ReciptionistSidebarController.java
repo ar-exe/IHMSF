@@ -28,7 +28,7 @@ public class ReciptionistSidebarController implements Initializable {
         appointmentButton.setOnAction(event -> onAppointment());
         patientsButton.setOnAction(event -> onPatients());
         attendanceButton.setOnAction(event -> onAttendance());
-        profileButton.setOnAction(event -> onProfile());
+//        profileButton.setOnAction(event -> onProfile());
         logoutButton.setOnAction(event -> onLogout());
     }
 

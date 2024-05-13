@@ -1,23 +1,26 @@
 package com.example.ihmsf.Models;
 
 import javafx.beans.property.SimpleStringProperty;
+import java.time.LocalDateTime;
 
 public class HistoryAttendance {
     private SimpleStringProperty id;
     private SimpleStringProperty name;
     private SimpleStringProperty date;
-    private SimpleStringProperty timeIn;
-    private SimpleStringProperty timeOut;
+    private LocalDateTime timeIn;
+    private LocalDateTime timeOut;
     private SimpleStringProperty absReason;
 
-    public HistoryAttendance(String id, String name, String date, String timeIn, String timeOut, String absReason) {
+    public HistoryAttendance(String id, String name, LocalDateTime timeIn, LocalDateTime timeOut) {
         this.id = new SimpleStringProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.date = new SimpleStringProperty(date);
-        this.timeIn = new SimpleStringProperty(timeIn);
-        this.timeOut = new SimpleStringProperty(timeOut);
-        this.absReason = new SimpleStringProperty(absReason);
+//        this.date = new SimpleStringProperty(date);
+        this.timeIn = timeIn;
+        this.timeOut = timeOut;
+//        this.absReason = new SimpleStringProperty(absReason);
     }
+
+
 
     // getters and setters
     public String getId() {
@@ -44,20 +47,20 @@ public class HistoryAttendance {
         this.date.set(date);
     }
 
-    public String getTimeIn() {
-        return timeIn.get();
+    public LocalDateTime getTimeIn() {
+        return timeIn;
     }
 
-    public void setTimeIn(String timeIn) {
-        this.timeIn.set(timeIn);
+    public void setTimeIn(LocalDateTime timeIn) {
+        this.timeIn = timeIn;
     }
 
-    public String getTimeOut() {
-        return timeOut.get();
+    public LocalDateTime getTimeOut() {
+        return timeOut;
     }
 
-    public void setTimeOut(String timeOut) {
-        this.timeOut.set(timeOut);
+    public void setTimeOut(LocalDateTime timeOut) {
+        this.timeOut = timeOut;
     }
 
     public String getAbsReason() {
@@ -68,3 +71,6 @@ public class HistoryAttendance {
         this.absReason.set(absReason);
     }
 }
+
+
+

@@ -23,7 +23,8 @@ public class AvailableDoctorCellController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         doctorNameLabel.setText(doctor.getDoctorName().get());
-        AvailableLabel.setText(doctor.getAvailable().get());
+        String doctorRole = Model.getInstance().getDatabaseDriver().getDoctorRole(doctor.getDoctorID().get());
+        AvailableLabel.setText(doctorRole);
         selectButton.setOnAction(e->{
             Model.getInstance().setSelectedDoctor(doctor);
             System.out.println("Selected DoctorName: "+doctor.getDoctorName().get());
@@ -32,6 +33,6 @@ public class AvailableDoctorCellController implements Initializable {
             System.out.println("Selected DoctorAvailable: "+doctor.getAvailable().get());
 
         });
-//        selectButton.setText("Select");
+//        clinicSelectButton.setText("Select");
     }
 }

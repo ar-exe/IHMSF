@@ -3,18 +3,22 @@ package com.example.ihmsf.Models;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.util.List;
+
 public class Doctor {
     private final StringProperty doctorID;
     private final StringProperty doctorName;
     private final StringProperty available;
     private final StringProperty department;
+    private final StringProperty role;
 
 
-    public Doctor(String doctorID, String doctorName, String department, String available) {
+    public Doctor(String doctorID, String doctorName, String department, String available,String Role) {
         this.doctorID = new SimpleStringProperty(this, "Doctor ID", doctorID);
         this.doctorName = new SimpleStringProperty(this, "Doctor Name", doctorName);
         this.available = new SimpleStringProperty(this, "Available", available);
         this.department = new SimpleStringProperty(this, "Department", department);
+        this.role = new SimpleStringProperty(this, "Role", Role);
     }
 
     public StringProperty getDoctorID() {
@@ -33,4 +37,7 @@ public class Doctor {
     }
 
 
+    public StringProperty getRole() {
+        return this.role;
+    }
 }

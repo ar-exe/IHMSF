@@ -1,9 +1,7 @@
 package com.example.ihmsf.Controllers.Receptionist;
 
-import com.example.ihmsf.Models.Appointment;
-import com.example.ihmsf.Models.Doctor;
-import com.example.ihmsf.Models.Model;
-import com.example.ihmsf.Models.Patient;
+import com.example.ihmsf.Models.*;
+import com.example.ihmsf.Views.AvailableClinicsCellFactory;
 import com.example.ihmsf.Views.AvailableDoctorsCellFactory;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -50,19 +48,29 @@ public void initialize(URL url, ResourceBundle resourceBundle) {
         // Update the ListView
         availableDoctorsListView.setItems(Model.getInstance().getAvailableDoctors());
     });
+    specialityChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        // Clear the previous clinics
+        Model.getInstance().getAvailableClinics().clear();
+        // Fetch the clinics for the selected specialty
+        Model.getInstance().setAvailableClinics(specialityChoiceBox.getValue().toString());
+        // Update the ListView
+        availableClinicsListView.setItems(Model.getInstance().getAvailableClinics());
+    });
 
     // Set the cell factory for the ListView
     availableDoctorsListView.setCellFactory(e -> new AvailableDoctorsCellFactory());
+    availableClinicsListView.setCellFactory(e -> new AvailableClinicsCellFactory());
     bookButton.setOnAction(e -> bookAppointment());
 }
 public void bookAppointment() {
     Doctor selectedDoctor = Model.getInstance().getSelectedDoctor();
+    Clinic selectedClinic = Model.getInstance().getSelectedClinic();
 //    String appointmentIDText = appointmentID.getText();
     String dateText = datePicker.getValue().toString();
     String doctorNameText = String.valueOf(selectedDoctor.getDoctorName());
     String hospitalText = Model.getInstance().getDatabaseDriver().getHospitalNameForUser(Model.getInstance().getCurrentUserId());
     String speciality = specialityChoiceBox.getValue().toString();
-    String clinicText = clinic.getText();
+    String clinicText = String.valueOf(selectedClinic.getClinicID());
 //    String hospitalText = hospital.getText();
     String roomText = room.getText();
 //    String doctorNameText = doctorName.getText();

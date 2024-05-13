@@ -1,6 +1,5 @@
 package com.example.ihmsf.Views;
 
-import com.example.ihmsf.Controllers.Doctor.DoctorMainFormController;
 import com.example.ihmsf.Controllers.Receptionist.NewPatientController;
 import com.example.ihmsf.Controllers.Receptionist.ReciptionistController;
 import com.example.ihmsf.Controllers.Receptionist.SearchPatientsController;
